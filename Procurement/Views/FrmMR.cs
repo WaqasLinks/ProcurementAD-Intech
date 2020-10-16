@@ -146,13 +146,13 @@ namespace Procurement
 
                 MRVersion mrvModel = new MRVersion();
                 mrvModel.DateCreated = DateTime.Now;
-                mrvModel.Reason = textBox1.Text;
+                mrvModel.Description = textBox1.Text;
                 mrvModel.ProjectCode = _currentLoadedProject.ProjectCode;
                 mrvModel.IsVersion = true;
                 //mrvModel.Version = _maxMRVersion;
                 //mrvModel.Id = _mrvc.GetMaxMRVersionNo();
-                mrvModel.Revision = "00";
-                string strVersion = _mrvc.GetMaxMRVersionNo(mrvModel.IsVersion.Value, mrvModel.ProjectCode).ToString("00");
+                mrvModel.Revision = "000";
+                string strVersion = _mrvc.GetMaxMRVersionNo(mrvModel.IsVersion.Value, mrvModel.ProjectCode).ToString("000");
 
                 mrvModel.VersionNo = _currentLoadedProject.ProjectCode.ToString() + "-MR-" + strVersion;
 

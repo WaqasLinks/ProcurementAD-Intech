@@ -12,28 +12,28 @@
           <Property Name="RowAuto" Type="decimal" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProjectCode" Type="nvarchar" MaxLength="100" />
           <Property Name="BOMTypeCode" Type="smallint" />
-          <Property Name="ChangeOrder" Type="nvarchar" MaxLength="500" />
           <Property Name="Category1" Type="nvarchar" MaxLength="500" />
           <Property Name="Category2" Type="nvarchar" MaxLength="500" />
           <Property Name="Category3" Type="nvarchar" MaxLength="500" />
           <Property Name="SORef" Type="nvarchar" MaxLength="500" />
-          <Property Name="Sr" Type="nvarchar" MaxLength="500" />
+          <Property Name="Sr" Type="decimal" Precision="10" Scale="0" />
           <Property Name="ProductCategory" Type="nvarchar" MaxLength="500" />
           <Property Name="Product" Type="nvarchar" MaxLength="500" />
           <Property Name="CostHead" Type="nvarchar" MaxLength="500" />
           <Property Name="CostSubHead" Type="nvarchar" MaxLength="500" />
           <Property Name="System" Type="nvarchar" MaxLength="500" />
           <Property Name="Area" Type="nvarchar" MaxLength="500" />
-          <Property Name="Panel" Type="nvarchar" MaxLength="500" />
+          <Property Name="Panel" Type="decimal" Precision="10" Scale="0" />
           <Property Name="Category" Type="nvarchar" MaxLength="500" />
           <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" />
           <Property Name="PartNo" Type="nvarchar" MaxLength="500" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
-          <Property Name="Qty" Type="nvarchar" MaxLength="500" />
-          <Property Name="UnitCost" Type="nvarchar" MaxLength="500" />
-          <Property Name="ExtCost" Type="nvarchar" MaxLength="500" />
-          <Property Name="UnitPrice" Type="nvarchar" MaxLength="500" />
-          <Property Name="ExtPrice" Type="nvarchar" MaxLength="500" />
+          <Property Name="Qty" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UnitCost" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ExtCost" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ExtPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ChangeOrder" Type="nvarchar" MaxLength="500" />
           <Property Name="Column1" Type="nvarchar" MaxLength="500" />
           <Property Name="Column2" Type="nvarchar" MaxLength="500" />
           <Property Name="Column3" Type="nvarchar" MaxLength="500" />
@@ -95,7 +95,7 @@
           <Property Name="Id" Type="decimal" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Revision" Type="nvarchar" MaxLength="10" />
           <Property Name="VersionNo" Type="nvarchar" MaxLength="100" />
-          <Property Name="Reason" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="ProjectCode" Type="nvarchar" MaxLength="100" />
           <Property Name="IsVersion" Type="bit" />
           <Property Name="DateCreated" Type="datetime" />
@@ -311,23 +311,23 @@
           <Property Name="Category2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Category3" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="SORef" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Sr" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Sr" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="ProductCategory" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Product" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CostHead" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CostSubHead" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="System" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Area" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Panel" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Panel" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="Category" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="PartNo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Qty" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="UnitCost" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ExtCost" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="UnitPrice" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ExtPrice" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UnitCost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ExtCost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ExtPrice" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="ChangeOrder" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Column1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Column2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -350,8 +350,12 @@
             <PropertyRef Name="EmployeeCode" />
           </Key>
           <Property Name="EmployeeCode" Type="Decimal" Nullable="false" Precision="10" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="EmployeeName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SAM" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
           <Property Name="EmployeeTypeCode" Type="Int16" />
           <Property Name="Manager" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="ProjectCode" Type="Decimal" Precision="10" Scale="0" />
@@ -361,10 +365,6 @@
           <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="EmployeeType" Relationship="ProcurementModel.FK_Employee_EmployeeType" FromRole="Employee" ToRole="EmployeeType" />
           <NavigationProperty Name="ProjectEmployeeDetails" Relationship="ProcurementModel.FK_ProjectEmployeeDetail_Employee" FromRole="Employee" ToRole="ProjectEmployeeDetail" />
-          <Property Name="SAM" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Active" Type="Boolean" />
-          <Property Name="EmployeeId" Type="Decimal" Precision="10" Scale="0" />
         </EntityType>
         <EntityType Name="EmployeeType">
           <Key>
@@ -397,13 +397,13 @@
           <Property Name="Id" Type="Decimal" Nullable="false" Precision="10" Scale="0" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Revision" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="VersionNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ProjectCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsVersion" Type="Boolean" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="IsModified" Type="Boolean" />
           <NavigationProperty Name="MRs" Relationship="ProcurementModel.FK_MR_MRVersion" FromRole="MRVersion" ToRole="MR" />
           <NavigationProperty Name="Project" Relationship="ProcurementModel.FK_MRVersion_Project" FromRole="MRVersion" ToRole="Project" />
-          <Property Name="IsModified" Type="Boolean" />
-          <Property Name="IsVersion" Type="Boolean" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -538,12 +538,12 @@
           <EntitySetMapping Name="BOMs">
             <EntityTypeMapping TypeName="ProcurementModel.BOM">
               <MappingFragment StoreEntitySet="BOM">
-                <ScalarProperty Name="ChangeOrder" ColumnName="ChangeOrder" />
                 <ScalarProperty Name="Column5" ColumnName="Column5" />
                 <ScalarProperty Name="Column4" ColumnName="Column4" />
                 <ScalarProperty Name="Column3" ColumnName="Column3" />
                 <ScalarProperty Name="Column2" ColumnName="Column2" />
                 <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="ChangeOrder" ColumnName="ChangeOrder" />
                 <ScalarProperty Name="ExtPrice" ColumnName="ExtPrice" />
                 <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
                 <ScalarProperty Name="ExtCost" ColumnName="ExtCost" />
@@ -582,10 +582,6 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="ProcurementModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="SAM" ColumnName="SAM" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -593,8 +589,12 @@
                 <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
                 <ScalarProperty Name="Manager" ColumnName="Manager" />
                 <ScalarProperty Name="EmployeeTypeCode" ColumnName="EmployeeTypeCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SAM" ColumnName="SAM" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -626,13 +626,13 @@
           <EntitySetMapping Name="MRVersions">
             <EntityTypeMapping TypeName="ProcurementModel.MRVersion">
               <MappingFragment StoreEntitySet="MRVersion">
-                <ScalarProperty Name="IsVersion" ColumnName="IsVersion" />
                 <ScalarProperty Name="IsModified" ColumnName="IsModified" />
-                <ScalarProperty Name="Revision" ColumnName="Revision" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsVersion" ColumnName="IsVersion" />
                 <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
-                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="VersionNo" ColumnName="VersionNo" />
+                <ScalarProperty Name="Revision" ColumnName="Revision" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

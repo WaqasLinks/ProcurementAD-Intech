@@ -184,20 +184,20 @@ namespace Procurement
                 mrvModel.ProjectCode = _currentLoadedProject.ProjectCode;
                 //mrvModel.Version = _maxMRVersion
                 mrvModel.IsVersion = false;
-                mrvModel.Reason = textBox1.Text;
+                mrvModel.Description = textBox1.Text;
                 string strVerNo = string.Empty;
                 if (_currentMRVersionDesc.Substring(_currentMRVersionDesc.IndexOf("-MR-")).Contains("-REV"))
                 {
                     strVerNo = _currentMRVersionDesc.Substring(0, _currentMRVersionDesc.IndexOf("-REV"));
 
-                    mrvModel.Revision = _mrvc.GetMaxMRVersionNo(mrvModel.IsVersion.Value, strVerNo).ToString("00");
+                    mrvModel.Revision = _mrvc.GetMaxMRVersionNo(mrvModel.IsVersion.Value, strVerNo).ToString("000");
                     mrvModel.VersionNo = strVerNo + "-REV" + mrvModel.Revision;
                 }
                 else
                 {
                     //decimal returnedValue = _mrvc.GetMaxMRVersionNo(mrvModel.IsVersion.Value, _currentMRVersionDesc)-1;
                     //returnedValue -= 1;
-                    mrvModel.Revision = _mrvc.GetMaxMRVersionNo(mrvModel.IsVersion.Value, _currentMRVersionDesc).ToString("00");
+                    mrvModel.Revision = _mrvc.GetMaxMRVersionNo(mrvModel.IsVersion.Value, _currentMRVersionDesc).ToString("000");
                     mrvModel.VersionNo = _currentMRVersionDesc + "-REV" + mrvModel.Revision;
                 }
 

@@ -58,8 +58,12 @@ namespace Procurement
 
 
 
-            string UserPrincipalName = "administrator@tenf.loc";//System.DirectoryServices.AccountManagement.UserPrincipal.Current.UserPrincipalName;
-            bool IsuserActive = true;//System.DirectoryServices.AccountManagement.UserPrincipal.Current.Enabled.Value;
+            string UserPrincipalName = System.DirectoryServices.AccountManagement.UserPrincipal.Current.UserPrincipalName;
+            bool IsuserActive = System.DirectoryServices.AccountManagement.UserPrincipal.Current.Enabled.Value;
+            //for development purpsoe commit above two lines and uncomit below two lines
+            //string UserPrincipalName = "administrator@tenf.loc";
+            //bool IsuserActive = true;
+
 
             Employee employee = _LstEmployees.Where(x => x.EmployeeName == UserPrincipalName).FirstOrDefault();
             if (employee != null && IsuserActive ==true)

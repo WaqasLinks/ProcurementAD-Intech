@@ -21,8 +21,12 @@ namespace Repository.DAL
         }
     
         public decimal EmployeeCode { get; set; }
+        public Nullable<decimal> EmployeeId { get; set; }
         public string EmployeeName { get; set; }
         public string Password { get; set; }
+        public string SAM { get; set; }
+        public string Email { get; set; }
+        public Nullable<bool> Active { get; set; }
         public Nullable<short> EmployeeTypeCode { get; set; }
         public Nullable<decimal> Manager { get; set; }
         public Nullable<decimal> ProjectCode { get; set; }
@@ -30,10 +34,6 @@ namespace Repository.DAL
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<decimal> UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public string SAM { get; set; }
-        public string Email { get; set; }
-        public Nullable<bool> Active { get; set; }
-        public Nullable<decimal> EmployeeId { get; set; }
     
         public virtual EmployeeType EmployeeType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

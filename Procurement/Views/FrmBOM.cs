@@ -415,14 +415,8 @@ namespace Procurement
             summary = new Summary { A_Category = "Project Name", B_Item = CurrentOpenProject.CurrentProject.ProjectName };
             LstSummary.Add(summary);
 
-            //row 3
-            summary = new Summary { A_Category = "Savings/Loss", B_Item = "Comming Soon..." };
-            LstSummary.Add(summary);
-
-            //row 4
-            summary = new Summary { A_Category = "Cost Diviation", B_Item = "Comming Soon..." };
-            LstSummary.Add(summary);
-
+            
+            
             // row 5
 
             // empty line
@@ -444,7 +438,15 @@ namespace Procurement
                        ProductCategory = x.Key.productCategory,
 
                        //replace ItemArray Index with appropriate values in your code
-                       ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
+                       //ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
+
+                       //if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.Panel = null; } else { lObjBom.Panel = Convert.ToDecimal(cellObj.Value); }
+                       ExtCostTotal = x.Sum(y => Convert.ToDouble(y.Field<decimal?>("ExtCost")==null ? 0 : y.Field<decimal>("ExtCost")))
+
+
+                       //row.Field<int?>("Presently_Available") == null ? 0 : row.Field<int>("Presently_Available") ;
+                       //ExtCostTotal = x.Sum(y => Convert.ToDouble(y.Field<double>("ExtCost") ? 0 : y.Field<double>("ExtCost")))
+
                    });
             //var abc= grouped.ToList();
 
@@ -460,7 +462,8 @@ namespace Procurement
                        ProductCategory = x.Key.productCategory,
 
                        //replace ItemArray Index with appropriate values in your code
-                       ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
+                       //ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
+                       ExtCostTotal = x.Sum(y => Convert.ToDouble(y.Field<decimal?>("ExtCost") == null ? 0 : y.Field<decimal>("ExtCost")))
                    });
             //////////////////////////////////////////////////////////////////////////////
             var ActualGroupBy = _dtActualBOM.AsEnumerable().GroupBy(d => new
@@ -472,7 +475,8 @@ namespace Procurement
                        ProductCategory = x.Key.productCategory,
 
                        //replace ItemArray Index with appropriate values in your code
-                       ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
+                       //ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
+                       ExtCostTotal = x.Sum(y => Convert.ToDouble(y.Field<decimal?>("ExtCost") == null ? 0 : y.Field<decimal>("ExtCost")))
                    });
             /////////////////////////////////////////////////////////////////////////////////
             //collect name of productCategory from every bom
@@ -531,14 +535,18 @@ namespace Procurement
                 LstSummary.Add(summary);
 
             }
-
+            summary = new Summary { A_Category="Savings/Loss",B_Item= (designGTotal - actualGTotal).ToString() };
+            LstSummary.Insert(2, summary);
+            summary = new Summary { A_Category = "Cost Diviation", B_Item = ((designGTotal / actualGTotal)*100 -100).ToString() + "%" };
+            LstSummary.Insert(3, summary);
             summary = new Summary { C_BidCost = salesGTotal.ToString(), D_PlanCost = designGTotal.ToString(), E_ActualCost = actualGTotal.ToString() };
-            
             LstSummary.Insert(5, summary);
 
             DataTable dtSummary = ToDataTable<Summary>(LstSummary);
             dataGridView4.DataSource = dtSummary;
 
+            //Styling
+            dataGridView4.Rows[6].DefaultCellStyle.Font  = new Font("Microsoft Sans Serif", 8F, FontStyle.Bold);
         }
         public class ProductCategoryTotal
         {
@@ -852,7 +860,8 @@ namespace Procurement
                 lObjBom.SORef = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
 
                 cellObj = pGvr.Cells["Sr" + pBOMTypeCode];
-                lObjBom.Sr = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                //lObjBom.Sr = (cellObj.Value == null) ? (decimal?)null : Convert.ToDecimal (cellObj.Value);
+                if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.Sr = null; } else { lObjBom.Sr = Convert.ToDecimal(cellObj.Value); }
 
                 cellObj = pGvr.Cells["ProductCategory" + pBOMTypeCode];
                 lObjBom.ProductCategory = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
@@ -873,7 +882,8 @@ namespace Procurement
                 lObjBom.Area = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
 
                 cellObj = pGvr.Cells["Panel" + pBOMTypeCode];
-                lObjBom.Panel = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                //lObjBom.Panel = (cellObj.Value == null) ? (decimal?)null : Convert.ToDecimal(cellObj.Value);
+                if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.Panel = null; } else { lObjBom.Panel = Convert.ToDecimal(cellObj.Value); }
 
                 cellObj = pGvr.Cells["Category" + pBOMTypeCode];
                 lObjBom.Category = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
@@ -888,19 +898,34 @@ namespace Procurement
                 lObjBom.Description = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
 
                 cellObj = pGvr.Cells["Qty" + pBOMTypeCode];
-                lObjBom.Qty = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                //lObjBom.Qty = (cellObj.Value == null) ? (decimal?)null : Convert.ToDecimal(cellObj.Value);
+                if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.Qty = null; } else { lObjBom.Qty = Convert.ToDecimal(cellObj.Value); }
+
+
 
                 cellObj = pGvr.Cells["UnitCost" + pBOMTypeCode];
-                lObjBom.UnitCost = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                //lObjBom.UnitCost = (cellObj.Value == null) ? Convert.ToInt64(null) : Convert.ToDecimal(cellObj.Value);
+                //lObjBom.UnitCost = (cellObj.Value == null) ? (decimal?)null : Convert.ToDecimal(cellObj.Value);
+                if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.UnitCost = null; } else { lObjBom.UnitCost = Convert.ToDecimal(cellObj.Value); }
+
+
+
 
                 cellObj = pGvr.Cells["ExtCost" + pBOMTypeCode];
-                lObjBom.ExtCost = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                //lObjBom.ExtCost = (cellObj.Value == null) ? (decimal?)null : Convert.ToDecimal(cellObj.Value);
+                if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.ExtCost = null; } else { lObjBom.ExtCost = Convert.ToDecimal(cellObj.Value); }
 
+                
+                
                 cellObj = pGvr.Cells["UnitPrice" + pBOMTypeCode];
-                lObjBom.UnitPrice = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                //lObjBom.UnitPrice = (cellObj.Value == null) ? (decimal?)null : Convert.ToDecimal(cellObj.Value);
+                if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.UnitPrice = null; } else { lObjBom.UnitPrice = Convert.ToDecimal(cellObj.Value); }
+
 
                 cellObj = pGvr.Cells["ExtPrice" + pBOMTypeCode];
-                lObjBom.ExtPrice = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                //lObjBom.ExtPrice = (cellObj.Value == null) ? (decimal?)null : Convert.ToDecimal(cellObj.Value);
+                if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.ExtPrice = null; } else { lObjBom.ExtPrice = Convert.ToDecimal(cellObj.Value); }
+
 
                 cellObj = pGvr.Cells["ChangeOrder" + pBOMTypeCode];
                 lObjBom.ChangeOrder = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
@@ -2135,6 +2160,16 @@ namespace Procurement
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+            GetSummary();
+        }
+
+        private void tabSummary_Click(object sender, EventArgs e)
+        {
+            //GetSummary();
+        }
+
+        private void tabSummary_Enter(object sender, EventArgs e)
         {
             GetSummary();
         }

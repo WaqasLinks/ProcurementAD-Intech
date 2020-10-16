@@ -23,11 +23,11 @@ namespace Repository.DAL
         public decimal Id { get; set; }
         public string Revision { get; set; }
         public string VersionNo { get; set; }
-        public string Reason { get; set; }
+        public string Description { get; set; }
         public string ProjectCode { get; set; }
+        public Nullable<bool> IsVersion { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<bool> IsModified { get; set; }
-        public Nullable<bool> IsVersion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MR> MRs { get; set; }
