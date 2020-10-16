@@ -1,0 +1,142 @@
+﻿/* This code syntax highlighter is used to format code snippets on Easy365Manager.com */
+.CodeFormatter{
+	font-family: Consolas, "Courier New", Courier, mono, serif;
+	font-size:medium;
+	font-size: 14px;
+	background-color:#F6F6F6; 
+	width: 99%;
+	overflow: auto;
+	padding: 0px 0px 0px 5px;
+	border-width:1px;
+	border-style:dotted;
+	white-space:pre;
+	color:black;
+}
+/* For line numbers */
+.CodeFormatter ol{
+	list-style: decimal; /* for ie */
+	background-color: #F8F8F8; 
+	margin: 0px 0px 1px 40px !important; /* 1px bottom margin seems to fix occasional Firefox scrolling */
+	padding: 0px;
+}
+
+.CodeFormatter ol li,
+.CodeFormatter .columns div{
+	list-style: decimal-leading-zero; /* better look for others, override cascade from OL */
+	list-style-position: outside !important;
+	border-left: 3px solid #6CE26C;
+	background-color: White;
+	color: Black;
+	padding: 0 3px 0 10px !important;
+	margin: 0 !important;
+	line-height: 14px;
+}
+
+.CodeFormatter ol li:nth-child(even){
+    background-color: #f6f6f6;
+    color: black;
+}
+
+.CodeFormatter .columns{
+	background-color: #F8F8F8;
+	color: gray;
+	overflow: hidden;
+	width: 100%;
+}
+
+/* For comments (Green) */
+.CodeFormatter .CF_C
+{
+	color:Green;
+}
+
+/* For Quoted Text (Maroon) */
+.CodeFormatter .CF_Q {
+	color:Maroon;
+}
+
+/* For Quoted Text (Red) */
+.CodeFormatter .CF_Q2 {
+	color:Red;
+}
+
+/* For Keywords (Blue) */
+.CodeFormatter .CF_KW {
+	color:Blue;
+	text-transform:uppercase;
+}
+
+/* For Keywords (Magenta) e.g. T-SQL System Function*/
+.CodeFormatter .CF_KW2 {
+	color:#FF00FF;
+	text-transform:uppercase;
+}
+
+/* For Keywords (Gray) e.g. TSQL Operator */
+.CodeFormatter .CF_KW3 {
+	color:#505050;
+	text-transform:uppercase;
+}
+
+/* For Keywords (Green) e.g. TSQL System table/view */
+.CodeFormatter .CF_KW4{
+	color:Green;
+}
+
+/* For Keyords (Maroon)  e.g. TSQL System SP */
+.CodeFormatter .CF_KW5 {
+	color:#800000;
+}
+
+/* Powershell variables (purple) */
+.CodeFormatter .CF_KW6 
+{
+    color:#7D26CD;
+}
+
+/* Blue without uppercase transform */
+.CodeFormatter .CF_KW7 {
+	color:Blue;
+
+}
+
+/* Powershell operators (Red) */
+.CodeFormatter .CF_KW8 {
+	color:Red;
+}
+
+/* PowerShell error */
+.CodeFormatter .CF_PSErr {
+    color: #F00;
+    background-color: #000;
+    font-weight: bold
+}
+
+.CodeOutput {
+    font-family: Consolas, "Courier New", Courier, mono, serif;
+    font-size: medium;
+    font-size: 14px;
+    background-color: #012456;
+    width: 99%;
+    overflow: auto;
+    padding: 0px 5px 0px 5px;
+    border-width: 1px;
+    border-style: dotted;
+    white-space: pre;
+    color: white;
+}
+
+.CodeError {
+    font-family: Consolas, "Courier New", Courier, mono, serif;
+    font-size: medium;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #000;
+    width: 99%;
+    overflow: auto;
+    padding: 0px 5px 0px 5px;
+    border-width: 1px;
+    border-style: dotted;
+    white-space: pre;
+    color: red;
+}

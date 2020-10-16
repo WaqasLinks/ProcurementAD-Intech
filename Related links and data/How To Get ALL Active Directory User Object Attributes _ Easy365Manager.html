@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<!-- saved from url=(0086)https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/ -->
+<html lang="en-US" class=" js csstransforms csstransforms3d csstransitions"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="https://gmpg.org/xfn/11">
+<!-- Optimized by SG Optimizer plugin version - 5.6.5 -->
+	<!-- This site is optimized with the Yoast SEO plugin v14.9 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>How To Get ALL Active Directory User Object Attributes | Easy365Manager</title>
+	<meta name="description" content="Understand how to list ALL attributes that an Active Directory user object can have. And learn a thing of two about the AD schema along the way.">
+	<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+	<link rel="canonical" href="https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="How To Get ALL Active Directory User Object Attributes | Easy365Manager">
+	<meta property="og:description" content="Understand how to list ALL attributes that an Active Directory user object can have. And learn a thing of two about the AD schema along the way.">
+	<meta property="og:url" content="https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/">
+	<meta property="og:site_name" content="Easy365Manager">
+	<meta property="article:published_time" content="2019-07-29T19:00:06+00:00">
+	<meta property="article:modified_time" content="2020-03-13T17:04:40+00:00">
+	<meta property="og:image" content="https://www.easy365manager.com/wp-content/uploads/AD_User_Attributes.png">
+	<meta property="og:image:width" content="1000">
+	<meta property="og:image:height" content="736">
+	<meta name="twitter:card" content="summary">
+	<script async="" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/insight.old.min.js.download"></script><script type="text/javascript" async="" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/insight.min.js.download"></script><script type="text/javascript" async="" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/analytics.js.download"></script><script src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/663739804066429" async=""></script><script async="" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/fbevents.js.download"></script><script async="" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/gtm.js.download"></script><script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.easy365manager.com/#organization","name":"Easy365Manager","url":"https://www.easy365manager.com/","sameAs":["https://linkedin.com/company/easy365manager"],"logo":{"@type":"ImageObject","@id":"https://www.easy365manager.com/#logo","inLanguage":"en-US","url":"https://www.easy365manager.com/wp-content/uploads/2015/11/Icon.png","width":512,"height":512,"caption":"Easy365Manager"},"image":{"@id":"https://www.easy365manager.com/#logo"}},{"@type":"WebSite","@id":"https://www.easy365manager.com/#website","url":"https://www.easy365manager.com/","name":"Easy365Manager","description":"Office 365 user management directly from Active Directory. The way is should be.","publisher":{"@id":"https://www.easy365manager.com/#organization"},"potentialAction":[{"@type":"SearchAction","target":"https://www.easy365manager.com/?s={search_term_string}","query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/#primaryimage","inLanguage":"en-US","url":"https://www.easy365manager.com/wp-content/uploads/AD_User_Attributes.png","width":1000,"height":736,"caption":"AD user object inheritance"},{"@type":"WebPage","@id":"https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/#webpage","url":"https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/","name":"How To Get ALL Active Directory User Object Attributes | Easy365Manager","isPartOf":{"@id":"https://www.easy365manager.com/#website"},"primaryImageOfPage":{"@id":"https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/#primaryimage"},"datePublished":"2019-07-29T19:00:06+00:00","dateModified":"2020-03-13T17:04:40+00:00","description":"Understand how to list ALL attributes that an Active Directory user object can have. And learn a thing of two about the AD schema along the way.","inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/"]}]},{"@type":"Article","@id":"https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/#article","isPartOf":{"@id":"https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/#webpage"},"author":{"@id":"https://www.easy365manager.com/#/schema/person/a843b3e91fb776ea9710a0281c14f467"},"headline":"How To Get ALL Active Directory User Object Attributes","datePublished":"2019-07-29T19:00:06+00:00","dateModified":"2020-03-13T17:04:40+00:00","mainEntityOfPage":{"@id":"https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/#webpage"},"publisher":{"@id":"https://www.easy365manager.com/#organization"},"image":{"@id":"https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/#primaryimage"},"articleSection":"Active Directory,PowerShell","inLanguage":"en-US"},{"@type":"Person","@id":"https://www.easy365manager.com/#/schema/person/a843b3e91fb776ea9710a0281c14f467","name":"Morten Skrubbeltrang","image":{"@type":"ImageObject","@id":"https://www.easy365manager.com/#personlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/4cdd4fb264e3c9ca37019e7c01fdfefe?s=96&d=mm&r=g","caption":"Morten Skrubbeltrang"}}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Easy365Manager » Feed" href="https://www.easy365manager.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Easy365Manager » Comments Feed" href="https://www.easy365manager.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Easy365Manager » How To Get ALL Active Directory User Object Attributes Comments Feed" href="https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/feed/">
+		<script type="text/javascript">
+		var frontEndAjaxURL = "https://www.easy365manager.com/wp-admin/admin-ajax.php";
+		</script>
+				<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.easy365manager.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.5.1"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="neliofp_style_css-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/style.min(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="betterdocs-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/betterdocs-public.css" type="text/css" media="all">
+<link rel="stylesheet" id="simplebar-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/simplebar.css" type="text/css" media="all">
+<link rel="stylesheet" id="cookie-notice-front-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/front.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="SFSIPLUSmainCss-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/sfsi-style.css" type="text/css" media="all">
+<link rel="stylesheet" id="7a1e5344f-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/7a1e5344f.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="onepress-fonts-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="onepress-animate-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/animate.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="onepress-fa-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="onepress-bootstrap-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="onepress-style-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/style.css" type="text/css" media="all">
+<style id="onepress-style-inline-css" type="text/css">
+#main .video-section section.hero-slideshow-wrapper{background:transparent}.hero-slideshow-wrapper:after{position:absolute;top:0px;left:0px;width:100%;height:100%;background-color:rgba(0,0,0,0.3);display:block;content:""}.body-desktop .parallax-hero .hero-slideshow-wrapper:after{display:none!important}#parallax-hero>.parallax-bg::before{background-color:rgba(0,0,0,0.3);opacity:1}.body-desktop .parallax-hero .hero-slideshow-wrapper:after{display:none!important}#footer-widgets{}.gallery-carousel .g-item{padding:0px 10px}.gallery-carousel{margin-left:-10px;margin-right:-10px}.gallery-grid .g-item,.gallery-masonry .g-item .inner{padding:10px}.gallery-grid,.gallery-masonry{margin:-10px}
+</style>
+<link rel="stylesheet" id="onepress-gallery-lightgallery-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/lightgallery.css" type="text/css" media="all">
+<link rel="stylesheet" id="tablepress-default-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/default.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-icons-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/elementor-icons.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-animations-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/animations.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-frontend-legacy-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/frontend-legacy.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-frontend-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/frontend.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-post-2233-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/post-2233.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-5-all-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/all.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-4-shim-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/v4-shims.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-post-1896-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/post-1896.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-fonts-1-css" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/css(1)" type="text/css" media="all">
+<script type="text/javascript" id="jquery-core-js-extra">
+/* <![CDATA[ */
+var onepress_js_settings = {"onepress_disable_animation":"","onepress_disable_sticky_header":"0","onepress_vertical_align_menu":"","hero_animation":"flipInX","hero_speed":"5000","hero_fade":"750","hero_duration":"7500","hero_disable_preload":"","is_home":"","gallery_enable":"1","is_rtl":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/jquery.js.download" id="jquery-core-js"></script>
+<script type="text/javascript" id="cookie-notice-front-js-extra">
+/* <![CDATA[ */
+var cnArgs = {"ajaxUrl":"https:\/\/www.easy365manager.com\/wp-admin\/admin-ajax.php","nonce":"b1114c5875","hideEffect":"fade","position":"bottom","onScroll":"0","onScrollOffset":"100","onClick":"1","cookieName":"cookie_notice_accepted","cookieTime":"2592000","cookieTimeRejected":"2592000","cookiePath":"\/","cookieDomain":"","redirection":"0","cache":"0","refuse":"0","revokeCookies":"0","revokeCookiesOpt":"automatic","secure":"1","coronabarActive":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/front.min.js.download" id="cookie-notice-front-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/jquery-migrate.min.js.download" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/v4-shims.min.js.download" id="font-awesome-4-shim-js"></script>
+<link rel="https://api.w.org/" href="https://www.easy365manager.com/wp-json/"><link rel="alternate" type="application/json" href="https://www.easy365manager.com/wp-json/wp/v2/posts/1896"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.easy365manager.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.easy365manager.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.5.1">
+<link rel="shortlink" href="https://www.easy365manager.com/?p=1896">
+<link rel="alternate" type="application/json+oembed" href="https://www.easy365manager.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.easy365manager.com%2Fhow-to-get-all-active-directory-user-object-attributes%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.easy365manager.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.easy365manager.com%2Fhow-to-get-all-active-directory-user-object-attributes%2F&amp;format=xml">
+	<style type="text/css">
+		.betterdocs-wraper.betterdocs-main-wraper {
+						background-color: #ffffff;		
+																				}
+		.betterdocs-archive-wrap.betterdocs-archive-main {
+			padding-top: 50px;
+			padding-bottom: 50px;
+			padding-left: 0px;
+			padding-right: 0px;
+		}
+		.betterdocs-archive-wrap.betterdocs-archive-main {
+			width: 80%;
+			max-width: 1600px;
+		}
+		.betterdocs-archive-main .betterdocs-categories-wrap.layout-masonry .docs-single-cat-wrap {
+			margin-bottom: 15px;
+		}
+		.betterdocs-archive-main .betterdocs-categories-wrap.layout-flex .docs-single-cat-wrap {
+			margin: 15px; 
+		}
+		.betterdocs-archive-main .betterdocs-categories-wrap .docs-single-cat-wrap .docs-cat-title-wrap { 
+			padding-top: 20px; 
+		}
+		.betterdocs-archive-main .betterdocs-categories-wrap .docs-single-cat-wrap .docs-cat-title-wrap, 
+		.betterdocs-archive-main .docs-item-container { 
+			padding-right: 20px;
+			padding-left: 20px;  
+		}
+		.betterdocs-archive-main .docs-item-container { 
+			padding-bottom: 20px; 
+		}
+		.betterdocs-archive-main .betterdocs-categories-wrap.betterdocs-category-box .docs-single-cat-wrap,
+		.betterdocs-archive-main .betterdocs-categories-wrap .docs-single-cat-wrap.docs-cat-list-2-box {
+			padding-top: 20px; 
+			padding-right: 20px;
+			padding-left: 20px; 
+			padding-bottom: 20px; 
+		}
+		.betterdocs-categories-wrap.betterdocs-category-box .docs-single-cat-wrap p{
+						color: #566e8b;
+					}
+		.betterdocs-archive-main.betterdocs-archive-wrap .betterdocs-categories-wrap .docs-single-cat-wrap,
+		.betterdocs-archive-main.betterdocs-archive-wrap .betterdocs-categories-wrap .docs-single-cat-wrap .docs-cat-title-wrap {
+						border-top-left-radius: 5px;
+									border-top-right-radius: 5px;
+					}
+		.betterdocs-archive-wrap .betterdocs-categories-wrap .docs-single-cat-wrap,
+		.betterdocs-archive-wrap .betterdocs-categories-wrap .docs-single-cat-wrap .docs-item-container {
+						border-bottom-right-radius: 5px;
+									border-bottom-left-radius: 5px;
+					}
+		.betterdocs-category-list .betterdocs-categories-wrap .docs-single-cat-wrap,
+		.betterdocs-category-box.white-bg .docs-single-cat-wrap,
+		.betterdocs-categories-wrap.white-bg .docs-single-cat-wrap {
+						background-color: #fff;
+					}
+		.betterdocs-archive-main .betterdocs-category-box.ash-bg .docs-single-cat-wrap {
+						background-color: #ffffff;
+					}
+		.betterdocs-archive-main .betterdocs-category-box .docs-single-cat-wrap:hover,
+		.betterdocs-archive-main .betterdocs-categories-wrap.white-bg .docs-single-cat-wrap.docs-cat-list-2-box:hover {
+						background-color: #fff;
+					}
+		.betterdocs-archive-main .betterdocs-category-box .docs-single-cat-wrap img {
+						margin-bottom: 20px;
+					}
+		.betterdocs-archive-main .betterdocs-category-box .docs-single-cat-wrap .docs-cat-title,
+		.betterdocs-archive-main .pro-layout-4 .docs-cat-list-2-box-content .docs-cat-title {
+						margin-bottom: 15px;
+					}
+		.betterdocs-archive-main .betterdocs-category-box .docs-single-cat-wrap p {
+						margin-bottom: 15px;
+					}
+		.betterdocs-archive-main .betterdocs-category-box .docs-single-cat-wrap span {
+					}
+		.docs-cat-title > img { 
+			height: 151px; 
+		}
+		.betterdocs-archive-main .betterdocs-category-box .docs-single-cat-wrap img { 
+			height: 80px; 
+		}
+		.betterdocs-archive-main .docs-cat-title-inner h3,
+		.betterdocs-archive-main .betterdocs-category-box .docs-single-cat-wrap .docs-cat-title,
+		.betterdocs-archive-main .docs-cat-list-2-box .docs-cat-title {
+			font-size: 20px;
+		}
+		.docs-cat-title-inner h3 {
+			color: #528ffe; 
+		}
+		.betterdocs-archive-main .betterdocs-category-box .docs-single-cat-wrap .docs-cat-title,
+		.betterdocs-archive-main .docs-cat-list-2 .docs-cat-title {
+			color: #333333;
+		}
+				.docs-cat-title-inner {
+			border-color: #528ffe; 
+		}
+		.docs-cat-title-inner span {
+			color: #ffffff; 
+			font-size: 15px;
+		}
+		.betterdocs-archive-main .betterdocs-categories-wrap.betterdocs-category-box .docs-single-cat-wrap span,
+		.betterdocs-archive-main .docs-cat-list-2-box .title-count span {
+			color: #707070; 
+			font-size: 15px;
+		}
+		.betterdocs-categories-wrap .docs-item-count {
+			background-color: #528ffe; 
+		}
+
+		.betterdocs-archive-wrap .betterdocs-categories-wrap .docs-cat-title-inner span {
+			background-color: rgba(82,143,254,0.44);
+			width: 30px; 
+			height: 30px;
+		}
+		.betterdocs-archive-wrap .betterdocs-categories-wrap .docs-item-container {
+			background-color: #ffffff;
+		}
+		.betterdocs-archive-wrap .betterdocs-categories-wrap .docs-item-container li,
+		.betterdocs-archive-wrap .betterdocs-categories-wrap .docs-item-container .docs-sub-cat-title {
+			margin-top: 10px;
+			margin-right: 10px;
+			margin-bottom: 10px;
+			margin-left: 10px;
+		}
+		.betterdocs-archive-wrap .betterdocs-categories-wrap .docs-item-container li svg {
+			fill: #566e8b;
+			font-size: 15px;
+		}
+		.betterdocs-archive-wrap .betterdocs-categories-wrap li a {
+			color: #566e8b;
+			font-size: 15px;
+		}
+		.betterdocs-archive-wrap .betterdocs-categories-wrap li a:hover {
+			color: #566e8b;
+		}
+		.betterdocs-archive-wrap .betterdocs-categories-wrap .docs-item-container .docs-sub-cat-title svg {
+			fill: #566e8b;
+			font-size: 15px;
+		}
+		.betterdocs-archive-wrap .betterdocs-categories-wrap .docs-sub-cat-title a {
+			color: #566e8b;
+			font-size: 17px;
+		}
+		.betterdocs-archive-wrap .betterdocs-categories-wrap .docs-sub-cat-title a:hover {
+			color: #566e8b;
+		}
+		.docs-cat-link-btn, .docs-cat-link-btn:visited {
+			background-color: #ffffff;
+			font-size: 16px;
+			color: #528ffe;
+			border-color: #528ffe;
+			border-top-left-radius: 50px;
+			border-top-right-radius: 50px;
+			border-bottom-right-radius: 50px;
+			border-bottom-left-radius: 50px;
+			padding-top: 10px;
+			padding-right: 20px;
+			padding-bottom: 10px;
+			padding-left: 20px;
+		}
+		.docs-cat-link-btn:hover {
+			background-color: #528ffe;
+			color: #fff;
+			border-color: #528ffe;
+		}
+		.betterdocs-single-bg .betterdocs-content-area, .betterdocs-single-bg .betterdocs-content-full {
+			background-color: #ffffff;	
+		}
+		.betterdocs-single-wraper .betterdocs-content-area {
+			padding-top: 30px;
+			padding-right: 25px;
+			padding-bottom: 30px;
+			padding-left: 25px;
+		}
+		.betterdocs-single-wraper .betterdocs-content-area .docs-single-main {
+			padding-top: 20px;
+			padding-right: 20px;
+			padding-bottom: 20px;
+			padding-left: 20px;
+		}
+		.betterdocs-single-layout2 .docs-content-full-main .doc-single-content-wrapper {
+			padding-top: 0px;
+			padding-right: 0px;
+			padding-bottom: 0px;
+			padding-left: 0px;
+		}
+		.betterdocs-single-layout3 .docs-content-full-main .doc-single-content-wrapper {
+			padding-top: 0px;
+			padding-right: 0px;
+			padding-bottom: 0px;
+			padding-left: 0px;
+		}
+		.docs-single-title .betterdocs-entry-title {
+			font-size: 36px;
+			color: #000000;
+		}
+		.betterdocs-breadcrumb .betterdocs-breadcrumb-item a {
+			font-size: 16px;
+			color: #566e8b;
+		}
+		.betterdocs-breadcrumb .betterdocs-breadcrumb-list .betterdocs-breadcrumb-item a:hover {
+			color: #566e8b;
+		}
+		.betterdocs-breadcrumb .breadcrumb-delimiter {
+			color: #566e8b;
+		}
+		.betterdocs-breadcrumb-item.current span {
+			font-size: 16px;
+			color: #662244;
+		}
+		.betterdocs-toc {
+			background-color: #fff;
+			padding-top: 20px;
+			padding-right: 25px;
+			padding-bottom: 20px;
+			padding-left: 20px;
+		}
+		.betterdocs-entry-content .betterdocs-toc {
+			margin-bottom: 20px;
+		}
+		.sticky-toc-container {
+			width: 320px;
+		}
+		.sticky-toc-container.toc-sticky {
+			z-index: 2;
+			margin-top: 0px;
+		}
+		.betterdocs-toc > .toc-title {
+			color: #3f5876;
+			font-size: 18px;
+		}
+		.betterdocs-entry-content .betterdocs-toc.collapsible-sm .angle-icon {
+			color: #3f5876;
+		}
+		.betterdocs-toc > .toc-list a {
+			color: #566e8b;
+			font-size: 14px;
+			margin-top: 5px;
+			margin-right: 0px;
+			margin-bottom: 5px;
+			margin-left: 0px;
+		}
+		.betterdocs-toc > .toc-list li:before {
+			padding-top: 5px;
+		}
+		.betterdocs-toc > .toc-list a:hover {
+			color: #528fff;
+		}
+		.feedback-form-link .feedback-form-icon svg, .feedback-form-link .feedback-form-icon img {
+			width: 26px;
+		}
+		.betterdocs-toc > .toc-list a.active {
+			color: #528fff;
+		}
+		.betterdocs-toc > .toc-list li {
+			color: #566e8b;
+			font-size: 12px;
+		}
+		.betterdocs-content {
+			color: #4d4d4d;
+			font-size: 16px;
+		}
+		.betterdocs-social-share .betterdocs-social-share-heading h5 {
+			color: #566e8b;
+		}
+		.betterdocs-entry-footer .feedback-form-link {
+			color: #566e8b;
+			font-size: 15px;
+		}
+		.betterdocs-entry-footer .feedback-update-form .feedback-form-link:hover {
+			color: #566e8b;
+		}
+		.docs-navigation a {
+			color: #3f5876;
+			font-size: 16px;
+		}
+		.docs-navigation a:hover {
+			color: #3f5876;
+		}
+		.docs-navigation a svg{
+			fill: #5edf8e;
+			width: 16px;
+		}
+		.betterdocs-entry-footer .update-date{
+			color: #566e8b;
+			font-size: 14px;
+		}
+		.betterdocs-credit p{
+			color: #201d3a;
+			font-size: 14px;
+		}
+		.betterdocs-credit p a{
+			color: #528fff;
+		}
+		.betterdocs-sidebar-content .betterdocs-categories-wrap,
+		.betterdocs-full-sidebar-left {
+			background-color: #ffffff;
+		}
+		.betterdocs-single-layout1 .betterdocs-sidebar-content .betterdocs-categories-wrap {
+						border-top-left-radius: 5px;
+									border-top-right-radius: 5px;
+									border-bottom-right-radius: 5px;
+									border-bottom-left-radius: 5px;
+					}
+		.betterdocs-sidebar-content .docs-single-cat-wrap .docs-cat-title-wrap {
+			background-color: #ffffff;
+		}
+		.betterdocs-sidebar-content .docs-cat-title > img{
+			height: 24px;
+		}
+		.betterdocs-sidebar-content .docs-cat-title-inner h3{
+			color: #3f5876;
+			font-size: 16px;
+		}
+		.betterdocs-sidebar-content .docs-cat-title-inner h3:hover {
+			color: #3f5876 !important;
+		}
+		.betterdocs-sidebar-content .docs-cat-title-inner .cat-list-arrow-down {
+			color: #3f5876;
+		}
+		.betterdocs-sidebar-content .docs-single-cat-wrap .active-title .docs-cat-title-inner h3,
+		.betterdocs-sidebar-content .active-title .docs-cat-title-inner h3,
+		.betterdocs-full-sidebar-left .docs-cat-title-wrap::after {
+			color: #3f5876;
+		}
+		.betterdocs-sidebar-content .docs-item-count {
+			background-color: #528ffe;
+		}
+		.betterdocs-sidebar-content .docs-item-count span {
+			background-color: rgba(82, 143, 255, 0.2);
+			color: #ffffff;
+			font-size: 12px;
+		}
+		.betterdocs-sidebar-content .betterdocs-categories-wrap .docs-single-cat-wrap {
+			margin-top: 5px;
+			margin-right: 0px;
+			margin-bottom: 5px;
+			margin-left: 0px;
+		}
+		.betterdocs-sidebar-content .betterdocs-categories-wrap, .betterdocs-full-sidebar-left .betterdocs-categories-wrap {
+			padding-top: 0px;
+			padding-right: 0px;
+			padding-bottom: 0px;
+			padding-left: 0px;
+		}
+		.betterdocs-sidebar-content .betterdocs-categories-wrap .docs-single-cat-wrap .docs-cat-title-wrap {
+			padding-top: 10px;
+			padding-right: 15px;
+			padding-bottom: 10px;
+			padding-left: 15px;
+		}
+		.betterdocs-single-layout2 .betterdocs-full-sidebar-left .betterdocs-sidebar-content .betterdocs-categories-wrap .docs-cat-title-inner {
+						background-color: #ffffff;		
+						padding-top: 10px;
+			padding-right: 15px;
+			padding-bottom: 10px;
+			padding-left: 15px;
+		}
+		.betterdocs-sidebar-content .docs-item-container{
+			background-color: #ffffff;
+		}
+		.betterdocs-sidebar-content .docs-single-cat-wrap .docs-cat-title-wrap.active-title{
+			background-color: rgba(90, 148, 255, .1);
+			border-color: #528fff;
+		}
+		.betterdocs-sidebar-content .betterdocs-categories-wrap .docs-item-container li {
+			padding-left: 0;
+			margin-top: 10px;
+			margin-right: 10px;
+			margin-bottom: 10px;
+			margin-left: 10px;
+		}
+		.betterdocs-single-layout2 .betterdocs-sidebar-content .betterdocs-categories-wrap .docs-item-container li {
+			margin-right: 0 !important;
+		}
+		.betterdocs-sidebar-content .betterdocs-categories-wrap li a {
+			color: #566e8b;
+			font-size: 14px;
+		}
+		.betterdocs-sidebar-content .betterdocs-categories-wrap li a:hover {
+			color: #528fff;
+		}
+		.betterdocs-sidebar-content .betterdocs-categories-wrap li svg {
+			fill: #566e8b;
+			font-size: 14px;
+		}
+		.betterdocs-sidebar-content .betterdocs-categories-wrap li a.active,
+		.betterdocs-sidebar-content .betterdocs-categories-wrap li.sub-list a.active {
+			color: #528fff;
+		}	
+		.betterdocs-category-wraper.betterdocs-single-wraper{
+																				}	
+		.betterdocs-category-wraper.betterdocs-single-wraper .docs-listing-main .docs-category-listing{
+						background-color: #ffffff;
+						margin-top: 0px;
+			margin-right: 0px;
+			margin-bottom: 0px;
+			margin-left: 0px;
+			padding-top: 30px;
+			padding-right: 30px;
+			padding-bottom: 30px;
+			padding-left: 30px;
+			border-radius: 5px;
+		}
+		.betterdocs-category-wraper .docs-category-listing .docs-cat-title h3 {
+			color: #566e8b;
+			font-size: 20px;
+			margin-top: 0px;
+			margin-right: 0px;
+			margin-bottom: 20px;
+			margin-left: 0px;
+		}
+		.betterdocs-category-wraper .docs-category-listing .docs-cat-title p {
+			color: #566e8b;
+			font-size: 14px;
+			margin-top: 0px;
+			margin-right: 0px;
+			margin-bottom: 20px;
+			margin-left: 0px;
+		}
+		.docs-category-listing .docs-list ul li, 
+		.docs-category-listing .docs-list .docs-sub-cat-title {
+			margin-top: 10px;
+			margin-right: 0px;
+			margin-bottom: 10px;
+			margin-left: 0px;
+		}
+		.docs-category-listing .docs-list ul li svg {
+			fill: #566e8b;
+			font-size: 16px;
+		}
+		.docs-category-listing .docs-list ul li a {
+			color: #566e8b;
+			font-size: 14px;
+		}
+		.docs-category-listing .docs-list ul li a:hover {
+			color: #528ffe;
+		}
+		.betterdocs-search-form-wrap{
+						background-color: #fcfcfc;
+																					padding-top: 20px;
+			padding-right: 10px;
+			padding-bottom: 20px;
+			padding-left: 10px;
+		}
+		.betterdocs-search-heading h2 {
+			line-height: 1.2;
+			font-size: 40px;
+			color: #566e8b;
+			margin-top: 0px;
+			margin-right: 0px;
+			margin-bottom: 20px;
+			margin-left: 0px;
+		}
+		.betterdocs-search-heading h3 {
+			line-height: 1.2;
+			font-size: 16px;
+			color: #566e8b;
+			margin-top: 0px;
+			margin-right: 0px;
+			margin-bottom: 20px;
+			margin-left: 0px;
+		}
+		.betterdocs-searchform {
+			background-color: #ffffff;
+			border-radius: 8px;
+			padding-top: 22px;
+			padding-right: 15px;
+			padding-bottom: 22px;
+			padding-left: 15px;
+		}
+		.betterdocs-searchform .betterdocs-search-field{
+			font-size: 18px;
+			color: #b2b2b2;
+		}
+		.betterdocs-searchform svg.docs-search-icon {
+			fill: #444b54;
+			height: 30px;
+		}
+		.docs-search-close path.close-line {
+			fill: #ff697b;	
+		}
+		.docs-search-close path.close-border {
+			fill: #444b54;	
+		}
+		.docs-search-loader {
+			stroke: #444b54;	
+		}
+		.betterdocs-searchform svg.docs-search-icon:hover {
+			fill: #444b54;
+		}
+		.betterdocs-live-search .docs-search-result {
+			width: 100%;
+			max-width: 800px;
+			background-color: #fff;
+			border-color: #f1f1f1;
+		}
+		.betterdocs-search-result-wrap::before {
+			border-color: transparent transparent #fff;
+		}
+		.betterdocs-live-search .docs-search-result li {
+			border-color: #f5f5f5;
+		}
+		.betterdocs-live-search .docs-search-result li a {
+			font-size: 16px;
+			color: #444444;
+			padding-top: 10px;
+			padding-right: 10px;
+			padding-bottom: 10px;
+			padding-left: 10px;
+		}
+		.betterdocs-live-search .docs-search-result li:only-child {
+			font-size: 16px;
+			color: #444444;
+		}
+		.betterdocs-live-search .docs-search-result li:hover {
+			background-color: #f5f5f5;
+		}
+		.betterdocs-live-search .docs-search-result li a:hover {
+			color: #444444;
+		}
+		.betterdocs-category-box.pro-layout-3 .docs-single-cat-wrap img,
+		.docs-cat-list-2-box img {
+			margin-right: 20px;
+		}
+		.betterdocs-wraper .betterdocs-search-form-wrap.cat-layout-4 {
+			padding-bottom: 100px;
+		}
+	</style>
+	<script>
+		jQuery(document).ready(function() {
+			var masonryGrid = jQuery(".betterdocs-categories-wrap.layout-masonry");
+			var columnPerGrid = jQuery(".betterdocs-categories-wrap.layout-masonry").attr('data-column');
+			var masonryItem = jQuery(".betterdocs-categories-wrap.layout-masonry .docs-single-cat-wrap");
+			var doc_page_column_space = 15;
+			var total_margin = columnPerGrid * doc_page_column_space;
+			if (masonryGrid.length) {
+				masonryItem.css("width", "calc((100% - "+total_margin+"px) / "+parseInt(columnPerGrid)+")");
+				masonryGrid.masonry({
+					itemSelector: ".docs-single-cat-wrap",
+					percentPosition: true,
+					gutter: doc_page_column_space
+				});
+			}
+		});
+	</script>
+    		<!-- Google Tag Manager head script added by ro-marketing -->
+		<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-P7SQLWK');
+		</script>
+		<!-- End Google Tag Manager head script added by ro-marketing -->
+	<link rel="stylesheet" href="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/CodeFormatting.css">
+		<!-- Facebook Pixel Code Added by RO Marketing -->
+		<script data-cfasync="false">
+		!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+		n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+		document,'script','https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '663739804066429');
+		fbq('track', 'PageView');
+		</script>
+		<noscript data-cfasync="false"><img height="1" width="1" style="display:none"
+		src="https://www.facebook.com/tr?id=663739804066429&ev=PageView&noscript=1"
+		/></noscript>
+		<!-- End Facebook Pixel Code -->
+	
+	<script>
+		window.addEventListener("sfsi_plus_functions_loaded", function() {
+			var body = document.getElementsByTagName('body')[0];
+			// console.log(body);
+			body.classList.add("sfsi_plus_3.43");
+		})
+		// window.addEventListener('sfsi_plus_functions_loaded',function(e) {
+		// 	jQuery("body").addClass("sfsi_plus_3.43")
+		// });
+		jQuery(document).ready(function(e) {
+			jQuery("body").addClass("sfsi_plus_3.43")
+		});
+
+		function sfsi_plus_processfurther(ref) {
+			var feed_id = 'VU1rZjVUajhhb2JDbmptZjhHNlBTajRtbWNOaFlncGw5anFRQlZkS1FBaHdoVmw5bHZ3NVF5UERIQ1BKNk5wVGZFTFdzRWZWd3FqTWpZYkMwMU5NTENFbmlFUWJ6S0liU2piOFA5U0o2eGo4eks2Y1dpbDdvV3h3a1ZnWGh1Q1J8QXVtQXNQTktnY2lZMGluaWJwd1RWaGJPZmRYdnVuK1BxMy9lcFB6SVJycz0=';
+			var feedtype = 8;
+			var email = jQuery(ref).find('input[name="email"]').val();
+			var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+			if ((email != "Enter your email") && (filter.test(email))) {
+				if (feedtype == "8") {
+					var url = "https://api.follow.it/subscription-form/" + feed_id + "/" + feedtype;
+					window.open(url, "popupwindow", "scrollbars=yes,width=1080,height=760");
+					return true;
+				}
+			} else {
+				alert("Please enter email address");
+				jQuery(ref).find('input[name="email"]').focus();
+				return false;
+			}
+		}
+	</script>
+	<style>
+		.sfsi_plus_subscribe_Popinner {
+			width: 100% !important;
+			height: auto !important;
+			border: 1px solid #b5b5b5 !important;
+			padding: 18px 0px !important;
+			background-color: #ffffff !important;
+		}
+
+		.sfsi_plus_subscribe_Popinner form {
+			margin: 0 20px !important;
+		}
+
+		.sfsi_plus_subscribe_Popinner h5 {
+			font-family: Helvetica,Arial,sans-serif !important;
+
+			font-weight: bold !important;
+			color: #000000 !important;
+			font-size: 16px !important;
+			text-align: center !important;
+			margin: 0 0 10px !important;
+			padding: 0 !important;
+		}
+
+		.sfsi_plus_subscription_form_field {
+			margin: 5px 0 !important;
+			width: 100% !important;
+			display: inline-flex;
+			display: -webkit-inline-flex;
+		}
+
+		.sfsi_plus_subscription_form_field input {
+			width: 100% !important;
+			padding: 10px 0px !important;
+		}
+
+		.sfsi_plus_subscribe_Popinner input[type=email] {
+			font-family: Helvetica,Arial,sans-serif !important;
+
+			font-style: normal !important;
+			color:  !important;
+			font-size: 14px !important;
+			text-align: center !important;
+		}
+
+		.sfsi_plus_subscribe_Popinner input[type=email]::-webkit-input-placeholder {
+			font-family: Helvetica,Arial,sans-serif !important;
+
+			font-style: normal !important;
+			color:  !important;
+			font-size: 14px !important;
+			text-align: center !important;
+		}
+
+		.sfsi_plus_subscribe_Popinner input[type=email]:-moz-placeholder {
+			/* Firefox 18- */
+			font-family: Helvetica,Arial,sans-serif !important;
+
+			font-style: normal !important;
+			color:  !important;
+			font-size: 14px !important;
+			text-align: center !important;
+		}
+
+		.sfsi_plus_subscribe_Popinner input[type=email]::-moz-placeholder {
+			/* Firefox 19+ */
+			font-family: Helvetica,Arial,sans-serif !important;
+
+			font-style: normal !important;
+			color:  !important;
+			font-size: 14px !important;
+			text-align: center !important;
+		}
+
+		.sfsi_plus_subscribe_Popinner input[type=email]:-ms-input-placeholder {
+			font-family: Helvetica,Arial,sans-serif !important;
+
+			font-style: normal !important;
+			color:  !important;
+			font-size: 14px !important;
+			text-align: center !important;
+		}
+
+		.sfsi_plus_subscribe_Popinner input[type=submit] {
+			font-family: Helvetica,Arial,sans-serif !important;
+
+			font-weight: bold !important;
+			color: #000000 !important;
+			font-size: 16px !important;
+			text-align: center !important;
+			background-color: #dedede !important;
+		}
+	</style>
+	<link rel="pingback" href="https://www.easy365manager.com/xmlrpc.php"><link rel="icon" href="https://www.easy365manager.com/wp-content/uploads/2015/11/cropped-Icon-32x32.png" sizes="32x32">
+<link rel="icon" href="https://www.easy365manager.com/wp-content/uploads/2015/11/cropped-Icon-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="https://www.easy365manager.com/wp-content/uploads/2015/11/cropped-Icon-180x180.png">
+<meta name="msapplication-TileImage" content="https://www.easy365manager.com/wp-content/uploads/2015/11/cropped-Icon-270x270.png">
+		<style type="text/css" id="wp-custom-css">
+			/*
+You can add your own CSS here.
+
+Click the help icon above to learn more.
+*/
+.site-title {
+background-image: url("/wp-content/uploads/2015/11/Icon-300x300.png");
+    background-repeat: no-repeat;
+    background-size: 46px;
+    background-position-y: -10px;
+padding-left: 52px!important;
+}
+.site-title a:hover, .site-title a:focus {
+text-decoration: none;
+}
+.site-footer .site-info .container {
+    padding: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 230px;
+}
+.post .entry-meta {
+    display: none;
+}
+.footer-widgets {
+	text-align: center;
+}
+h5.member-name {
+	display:none;
+}
+body {
+	font-size: 16px;
+	color: #000;}
+.elementor-text-editor {
+	color: #000;
+}
+.tablepress-table-name {
+	font-size: 18px;
+}
+.tablepress {
+	font-size: 15px;
+}
+.section-subtitle {
+	color: #000 !important;
+}
+.elementor-tab-content {
+	color: #000 !important;
+}
+.tablepress-id-9 .column-1, .tablepress-id-9 .column-2 {
+  white-space: nowrap;
+}
+.tablepress-id-11 .column-1, .tablepress-id-11 .column-2 {
+  white-space: nowrap;
+}
+
+.tablepress-id-13 .column-2, .tablepress-id-13 .column-3, .tablepress-id-13 .column-4 {
+  white-space: nowrap;
+}
+.tablepress-id-13 .row-2, .tablepress-id-13 .row-7, .tablepress-id-13 .row-11, .tablepress-id-13 .row-26, .tablepress-id-13 .row-33, .tablepress-id-13 .row-39, .tablepress-id-13 .row-60, .tablepress-id-13 .row-67, .tablepress-id-13 .row-71, .tablepress-id-13 .row-79, .tablepress-id-13 .row-83, .tablepress-id-13 .row-88, .tablepress-id-13 .row-93, .tablepress-id-13 .row-100 {
+  font-weight: bold;
+}
+.tablepress-id-20 .column-2 {
+  white-space: nowrap;
+}
+.tablepress-id-22 .column-1,
+.tablepress-id-22 .column-2 {
+  white-space: nowrap;
+}
+.tablepress-id-23 .column-2 {
+  white-space: nowrap;
+}
+.tablepress-id-25 .column-1 {
+  white-space: nowrap;
+}
+.tablepress-id-26 .column-1,
+.tablepress-id-26 .column-2 {
+  white-space: nowrap;
+}
+.tablepress-id-27 .column-1,
+.tablepress-id-27 .column-2 {
+  white-space: nowrap;
+}
+.betterdocs-content-area {
+	background: #fff;
+}
+@media (min-width: 1000px) {
+	.betterdocs-single-wraper {	
+	width: 80%;
+	margin: auto;
+	}
+}
+.eael-reading-progress-wrap {
+	z-index: -1;
+}		</style>
+		<style type="text/css">.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q{display:block!important;border:1px solid #cdcfd2!important;background-color:#fff!important;color:#373a3d!important;width:100vw!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-24GeGuJgk9LrMLp7qVvlyz{background:#6a7e89!important;color:#fff!important;padding:10px!important;font-size:18px!important;font-family:sans-serif!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-KVjdulkCFfUZps29EbgAC{background:#f3f6f8!important;border-bottom:1px solid #cdcfd2!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-KVjdulkCFfUZps29EbgAC>*{margin-right:10px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1OeZ2PQ98oAp6Vc5mMc6V5{list-style:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-vCwYmWF_l83ScZBrGnRoi,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1OeZ2PQ98oAp6Vc5mMc6V5{margin:0!important;padding:0!important;width:100%!important;display:block!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-vCwYmWF_l83ScZBrGnRoi:not(:last-child){border-bottom:1px solid #cdcfd2!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1XQZkb-FlHWABUp4_uShaZ{color:inherit!important;cursor:pointer!important;width:100%!important;display:inline-block!important;margin:10px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1XTzMvb2XKitWz0mFLlyyp{margin:5px!important;display:block!important;width:auto!important;white-space:pre!important;overflow-x:scroll!important;background:inherit!important;color:inherit!important;font-family:monospace}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1XTzMvb2XKitWz0mFLlyyp:not(.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-39QUvFFn5B7GMcqMQkOXZ3){display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-295DY3nO0DbJWMsOqmjCli{background:#f5f5f5!important;color:#5a5a5a!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1aQZwu6CUzAf2zUcI7tg0Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-295DY3nO0DbJWMsOqmjCli{display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-38EPFyKXMtoP12rPlmrHxs{background:#e6f7ff!important;color:#006097!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3W4ZnQjhoGfT1gTNcqRXdi .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-38EPFyKXMtoP12rPlmrHxs{display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-HGYnfzlmgOZ-l7eANhQe_{background:#fff3ea!important;color:#993a00!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-24e52A11B1UIErbKHtBmqc .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-HGYnfzlmgOZ-l7eANhQe_{display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-jji74ZzulHScD0OAD_G7h{background:#fef2f1!important;color:#b10823!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-28jAOA7cDee-95LvwGsOP- .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-jji74ZzulHScD0OAD_G7h{display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu{background-color:#0073b1!important;border:0!important;border-radius:2px!important;box-sizing:border-box!important;color:#fff!important;cursor:pointer!important;display:inline-block!important;font-family:-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Fira Sans,Ubuntu,Oxygen,Oxygen Sans,Cantarell,Droid Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Lucida Grande,Helvetica,Arial,sans-serif!important;font-weight:600!important;overflow:hidden!important;outline-width:2px!important;position:relative!important;text-align:center!important;text-decoration:none!important;vertical-align:middle!important;white-space:nowrap!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu:disabled{cursor:not-allowed!important;opacity:.7!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu:not(:disabled):not(.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy):hover{background-color:#006097!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu:not(:disabled):not(.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy):active{background-color:#004b7c!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy{background-color:#fff!important;color:#0073b1!important;box-shadow:inset 0 0 0 1px rgba(0,0,0,.3)!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy:not(:disabled):hover{color:#006097!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy:not(:disabled):active{color:#004b7c!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu>xdoor-icon{display:inline-block!important;height:100%!important;vertical-align:top!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu>xdoor-icon>svg{pointer-events:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-7inSbaAsvG5bf7w6lJTEr{font-size:10px!important;height:16px!important;line-height:16px!important;padding:0 6px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-7inSbaAsvG5bf7w6lJTEr>xdoor-icon{margin-left:-6px!important;margin-right:3px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-7inSbaAsvG5bf7w6lJTEr>xdoor-icon>svg{height:16px!important;width:16px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-7inSbaAsvG5bf7w6lJTEr.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon{margin-right:-6px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3uCBSbQNVNf2QjqHe1rfb6{font-size:11px!important;height:20px!important;line-height:20px!important;padding:0 7px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3uCBSbQNVNf2QjqHe1rfb6>xdoor-icon,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu>xdoor-icon{margin-left:-7px!important;margin-right:3.5px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3uCBSbQNVNf2QjqHe1rfb6>xdoor-icon>svg,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu>xdoor-icon>svg{height:20px!important;width:20px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3uCBSbQNVNf2QjqHe1rfb6.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon{margin-right:-7px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-21Smv9YG-5V6M6KP-5v2WG{font-size:14px!important;height:24px!important;line-height:24px!important;padding:0 12px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-21Smv9YG-5V6M6KP-5v2WG>xdoor-icon{margin-left:-12px!important;margin-right:6px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-21Smv9YG-5V6M6KP-5v2WG>xdoor-icon>svg{height:24px!important;width:24px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-21Smv9YG-5V6M6KP-5v2WG.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon{margin-right:-12px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1TGdQUTLZdNG4R87OfAB-q{font-size:16px!important;height:32px!important;line-height:32px!important;padding:0 16px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1TGdQUTLZdNG4R87OfAB-q>xdoor-icon{margin-left:-16px!important;margin-right:8px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1TGdQUTLZdNG4R87OfAB-q>xdoor-icon>svg{height:32px!important;width:32px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1TGdQUTLZdNG4R87OfAB-q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon{margin-right:-16px!important}</style><style>.sfsibeforpstwpr .sfsiplus_norm_row.sfsi_plus_wDivothr .sfsi_plus_wicons, .sfsiaftrpstwpr .sfsiplus_norm_row.sfsi_plus_wDivothr .sfsi_plus_wicons{width: 40px !important;height: 40px !important; margin-left: 5px !important;}</style><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><script async="true" defer="true" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/FollowCompany.js.download"></script></head>
+
+<body class="post-template-default single single-post postid-1896 single-format-standard elementor-default elementor-kit-2233 elementor-page elementor-page-1896 sfsi_plus_3.43 body-desktop cookies-set cookies-accepted" data-elementor-device-mode="desktop">
+		<!-- Google Tag Manager body script added by ro-marketing -->
+		<noscript data-cfasync="false"><iframe src="//www.googletagmanager.com/ns.html?id=GTM-P7SQLWK"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager body script added by ro-marketing -->
+	<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/#content">Skip to content</a>
+    <div id="header-section" class="h-on-top no-transparent">		<div class="followWrap" style="height: 75px;"><header id="masthead" class="site-header header-contained is-sticky no-t h-on-top header-fixed" role="banner" style="top: 0px;">
+			<div class="container">
+				<div class="site-branding">
+				<div class="site-brand-inner no-logo-img has-title no-desc"><p class="site-title"><a class="site-text-logo" href="https://www.easy365manager.com/" rel="home">Easy365Manager</a></p></div>				</div>
+				<div class="header-right-wrapper">
+					<a href="https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/#0" id="nav-toggle">Menu<span></span></a>
+					<nav id="site-navigation" class="main-navigation" role="navigation">
+						<ul class="onepress-menu">
+							<li id="menu-item-581" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-581"><div class="nav-toggle-subarrow"><i class="fa fa-angle-down"></i></div><a href="https://www.easy365manager.com/">Product Info</a>
+<ul class="sub-menu">
+	<li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-132"><a href="https://www.easy365manager.com/#features">Features</a></li>
+	<li id="menu-item-134" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-134"><a href="https://www.easy365manager.com/#pricing">Pricing</a></li>
+	<li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-133"><a href="https://www.easy365manager.com/#screenshots">Screenshots</a></li>
+</ul>
+</li>
+<li id="menu-item-4096" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4096"><a href="https://www.easy365manager.com/download/?cmd=new-license">Download</a></li>
+<li id="menu-item-135" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-135"><div class="nav-toggle-subarrow"><i class="fa fa-angle-down"></i></div><a href="http://www.easy365manager.com/knowledgebase/">Support</a>
+<ul class="sub-menu">
+	<li id="menu-item-2817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2817"><a href="https://www.easy365manager.com/knowledgebase/">Knowledge Base</a></li>
+	<li id="menu-item-584" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-584"><a href="https://www.easy365manager.com/contact-us/">Contact</a></li>
+</ul>
+</li>
+<li id="menu-item-521" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-521"><a href="https://www.easy365manager.com/news/">Blog</a></li>
+<li id="menu-item-3992" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3992"><div class="nav-toggle-subarrow"><i class="fa fa-angle-down"></i></div><a href="https://www.easy365manager.com/free-admin-tools/">Free Admin Tools</a>
+<ul class="sub-menu">
+	<li id="menu-item-3993" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3993"><a href="https://www.easy365manager.com/ad-dynamic-groups/">AD Dynamic Groups</a></li>
+	<li id="menu-item-4123" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4123"><a href="https://www.easy365manager.com/locate-ip/">Locate IP</a></li>
+</ul>
+</li>
+						</ul>
+					</nav>
+					<!-- #site-navigation -->
+				</div>
+			</div>
+		</header></div><!-- #masthead -->
+		</div>
+	<div id="content" class="site-content">
+
+		
+		<div id="content-inside" class="container right-sidebar">
+			<div id="primary" class="content-area">
+				<main id="main" class="site-main" role="main">
+
+				
+					<article id="post-1896" class="post-1896 post type-post status-publish format-standard has-post-thumbnail hentry category-active-directory category-powershell">
+	<header class="entry-header">
+		<h1 class="entry-title">How To Get ALL Active Directory User Object Attributes</h1>        		<div class="entry-meta">
+			<span class="posted-on">Posted on <a href="https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/" rel="bookmark"><time class="entry-date published" datetime="2019-07-29T21:00:06+02:00">29. July 2019</time><time class="updated hide" datetime="2020-03-13T19:04:40+02:00">13. March 2020</time></a></span><span class="byline"> by <span class="author vcard"><a rel="author" class="url fn n" href="https://www.easy365manager.com/author/morten/">Morten Skrubbeltrang</a></span></span>		</div><!-- .entry-meta -->
+        	</header><!-- .entry-header -->
+
+            <div class="entry-thumbnail">
+            <img width="800" height="589" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/AD_User_Attributes.png" class="attachment-large size-large wp-post-image" alt="AD user object inheritance" loading="lazy" srcset="https://www.easy365manager.com/wp-content/uploads/AD_User_Attributes.png 1000w, https://www.easy365manager.com/wp-content/uploads/AD_User_Attributes-300x221.png 300w, https://www.easy365manager.com/wp-content/uploads/AD_User_Attributes-768x565.png 768w" sizes="(max-width: 800px) 100vw, 800px">        </div><!-- .entry-footer -->
+    
+	<div class="entry-content">
+				<div data-elementor-type="wp-post" data-elementor-id="1896" class="elementor elementor-1896" data-elementor-settings="[]">
+						<div class="elementor-inner">
+							<div class="elementor-section-wrap">
+							<section class="elementor-section elementor-top-section elementor-element elementor-element-2738bca elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="2738bca" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-c21d05d" data-id="c21d05d" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-0202bdc elementor-widget elementor-widget-text-editor" data-id="0202bdc" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>A question came to me last week when I was doing a <a href="http://www.easy365manager.com/active-directory-and-office-365-attribute-naming-the-ultimate-guide/">deep drill of Azure AD Connect user attribute mapping and replication</a>:</p><p><em>What attributes can an Active Directory user object possibly have?</em> Not just the populated ones. Not just the ones visible in AD Users &amp; Computers advanced view. But: ALL OF THEM!</p><p>I looked around and found a couple of half answers.&nbsp;<a style="background-color: #ffffff;" href="https://blogs.technet.microsoft.com/poshchap/2017/09/22/one-liner-query-the-ad-schema-for-user-object-attributes/" target="_blank" rel="noopener">One post</a> suggested looking at the mayContain and systemMayContain attributes of the User object in the AD Schema. <a href="https://www.neroblanco.co.uk/2017/09/get-possible-ad-attributes-user-group/" target="_blank" rel="noopener">Another poster</a> came really close but missed the systemAuxiliaryClass. Also, <a href="https://stackoverflow.com/questions/51332818/get-aduser-not-returning-all-possible-ad-attributes-when-specifying-all-properti" target="_blank" rel="noopener">in forums</a> you’ll see partial answers to this intriguing question.</p><p>To get THE FULL answer you need to understand the way Active Directory schema classes inherit their attributes.</p><h2>Active Directory Classes and Attribute Inheritance</h2><p>In the Active Directory schema you will find all definitions of classes and attributes.</p><p>A class can be of <a href="https://docs.microsoft.com/en-us/windows/win32/ad/structural-abstract-and-auxiliary-classes" target="_blank" rel="noopener">three types</a>:</p><ul><li>Structural – you can create an actual object from this type of class</li><li>Abstract – you can inherit from this class but not create an object</li><li>Auxiliary – defines supplemental classes implemented by a class</li></ul><p>A class (of any type) may have up to four lists of attributes included in it’s definition. These lists are defined in the following class attributes:</p><ul><li>mayContain</li><li>mustContain</li><li>systemMayContain</li><li>systemMustContain</li></ul><p>Additionally, all classes inherit from a parent class (except the root of all classes, the “top” class).</p><p>The following diagram shows you how the user class is designed in the Active Directory schema:</p></div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-8028c63 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="8028c63" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-80a66c1" data-id="80a66c1" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-6b78d2d elementor-widget elementor-widget-image" data-id="6b78d2d" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-image">
+										<img width="800" height="589" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/AD_User_Attributes.png" class="attachment-large size-large" alt="AD user object inheritance" loading="lazy" srcset="https://www.easy365manager.com/wp-content/uploads/AD_User_Attributes.png 1000w, https://www.easy365manager.com/wp-content/uploads/AD_User_Attributes-300x221.png 300w, https://www.easy365manager.com/wp-content/uploads/AD_User_Attributes-768x565.png 768w" sizes="(max-width: 800px) 100vw, 800px">											</div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-9828c2c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="9828c2c" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-996b90a" data-id="996b90a" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-18374e3 elementor-widget elementor-widget-text-editor" data-id="18374e3" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>It inherits from the organizationPerson class, which again inherits from the person class, which again inherits from the top class.</p><p>The user class includes the class definition (more attributes!) from a number of supplemental classes as defined in the auxiliaryClass and systemAuxiliaryClass attributes.</p><p>The user class, all the inherited classes and all the supplemental classes define the attributes that can be included in a user object (in the above diagram the mayContain, mustContain, systemMayContain and systemMustContain are only shown for the user class to keep it simple).</p><h2>Using PowerShell to List All AD User Attributes</h2><p>Per the previous section you need to examine the following to get the full list of potential attributes for any class definition:</p><ul><li>Find a list of all classes inherited by the class (inheritance chain)</li><li>Find a list of all supplemental (auxiliary) classes for the classes found in the previous step</li><li>Find all attribute lists in the four mustContain/mayContain attributes of the classes found in the two previous (don’t forget the class itself)</li></ul><p>A PowerShell script to undertake this task could look like this:</p></div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-6f56be0 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="6f56be0" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-b24eb56" data-id="b24eb56" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-66db757 elementor-widget elementor-widget-wp-widget-custom_html" data-id="66db757" data-element_type="widget" data-widget_type="wp-widget-custom_html.default">
+				<div class="elementor-widget-container">
+			<div class="textwidget custom-html-widget"><div class="CodeFormatter"><ol><li>Import-Module ActiveDirectory</li><li><span class="CF_KW6">$Loop</span> = <span class="CF_KW6">$True</span></li><li class="alt"><span class="CF_KW6">$ClassName</span> = <span class="CF_Q">"User"</span></li><li><span class="CF_KW6">$ClassArray</span> = [<span class="CF_KW7">System</span>.Collections.ArrayList]@()</li><li class="alt"><span class="CF_KW6">$UserAttributes</span> = [<span class="CF_KW7">System</span>.Collections.ArrayList]@()</li><li><span class="CF_C"># Retrieve the User class and any parent classes</span></li><li class="alt"><span class="CF_KW7">While</span> (<span class="CF_KW6">$Loop</span>) {</li><li>  <span class="CF_KW6">$Class</span> = Get-ADObject -SearchBase (Get-ADRootDSE).SchemaNamingContext -Filter { ldapDisplayName <span class="CF_KW8">-Like</span> <span class="CF_KW6">$ClassName</span> } -Properties AuxiliaryClass, SystemAuxiliaryClass, mayContain, mustContain, systemMayContain, systemMustContain, subClassOf, ldapDisplayName</li><li class="alt">  <span class="CF_KW7">If</span> (<span class="CF_KW6">$Class</span>.ldapDisplayName <span class="CF_KW8">-eq</span> <span class="CF_KW6">$Class</span>.subClassOf) {</li><li>    <span class="CF_KW6">$Loop</span> = <span class="CF_KW6">$False</span></li><li class="alt">  }</li><li>  <span class="CF_KW6">$ClassArray</span>.Add(<span class="CF_KW6">$Class</span>)</li><li class="alt">  <span class="CF_KW6">$ClassName</span> = <span class="CF_KW6">$Class</span>.subClassOf</li><li>}</li><li class="alt"><span class="CF_C"># Loop through all the classes and get all auxiliary class attributes and direct attributes</span></li><li><span class="CF_KW6">$ClassArray</span> | % {</li><li class="alt">  <span class="CF_C"># Get Auxiliary class attributes</span></li><li>  <span class="CF_KW6">$Aux</span> = <span class="CF_KW6">$_</span>.AuxiliaryClass | % { Get-ADObject -SearchBase (Get-ADRootDSE).SchemaNamingContext -Filter { ldapDisplayName <span class="CF_KW8">-like</span> <span class="CF_KW6">$_</span> } -Properties mayContain, mustContain, systemMayContain, systemMustContain } |</li><li class="alt">  Select-Object @{n = <span class="CF_Q">"Attributes"</span>; e = { <span class="CF_KW6">$_</span>.mayContain + <span class="CF_KW6">$_</span>.mustContain + <span class="CF_KW6">$_</span>.systemMaycontain + <span class="CF_KW6">$_</span>.systemMustContain } } |</li><li>  Select-Object -ExpandProperty Attributes</li><li class="alt">  <span class="CF_C"># Get SystemAuxiliary class attributes</span></li><li>  <span class="CF_KW6">$SysAux</span> = <span class="CF_KW6">$UserClass</span>.SystemAuxiliaryClass | % { Get-ADObject -SearchBase (Get-ADRootDSE).SchemaNamingContext -Filter { ldapDisplayName <span class="CF_KW8">-like</span> <span class="CF_KW6">$_</span> } -Properties MayContain, SystemMayContain, systemMustContain } |</li><li class="alt">  Select-Object @{n = <span class="CF_Q">"Attributes"</span>; e = { <span class="CF_KW6">$_</span>.maycontain + <span class="CF_KW6">$_</span>.systemmaycontain + <span class="CF_KW6">$_</span>.systemMustContain } } |</li><li>  Select-Object -ExpandProperty Attributes</li><li class="alt">  <span class="CF_C"># Get direct attributes</span></li><li>  <span class="CF_KW6">$UserAttributes</span> += <span class="CF_KW6">$Aux</span> + <span class="CF_KW6">$SysAux</span> + <span class="CF_KW6">$_</span>.mayContain + <span class="CF_KW6">$_</span>.mustContain + <span class="CF_KW6">$_</span>.systemMayContain + <span class="CF_KW6">$_</span>.systemMustContain</li><li class="alt">}</li><li><span class="CF_KW6">$UserAttributes</span> | Sort-Object | Get-Unique</li></ol></div></div>		</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-b842db1 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="b842db1" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-71e1136" data-id="71e1136" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-7956876 elementor-widget elementor-widget-text-editor" data-id="7956876" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>The output of the script depends of course on what schema version and extensions you’re running. In my test lab the output looks like this:</p></div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-0864463 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="0864463" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-250567d" data-id="250567d" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-6f0ffa8 elementor-widget elementor-widget-wp-widget-custom_html" data-id="6f0ffa8" data-element_type="widget" data-widget_type="wp-widget-custom_html.default">
+				<div class="elementor-widget-container">
+			<div class="textwidget custom-html-widget"><div class="CodeOutput">accountExpires
+accountNameHistory
+aCSPolicyName
+adminCount
+adminDescription
+adminDisplayName
+allowedAttributes
+allowedAttributesEffective
+allowedChildClasses
+allowedChildClassesEffective
+altRecipient
+altRecipientBL
+altSecurityIdentities
+assistant
+attributeCertificate
+attributeCertificateAttribute
+audio
+authOrig
+authOrigBL
+autoReply
+autoReplyMessage
+badPasswordTime
+badPwdCount
+bridgeheadServerListBL
+businessCategory
+businessRoles
+c
+canonicalName
+carLicense
+cn
+co
+codePage
+comment
+company
+controlAccessRights
+countryCode
+createTimeStamp
+dBCSPwd
+defaultClassStore
+deletedItemFlags
+delivContLength
+deliverAndRedirect
+deliveryMechanism
+delivExtContTypes
+department
+departmentNumber
+description
+desktopProfile
+destinationIndicator
+directReports
+displayName
+displayNamePrintable
+distinguishedName
+division
+dLMemDefault
+dLMemRejectPerms
+dLMemRejectPermsBL
+dLMemSubmitPerms
+dLMemSubmitPermsBL
+dnQualifier
+dSASignature
+dSCorePropagationData
+dynamicLDAPServer
+employeeID
+employeeNumber
+employeeType
+enabledProtocols
+expirationTime
+extensionAttribute1
+extensionAttribute10
+extensionAttribute11
+extensionAttribute12
+extensionAttribute13
+extensionAttribute14
+extensionAttribute15
+extensionAttribute2
+extensionAttribute3
+extensionAttribute4
+extensionAttribute5
+extensionAttribute6
+extensionAttribute7
+extensionAttribute8
+extensionAttribute9
+extensionData
+extensionName
+facsimileTelephoneNumber
+flags
+folderPathname
+formData
+forwardingAddress
+fromEntry
+frsComputerReferenceBL
+fRSMemberReferenceBL
+fSMORoleOwner
+garbageCollPeriod
+gecos
+generationQualifier
+gidNumber
+givenName
+groupMembershipSAM
+groupPriority
+groupsToIgnore
+heuristics
+homeDirectory
+homeDrive
+homeMDB
+homeMTA
+homePhone
+homePostalAddress
+houseIdentifier
+importedFrom
+info
+initials
+instanceType
+internationalISDNNumber
+internetEncoding
+ipPhone
+isCriticalSystemObject
+isDeleted
+isPrivilegeHolder
+isRecycled
+jpegPhoto
+kMServer
+l
+labeledURI
+language
+languageCode
+lastKnownParent
+lastLogoff
+lastLogon
+lastLogonTimestamp
+legacyExchangeDN
+lmPwdHistory
+localeID
+lockoutTime
+loginShell
+logonCount
+logonHours
+logonWorkstation
+mail
+mailNickname
+managedObjects
+manager
+mAPIRecipient
+masteredBy
+maxStorage
+mDBOverHardQuotaLimit
+mDBOverQuotaLimit
+mDBStorageQuota
+mDBUseDefaults
+memberOf
+mhsORAddress
+middleName
+mobile
+modifyTimeStamp
+msCOM-PartitionSetLink
+msCOM-UserLink
+msCOM-UserPartitionSetLink
+msDFSR-ComputerReferenceBL
+msDFSR-MemberReferenceBL
+msDRM-IdentityCertificate
+msDS-AllowedToActOnBehalfOfOtherIdentity
+msDS-AllowedToDelegateTo
+msDS-Approx-Immed-Subordinates
+msDS-AssignedAuthNPolicy
+msDS-AssignedAuthNPolicySilo
+msDS-AuthenticatedAtDC
+msDS-AuthenticatedToAccountlist
+msDS-AuthNPolicySiloMembersBL
+msDS-Cached-Membership
+msDS-Cached-Membership-Time-Stamp
+msDS-ClaimSharesPossibleValuesWithBL
+msDS-CloudAnchor
+msDS-cloudExtensionAttribute1
+msDS-cloudExtensionAttribute10
+msDS-cloudExtensionAttribute11
+msDS-cloudExtensionAttribute12
+msDS-cloudExtensionAttribute13
+msDS-cloudExtensionAttribute14
+msDS-cloudExtensionAttribute15
+msDS-cloudExtensionAttribute16
+msDS-cloudExtensionAttribute17
+msDS-cloudExtensionAttribute18
+msDS-cloudExtensionAttribute19
+msDS-cloudExtensionAttribute2
+msDS-cloudExtensionAttribute20
+msDS-cloudExtensionAttribute3
+msDS-cloudExtensionAttribute4
+msDS-cloudExtensionAttribute5
+msDS-cloudExtensionAttribute6
+msDS-cloudExtensionAttribute7
+msDS-cloudExtensionAttribute8
+msDS-cloudExtensionAttribute9
+mS-DS-ConsistencyChildCount
+mS-DS-ConsistencyGuid
+mS-DS-CreatorSID
+msDS-EnabledFeatureBL
+msDS-ExternalDirectoryObjectId
+msDS-FailedInteractiveLogonCount
+msDS-FailedInteractiveLogonCountAtLastSuccessfulLogon
+msDS-GeoCoordinatesAltitude
+msDS-GeoCoordinatesLatitude
+msDS-GeoCoordinatesLongitude
+msDS-HABSeniorityIndex
+msDS-HostServiceAccountBL
+msDS-IsDomainFor
+msDS-IsFullReplicaFor
+msDS-IsPartialReplicaFor
+msDS-IsPrimaryComputerFor
+msDS-KeyCredentialLink
+msDS-KeyPrincipalBL
+msDS-KeyVersionNumber
+msDS-KrbTgtLinkBl
+msDS-LastFailedInteractiveLogonTime
+msDS-LastKnownRDN
+msDS-LastSuccessfulInteractiveLogonTime
+msDS-LocalEffectiveDeletionTime
+msDS-LocalEffectiveRecycleTime
+msDs-masteredBy
+msds-memberOfTransitive
+msDS-MembersForAzRoleBL
+msDS-MembersOfResourcePropertyListBL
+msds-memberTransitive
+msDS-NCReplCursors
+msDS-NCReplInboundNeighbors
+msDS-NCReplOutboundNeighbors
+msDS-NC-RO-Replica-Locations-BL
+msDS-NcType
+msDS-NonMembersBL
+msDS-ObjectReferenceBL
+msDS-ObjectSoa
+msDS-OIDToGroupLinkBl
+msDS-OperationsForAzRoleBL
+msDS-OperationsForAzTaskBL
+msDS-parentdistname
+msDS-PhoneticCompanyName
+msDS-PhoneticDepartment
+msDS-PhoneticDisplayName
+msDS-PhoneticFirstName
+msDS-PhoneticLastName
+msDS-PrimaryComputer
+msDS-PrincipalName
+msDS-PSOApplied
+msDS-ReplAttributeMetaData
+msDS-ReplValueMetaData
+msDS-ReplValueMetaDataExt
+msDS-ResultantPSO
+msDS-RevealedDSAs
+msDS-RevealedListBL
+msDS-SecondaryKrbTgtNumber
+msDS-Site-Affinity
+msDS-SourceAnchor
+msDS-SourceObjectDN
+msDS-SupportedEncryptionTypes
+msDS-SyncServerUrl
+msDS-TasksForAzRoleBL
+msDS-TasksForAzTaskBL
+msDS-TDOEgressBL
+msDS-TDOIngressBL
+msds-tokenGroupNames
+msds-tokenGroupNamesGlobalAndUniversal
+msds-tokenGroupNamesNoGCAcceptable
+msDS-User-Account-Control-Computed
+msDS-UserPasswordExpiryTimeComputed
+msDS-ValueTypeReferenceBL
+msExchADCGlobalNames
+msExchAddressBookFlags
+msExchAggregationSubscriptionCredential
+msExchALObjectVersion
+msExchAlternateMailboxes
+msExchApprovalApplicationLink
+msExchArbitrationMailbox
+msExchArchiveAddress
+msExchArchiveDatabaseBL
+msExchArchiveDatabaseLink
+msExchArchiveGUID
+msExchArchiveName
+msExchArchiveQuota
+msExchArchiveStatus
+msExchArchiveWarnQuota
+msExchAssistantName
+msExchAuditAdmin
+msExchAuditDelegate
+msExchAuditDelegateAdmin
+msExchAuditOwner
+msExchAvailabilityOrgWideAccountBL
+msExchAvailabilityPerUserAccountBL
+msExchBlockedSendersHash
+msExchBypassAudit
+msExchBypassModerationBL
+msExchBypassModerationFromDLMembersBL
+msExchBypassModerationFromDLMembersLink
+msExchBypassModerationLink
+msExchCalculatedTargetAddress
+msExchCalendarRepairDisabled
+msExchCapabilityIdentifiers
+msExchCoManagedObjectsBL
+msExchConferenceMailboxBL
+msExchConfigurationUnitBL
+msExchContentConversionSettings
+msExchControllingZone
+msExchCU
+msExchCustomProxyAddresses
+msExchDelegateListBL
+msExchDelegateListLink
+msExchDeviceAccessControlRuleBL
+msExchDirsyncID
+msExchDirsyncSourceObjectClass
+msExchDisabledArchiveDatabaseLink
+msExchDisabledArchiveGUID
+msExchDumpsterQuota
+msExchDumpsterWarningQuota
+msExchEdgeSyncCookies
+msExchEdgeSyncRetryCount
+msExchEdgeSyncSourceGuid
+msExchELCExpirySuspensionEnd
+msExchELCExpirySuspensionStart
+msExchELCMailboxFlags
+msExchEnableModeration
+msExchEwsApplicationAccessPolicy
+msExchEwsEnabled
+msExchEwsExceptions
+msExchEwsWellKnownApplicationPolicies
+msExchExpansionServerName
+msExchExternalDirectoryObjectId
+msExchExternalOOFOptions
+msExchExternalSyncState
+msExchFBURL
+msExchForeignGroupSID
+msExchGenericForwardingAddress
+msExchHABRootDepartmentBL
+msExchHABShowInDepartments
+msExchHideFromAddressLists
+msExchHomeServerName
+msExchHouseIdentifier
+msExchIMACL
+msExchIMAddress
+msExchIMAP4Settings
+msExchIMAPOWAURLPrefixOverride
+msExchIMMetaPhysicalURL
+msExchImmutableId
+msExchIMPhysicalURL
+msExchIMVirtualServer
+msExchInconsistentState
+msExchIntendedMailboxPlanBL
+msExchIntendedMailboxPlanLink
+msExchInterruptUserOnAuditFailure
+msExchIsMSODirsynced
+msExchLabeledURI
+msExchLastExchangeChangedTime
+msExchLicenseToken
+msExchLitigationHoldDate
+msExchLitigationHoldOwner
+msExchMailboxAuditEnable
+msExchMailboxAuditLastAdminAccess
+msExchMailboxAuditLastDelegateAccess
+msExchMailboxAuditLastExternalAccess
+msExchMailboxAuditLogAgeLimit
+msExchMailboxFolderSet
+msExchMailboxFolderSet2
+msExchMailboxGuid
+msExchMailboxMoveBatchName
+msExchMailboxMoveFlags
+msExchMailboxMoveRemoteHostName
+msExchMailboxMoveSourceArchiveMDBBL
+msExchMailboxMoveSourceArchiveMDBLink
+msExchMailboxMoveSourceMDBBL
+msExchMailboxMoveSourceMDBLink
+msExchMailboxMoveSourceUserBL
+msExchMailboxMoveStatus
+msExchMailboxMoveStorageMDBBL
+msExchMailboxMoveTargetArchiveMDBBL
+msExchMailboxMoveTargetArchiveMDBLink
+msExchMailboxMoveTargetMDBBL
+msExchMailboxMoveTargetMDBLink
+msExchMailboxMoveTargetUserBL
+msExchMailboxOABVirtualDirectoriesLink
+msExchMailboxPlanType
+msExchMailboxSecurityDescriptor
+msExchMailboxTemplateLink
+msExchMailboxUrl
+msExchManagementSettings
+msExchMasterAccountSid
+msExchMaxBlockedSenders
+msExchMaxSafeSenders
+msExchMDBRulesQuota
+msExchMessageHygieneFlags
+msExchMessageHygieneSCLDeleteThreshold
+msExchMessageHygieneSCLJunkThreshold
+msExchMessageHygieneSCLQuarantineThreshold
+msExchMessageHygieneSCLRejectThreshold
+msExchMobileAllowedDeviceIDs
+msExchMobileBlockedDeviceIDs
+msExchMobileDebugLogging
+msExchMobileMailboxFlags
+msExchMobileMailboxPolicyLink
+msExchMobileRemoteDocumentsAllowedServersBL
+msExchMobileRemoteDocumentsBlockedServersBL
+msExchMobileRemoteDocumentsInternalDomainSuffixListBL
+msExchMobileSettings
+msExchModeratedByLink
+msExchModeratedObjectsBL
+msExchModerationFlags
+msExchObjectCountQuota
+msExchObjectID
+msExchOmaAdminExtendedSettings
+msExchOmaAdminWirelessEnable
+msExchOnPremiseObjectGuid
+msExchOrganizationsAddressBookRootsBL
+msExchOrganizationsGlobalAddressListsBL
+msExchOrganizationsTemplateRootsBL
+msExchOriginatingForest
+msExchOURoot
+msExchOWAAllowedFileTypesBL
+msExchOWAAllowedMimeTypesBL
+msExchOWABlockedFileTypesBL
+msExchOWABlockedMIMETypesBL
+msExchOWAForceSaveFileTypesBL
+msExchOWAForceSaveMIMETypesBL
+msExchOWAPolicy
+msExchOWARemoteDocumentsAllowedServersBL
+msExchOWARemoteDocumentsBlockedServersBL
+msExchOWARemoteDocumentsInternalDomainSuffixListBL
+msExchOWASettings
+msExchOWATranscodingFileTypesBL
+msExchOWATranscodingMimeTypesBL
+msExchParentPlanBL
+msExchParentPlanLink
+msExchPartnerGroupID
+msExchPfRootUrl
+msExchPoliciesExcluded
+msExchPoliciesIncluded
+msExchPolicyEnabled
+msExchPolicyOptionList
+msExchPOP3Settings
+msExchPreviousAccountSid
+msExchPreviousHomeMDB
+msExchPreviousMailboxGuid
+msExchProvisioningFlags
+msExchProxyCustomProxy
+msExchQueryBaseDN
+msExchRBACPolicyBL
+msExchRBACPolicyLink
+msExchRecipientDisplayType
+msExchRecipientTypeDetails
+msExchRecipientValidatorCookies
+msExchRecipLimit
+msExchRemoteRecipientType
+msExchRequireAuthToSendTo
+msExchResourceCapacity
+msExchResourceDisplay
+msExchResourceGUID
+msExchResourceMetaData
+msExchResourceProperties
+msExchResourceSearchProperties
+msExchRetentionComment
+msExchRetentionURL
+msExchRMSComputerAccountsBL
+msExchRMSComputerAccountsLink
+msExchSafeRecipientsHash
+msExchSafeSendersHash
+msExchSendAsAddresses
+msExchSenderHintTranslations
+msExchServerAssociationBL
+msExchServerAssociationLink
+msExchServerSiteBL
+msExchSetupStatus
+msExchShadowAssistantName
+msExchShadowC
+msExchShadowCo
+msExchShadowCompany
+msExchShadowCountryCode
+msExchShadowDepartment
+msExchShadowDisplayName
+msExchShadowFacsimileTelephoneNumber
+msExchShadowGivenName
+msExchShadowHomePhone
+msExchShadowInfo
+msExchShadowInitials
+msExchShadowL
+msExchShadowMailNickname
+msExchShadowManagerLink
+msExchShadowMobile
+msExchShadowOtherFacsimileTelephone
+msExchShadowOtherHomePhone
+msExchShadowOtherTelephone
+msExchShadowPager
+msExchShadowPhysicalDeliveryOfficeName
+msExchShadowPostalCode
+msExchShadowProxyAddresses
+msExchShadowSn
+msExchShadowSt
+msExchShadowStreetAddress
+msExchShadowTelephoneAssistant
+msExchShadowTelephoneNumber
+msExchShadowTitle
+msExchShadowWindowsLiveID
+msExchShadowWWWHomePage
+msExchSharingAnonymousIdentities
+msExchSharingPartnerIdentities
+msExchSharingPolicyLink
+msExchSignupAddresses
+msExchSMTPReceiveDefaultAcceptedDomainBL
+msExchSupervisionDLBL
+msExchSupervisionDLLink
+msExchSupervisionOneOffBL
+msExchSupervisionOneOffLink
+msExchSupervisionUserBL
+msExchSupervisionUserLink
+msExchSyncAccountsPolicyDN
+msExchTextMessagingState
+msExchThrottlingPolicyDN
+msExchTransportInboundSettings
+msExchTransportOutboundSettings
+msExchTransportRecipientSettingsFlags
+msExchTUIPassword
+msExchTUISpeed
+msExchTUIVolume
+msExchUCVoiceMailSettings
+msExchUMAddresses
+msExchUMAudioCodec
+msExchUMAudioCodec2
+msExchUMCallingLineIDs
+msExchUMDtmfMap
+msExchUMEnabledFlags
+msExchUMEnabledFlags2
+msExchUMFaxId
+msExchUMListInDirectorySearch
+msExchUMMailboxOVALanguage
+msExchUMMaxGreetingDuration
+msExchUMOperatorNumber
+msExchUMPhoneProvider
+msExchUMPinChecksum
+msExchUMRecipientDialPlanLink
+msExchUMServerWritableFlags
+msExchUMSpokenName
+msExchUMTemplateLink
+msExchUnmergedAttsPt
+msExchUsageLocation
+msExchUseOAB
+msExchUserAccountControl
+msExchUserBL
+msExchUserCulture
+msExchVersion
+msExchVoiceMailboxID
+msExchWhenMailboxCreated
+msExchWindowsLiveID
+msIIS-FTPDir
+msIIS-FTPRoot
+mSMQDigests
+mSMQDigestsMig
+mSMQSignCertificates
+mSMQSignCertificatesMig
+msNPAllowDialin
+msNPCallingStationID
+msNPSavedCallingStationID
+msOrg-LeadersBL
+msPKIAccountCredentials
+msPKI-CredentialRoamingTokens
+msPKIDPAPIMasterKeys
+msPKIRoamingTimeStamp
+msRADIUSCallbackNumber
+msRADIUS-FramedInterfaceId
+msRADIUSFramedIPAddress
+msRADIUS-FramedIpv6Prefix
+msRADIUS-FramedIpv6Route
+msRADIUSFramedRoute
+msRADIUS-SavedFramedInterfaceId
+msRADIUS-SavedFramedIpv6Prefix
+msRADIUS-SavedFramedIpv6Route
+msRADIUSServiceType
+msRASSavedCallbackNumber
+msRASSavedFramedIPAddress
+msRASSavedFramedRoute
+msSFU30Name
+msSFU30NisDomain
+msSFU30PosixMemberOf
+msTSAllowLogon
+msTSBrokenConnectionAction
+msTSConnectClientDrives
+msTSConnectPrinterDrives
+msTSDefaultToMainPrinter
+msTSExpireDate
+msTSExpireDate2
+msTSExpireDate3
+msTSExpireDate4
+msTSHomeDirectory
+msTSHomeDrive
+msTSInitialProgram
+msTSLicenseVersion
+msTSLicenseVersion2
+msTSLicenseVersion3
+msTSLicenseVersion4
+msTSLSProperty01
+msTSLSProperty02
+msTSManagingLS
+msTSManagingLS2
+msTSManagingLS3
+msTSManagingLS4
+msTSMaxConnectionTime
+msTSMaxDisconnectionTime
+msTSMaxIdleTime
+msTSPrimaryDesktop
+msTSProfilePath
+msTSProperty01
+msTSProperty02
+msTSReconnectionAction
+msTSRemoteControl
+msTSSecondaryDesktops
+msTSWorkDirectory
+name
+netbootSCPBL
+networkAddress
+nonSecurityMemberBL
+ntPwdHistory
+nTSecurityDescriptor
+o
+objectCategory
+objectClass
+objectGUID
+objectSid
+objectVersion
+operatorCount
+otherFacsimileTelephoneNumber
+otherHomePhone
+otherIpPhone
+otherLoginWorkstations
+otherMailbox
+otherMobile
+otherPager
+otherTelephone
+otherWellKnownObjects
+ou
+ownerBL
+pager
+partialAttributeDeletionList
+partialAttributeSet
+personalPager
+personalTitle
+photo
+physicalDeliveryOfficeName
+pOPCharacterSet
+pOPContentFormat
+possibleInferiors
+postalAddress
+postalCode
+postOfficeBox
+preferredDeliveryMethod
+preferredLanguage
+preferredOU
+primaryGroupID
+primaryInternationalISDNNumber
+primaryTelexNumber
+profilePath
+protocolSettings
+proxiedObjectName
+proxyAddresses
+publicDelegates
+publicDelegatesBL
+pwdLastSet
+queryPolicyBL
+registeredAddress
+replicatedObjectVersion
+replicationSensitivity
+replicationSignature
+replPropertyMetaData
+replUpToDateVector
+repsFrom
+repsTo
+revision
+rid
+roomNumber
+sAMAccountName
+sAMAccountType
+scriptPath
+sDRightsEffective
+secretary
+securityIdentifier
+securityProtocol
+seeAlso
+serialNumber
+serverReferenceBL
+servicePrincipalName
+shadowExpire
+shadowFlag
+shadowInactive
+shadowLastChange
+shadowMax
+shadowMin
+shadowWarning
+showInAddressBook
+showInAdvancedViewOnly
+sIDHistory
+siteObjectBL
+sn
+st
+street
+streetAddress
+structuralObjectClass
+submissionContLength
+subRefs
+subSchemaSubEntry
+supplementalCredentials
+supportedAlgorithms
+systemFlags
+targetAddress
+telephoneAssistant
+telephoneNumber
+teletexTerminalIdentifier
+telexNumber
+terminalServer
+textEncodedORAddress
+thumbnailLogo
+thumbnailPhoto
+title
+tokenGroups
+tokenGroupsGlobalAndUniversal
+tokenGroupsNoGCAcceptable
+uid
+uidNumber
+unauthOrig
+unauthOrigBL
+unicodePwd
+unixHomeDirectory
+unixUserPassword
+unmergedAtts
+url
+userAccountControl
+userCert
+userCertificate
+userParameters
+userPassword
+userPKCS12
+userPrincipalName
+userSharedFolder
+userSharedFolderOther
+userSMIMECertificate
+userWorkstations
+uSNChanged
+uSNCreated
+uSNDSALastObjRemoved
+USNIntersite
+uSNLastObjRem
+uSNSource
+versionNumber
+wbemPath
+wellKnownObjects
+whenChanged
+whenCreated
+wWWHomePage
+x121Address
+x500uniqueIdentifier
+</div></div>		</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-97a2b69 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="97a2b69" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-1cadff9" data-id="1cadff9" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-01dafd1 elementor-widget elementor-widget-text-editor" data-id="01dafd1" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><h2>Summary</h2><p>As illustrated it’s not a super simple task to list all attributes of a schema class definition.</p><p>You need to take parent classes and supplemental classes into account.</p><p>Plus you need to look at four different class attributes for each class definition associated with the class.</p><p>But then, and only then, you will see everything clearly! <img draggable="false" role="img" class="emoji" alt="😉" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/1f609.svg"></p></div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+						</div>
+						</div>
+					</div>
+		<div class="sfsiaftrpstwpr" style=""><div class="sfsi_plus_Sicons" style="float:left"><div style="float:left;margin:0 0px; line-height:45px"><span>Did you like this post? Maybe your friends will too!</span></div><div class="sfsiplus_norm_row sfsi_plus_wDivothr"><div style="width:40px; height:40px;margin-left:5px;margin-bottom:5px;" class="sfsi_plus_wicons shuffeldiv "><div class="sfsiplus_inerCnt"><a class=" sficn" data-effect="" href="javascript:void(0);" style="opacity:1"><img alt="Facebook" title="Facebook" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/flat_fb.png" width="40" height="40" style="" class="sfcm sfsi_wicon sfsiplusid_round_icon_facebook" data-effect=""></a><div class="sfsi_plus_tool_tip_2 sfsi_plus_fb_tool_bdr sfsi_plus_Tlleft sfsiplusid_facebook" style="display: none; width: 62px; opacity: 0; z-index: -1;"><span class="bot_arow bot_fb_arow"></span><div class="sfsi_plus_inside"><div class="icon3"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.easy365manager.com%2Fhow-to-get-all-active-directory-user-object-attributes%2F" style="display:inline-block;"> <img class="sfsi_wicon" data-pin-nopin="true" width="auto" height="auto" alt="fb-share-icon" title="Facebook Share" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/en_US.svg" '=""></a></div></div></div></div></div><div style="width:40px; height:40px;margin-left:5px;margin-bottom:5px;" class="sfsi_plus_wicons shuffeldiv "><div class="sfsiplus_inerCnt"><a class=" sficn" data-effect="" href="javascript:void(0);" style="opacity:1"><img alt="Twitter" title="Twitter" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/flat_twitter.png" width="40" height="40" style="" class="sfcm sfsi_wicon sfsiplusid_round_icon_twitter" data-effect=""></a><div class="sfsi_plus_tool_tip_2 sfsi_plus_twt_tool_bdr sfsi_plus_Tlleft sfsiplusid_twitter" style="display: none; width: 59px; opacity: 0; z-index: -1;"><span class="bot_arow bot_twt_arow"></span><div class="sfsi_plus_inside"><div class="icon2"><div class="sf_twiter" style="display: inline-block;vertical-align: middle;width: auto;">
+						<a href="https://twitter.com/intent/tweet?text=Now+this%3A%20https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/" style="display:inline-block">
+							<img nopin="nopin" width="auto" class="sfsi_plus_wicon" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/en_US_Tweet.svg" alt="Tweet" title="Tweet">
+						</a>
+					</div></div></div></div></div></div><div style="width:40px; height:40px;margin-left:5px;margin-bottom:5px;" class="sfsi_plus_wicons shuffeldiv "><div class="sfsiplus_inerCnt"><a class=" sficn" data-effect="" href="javascript:void(0);" style="opacity:1"><img alt="LinkedIn" title="LinkedIn" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/flat_linkedin.png" width="40" height="40" style="" class="sfcm sfsi_wicon sfsiplusid_round_icon_linkedin" data-effect=""></a><div class="sfsi_plus_tool_tip_2 sfsi_plus_linkedin_tool_bdr sfsi_plus_Tlleft sfsiplusid_linkedin" style="display: none; width: 66px; opacity: 0; z-index: -1;"><span class="bot_arow bot_linkedin_arow"></span><div class="sfsi_plus_inside"><div class="icon2"><a href="https://www.linkedin.com/shareArticle?url=https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/"><img class="sfsi_premium_wicon" nopin="nopin" alt="Share" title="Share" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/en_US_share.svg"></a></div></div></div></div></div></div></div></div>			</div><!-- .entry-content -->
+    
+    <footer class="entry-footer"><span class="cat-links">Posted in <a href="https://www.easy365manager.com/category/active-directory/" rel="category tag">Active Directory</a>, <a href="https://www.easy365manager.com/category/powershell/" rel="category tag">PowerShell</a></span></footer><!-- .entry-footer -->
+    </article><!-- #post-## -->
+
+
+					
+				
+				</main><!-- #main -->
+			</div><!-- #primary -->
+
+                            
+<div id="secondary" class="widget-area sidebar" role="complementary">
+	<aside id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="https://www.easy365manager.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search …" value="" name="s">
+				</label>
+				<input type="submit" class="search-submit" value="Search">
+			</form></aside><aside id="neliofp_widget-2" class="widget widget_neliofp_widget"><h2 class="widget-title">Featured Posts</h2><nav>
+<article class="post-4126 post type-post status-publish entry includes-feat-image" itemscope="itemscope">	<div class="featured-image alignleft">
+		<a class="featured_post_link" href="https://www.easy365manager.com/ip-lookup-webpart/" title="IP Lookup Webpart"><img width="150" height="150" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/IPLookup-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Locate IP" loading="lazy"></a>	</div>
+		<div class="entry-title"><a class="featured_post_link" href="https://www.easy365manager.com/ip-lookup-webpart/" title="IP Lookup Webpart">IP Lookup Webpart</a></div>
+</article>
+
+
+<article class="post-2161 post type-post status-publish entry includes-feat-image" itemscope="itemscope">	<div class="featured-image alignleft">
+		<a class="featured_post_link" href="https://www.easy365manager.com/office-365-management-tools/" title="Office 365 Management Tools"><img width="150" height="150" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/Office365_Logo-150x150.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Office 365 Management Tools" loading="lazy"></a>	</div>
+		<div class="entry-title"><a class="featured_post_link" href="https://www.easy365manager.com/office-365-management-tools/" title="Office 365 Management Tools">Office 365 Management Tools</a></div>
+</article>
+
+
+<article class="post-4017 post type-post status-publish entry includes-feat-image" itemscope="itemscope">	<div class="featured-image alignleft">
+		<a class="featured_post_link" href="https://www.easy365manager.com/office-365-dynamic-groups/" title="Office 365 Dynamic Groups"><img width="150" height="150" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/Office365_DynamicGroups-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Office 365 dynamic groups" loading="lazy"></a>	</div>
+		<div class="entry-title"><a class="featured_post_link" href="https://www.easy365manager.com/office-365-dynamic-groups/" title="Office 365 Dynamic Groups">Office 365 Dynamic Groups</a></div>
+</article>
+
+
+<article class="post-3151 post type-post status-publish entry includes-feat-image" itemscope="itemscope">	<div class="featured-image alignleft">
+		<a class="featured_post_link" href="https://www.easy365manager.com/find-process-making-network-connection/" title="Which Process is Making the Network Connection?"><img width="150" height="150" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/Netmon_Netsh_Process-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Netmon netsh process" loading="lazy"></a>	</div>
+		<div class="entry-title"><a class="featured_post_link" href="https://www.easy365manager.com/find-process-making-network-connection/" title="Which Process is Making the Network Connection?">Which Process is Making the Network Connection?</a></div>
+</article>
+
+
+<article class="post-1989 post type-post status-publish entry includes-feat-image" itemscope="itemscope">	<div class="featured-image alignleft">
+		<a class="featured_post_link" href="https://www.easy365manager.com/ip-geo-location-lookup-using-powershell/" title="IP Geo Location Lookup Using PowerShell"><img width="150" height="150" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/GeoLocation-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Geo Location and PowerShell" loading="lazy"></a>	</div>
+		<div class="entry-title"><a class="featured_post_link" href="https://www.easy365manager.com/ip-geo-location-lookup-using-powershell/" title="IP Geo Location Lookup Using PowerShell">IP Geo Location Lookup Using PowerShell</a></div>
+</article>
+
+
+<article class="post-1391 post type-post status-publish entry includes-feat-image" itemscope="itemscope">	<div class="featured-image alignleft">
+		<a class="featured_post_link" href="https://www.easy365manager.com/office-365-administration-schizophrenia-and-how-to-avoid-it/" title="Office 365 Administration Schizophrenia – and How to Avoid It"><img width="150" height="150" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/Schizo_Office365-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Office 365 Schizophrenia" loading="lazy"></a>	</div>
+		<div class="entry-title"><a class="featured_post_link" href="https://www.easy365manager.com/office-365-administration-schizophrenia-and-how-to-avoid-it/" title="Office 365 Administration Schizophrenia – and How to Avoid It">Office 365 Administration Schizophrenia – and How to Avoid It</a></div>
+</article>
+
+</nav></aside><aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categories</h2>
+			<ul>
+					<li class="cat-item cat-item-16"><a href="https://www.easy365manager.com/category/active-directory/">Active Directory</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="https://www.easy365manager.com/category/adfs/">ADFS</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="https://www.easy365manager.com/category/aws/">AWS</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="https://www.easy365manager.com/category/azure/">Azure</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="https://www.easy365manager.com/category/dkim/">DKIM</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="https://www.easy365manager.com/category/dmarc/">DMARC</a>
+</li>
+	<li class="cat-item cat-item-26"><a href="https://www.easy365manager.com/category/dns/">DNS</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="https://www.easy365manager.com/category/exchange/">Exchange</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="https://www.easy365manager.com/category/licensing/">Licensing</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="https://www.easy365manager.com/category/office-365/">Office 365</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="https://www.easy365manager.com/category/powershell/">PowerShell</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="https://www.easy365manager.com/category/spf/">SPF</a>
+</li>
+			</ul>
+
+			</aside></div><!-- #secondary -->
+            
+		</div><!--#content-inside -->
+	</div><!-- #content -->
+
+    <footer id="colophon" class="site-footer" role="contentinfo">
+        			<div id="footer-widgets" class="footer-widgets section-padding ">
+				<div class="container">
+					<div class="row">
+														<div id="footer-1" class="col-md-3 col-sm-12 footer-column widget-area sidebar" role="complementary">
+									<aside id="text-3" class="footer-widget widget widget_text"><h2 class="widget-title">Company Info</h2>			<div class="textwidget"><p>Agema A/S</p>
+<p>Naverland 2<br>
+DK-2600 Glostrup<br>
+Denmark</p>
+</div>
+		</aside>								</div>
+																<div id="footer-2" class="col-md-3 col-sm-12 footer-column widget-area sidebar" role="complementary">
+									<aside id="text-4" class="footer-widget widget widget_text"><h2 class="widget-title">Contact Us</h2>			<div class="textwidget"><p>Phone: (+45) 88 440 777</p>
+<p>support@easy365manager.com<br>
+<script src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/in.js.download" type="text/javascript">
+lang: en_US
+</script><br>
+<span class="IN-widget" data-lnkd-debug="&lt;script type=&quot;IN/FollowCompany+init&quot; data-id=&quot;19123748&quot;&gt;&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;
+&lt;/script&gt;" style="display: inline-block; line-height: 1; vertical-align: bottom; padding: 0px; margin: 0px; text-indent: 0px;"><iframe id="{&quot;xdOrigin&quot;:&quot;https://www.easy365manager.com&quot;,&quot;xdChannel&quot;:&quot;e0ad60f6-2a91-49cc-b5f1-bbaec04880fe&quot;,&quot;framework&quot;:&quot;@linkedin/xdoor-sdk&quot;,&quot;version&quot;:&quot;0.1.149&quot;,&quot;debug&quot;:false}" name="{&quot;xdOrigin&quot;:&quot;https://www.easy365manager.com&quot;,&quot;xdChannel&quot;:&quot;e0ad60f6-2a91-49cc-b5f1-bbaec04880fe&quot;,&quot;framework&quot;:&quot;@linkedin/xdoor-sdk&quot;,&quot;version&quot;:&quot;0.1.149&quot;,&quot;debug&quot;:false}" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/FollowCompany.html" class="IN-widget IN-widget--iframe" scrolling="no" allowtransparency="true" frameborder="0" border="0" width="1" height="1" style="vertical-align: bottom; width: 80px; height: 24px;"></iframe></span></p>
+</div>
+		</aside>								</div>
+																<div id="footer-3" class="col-md-3 col-sm-12 footer-column widget-area sidebar" role="complementary">
+									<aside id="text-8" class="footer-widget widget widget_text"><h2 class="widget-title">Partner Status</h2>			<div class="textwidget"><p><a href="https://www.microsoft.com/en-us/solution-providers/partnerdetails/agema-as_2685ce0d-979a-47d6-839d-a4b8a792138c/2571529b-e906-46fd-8537-2428cbe942ea" target="_blank" rel="noopener noreferrer">Microsoft Silver Partner</a></p>
+<p><a href="https://aws.amazon.com/partners/find/partnerdetails/?n=AGEMA%20A%2FS&amp;id=001E000000cGSsnIAG" target="_blank" rel="noopener noreferrer">AWS Select Consulting Partner</a></p>
+</div>
+		</aside>								</div>
+																<div id="footer-4" class="col-md-3 col-sm-12 footer-column widget-area sidebar" role="complementary">
+									<aside id="text-7" class="footer-widget widget widget_text"><h2 class="widget-title">Resources</h2>			<div class="textwidget"><p><a style="color: #a9a9a9;" href="https://www.easy365manager.com/news/">Blog</a></p>
+<p><a style="color: #a9a9a9;" href="https://www.easy365manager.com/knowledgebase/">Knowledge Base</a></p>
+<p><a style="color: #a9a9a9;" href="https://www.easy365manager.com/contact-us/">Contact Us</a></p>
+</div>
+		</aside>								</div>
+													</div>
+				</div>
+			</div>
+				
+        <div class="site-info">
+            <div class="container">
+                                		Copyright © 2020 Easy365Manager		<span class="sep"> – </span>
+		<a href="https://www.famethemes.com/themes/onepress">OnePress</a> theme by FameThemes		            </div>
+        </div>
+        <!-- .site-info -->
+
+    </footer><!-- #colophon -->
+    </div><!-- #page -->
+
+<script>
+	window.addEventListener('sfsi_plus_functions_loaded', function() {
+		if (typeof sfsi_plus_responsive_toggle == 'function') {
+			sfsi_plus_responsive_toggle(0);
+			// console.log('sfsi_plus_responsive_toggle');
+		}
+	})
+</script>
+
+<div class="eael-reading-progress-wrap eael-reading-progress-wrap-local">
+                            <div class="eael-reading-progress eael-reading-progress-local eael-reading-progress-top">
+                                <div class="eael-reading-progress-fill" style="width: 21.6285%;"></div>
+                            </div>
+                            <div class="eael-reading-progress eael-reading-progress-global eael-reading-progress-" style="height: px;background-color: ;">
+                                <div class="eael-reading-progress-fill" style="width: 21.6285%;"></div>
+                            </div>
+                        </div><script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/imagesloaded.min.js.download" id="imagesloaded-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/masonry.min.js.download" id="masonry-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/clipboard.min.js.download" id="clipboard-js"></script>
+<script type="text/javascript" id="betterdocs-js-extra">
+/* <![CDATA[ */
+var betterdocspublic = {"ajax_url":"https:\/\/www.easy365manager.com\/wp-admin\/admin-ajax.php","post_id":"1896","copy_text":"Copied","sticky_toc_offset":"100"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/betterdocs-public.js.download" id="betterdocs-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/simplebar.js.download" id="simplebar-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/core.min.js.download" id="jquery-ui-core-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/modernizr.custom.min.js.download" id="SFSIPLUSjqueryModernizr-js"></script>
+<script type="text/javascript" id="SFSIPLUSCustomJs-js-extra">
+/* <![CDATA[ */
+var sfsi_plus_ajax_object = {"ajax_url":"https:\/\/www.easy365manager.com\/wp-admin\/admin-ajax.php","plugin_url":"https:\/\/www.easy365manager.com\/wp-content\/plugins\/ultimate-social-media-plus\/","rest_url":"https:\/\/www.easy365manager.com\/wp-json\/"};
+var sfsi_plus_links = {"admin_url":"https:\/\/www.easy365manager.com\/wp-admin\/","plugin_dir_url":"https:\/\/www.easy365manager.com\/wp-content\/plugins\/ultimate-social-media-plus\/","rest_url":"https:\/\/www.easy365manager.com\/wp-json\/","pretty_perma":"yes"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/custom.js.download" id="SFSIPLUSCustomJs-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/plugins.js.download" id="onepress-js-plugins-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/bootstrap.min.js.download" id="onepress-js-bootstrap-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/isotope.pkgd.min.js.download" id="onepress-gallery-masonry-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/theme.js.download" id="onepress-theme-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/wp-embed.min.js.download" id="wp-embed-js"></script>
+<script type="text/javascript" id="7a1e5344f-js-extra">
+/* <![CDATA[ */
+var localize = {"ajaxurl":"https:\/\/www.easy365manager.com\/wp-admin\/admin-ajax.php","nonce":"4d059360c3"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/7a1e5344f.min.js.download" id="7a1e5344f-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/frontend-modules.min.js.download" id="elementor-frontend-modules-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/position.min.js.download" id="jquery-ui-position-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/dialog.min.js.download" id="elementor-dialog-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/waypoints.min.js.download" id="elementor-waypoints-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/swiper.min.js.download" id="swiper-js"></script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/share-link.min.js.download" id="share-link-js"></script>
+<script type="text/javascript" id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"version":"3.0.6","is_static":false,"legacyMode":{"elementWrappers":true},"urls":{"assets":"https:\/\/www.easy365manager.com\/wp-content\/plugins\/elementor\/assets\/"},"settings":{"page":[],"editorPreferences":[]},"kit":{"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":1896,"title":"How%20To%20Get%20ALL%20Active%20Directory%20User%20Object%20Attributes%20%7C%20Easy365Manager","excerpt":"","featuredImage":"https:\/\/www.easy365manager.com\/wp-content\/uploads\/AD_User_Attributes.png"}};
+</script>
+<script type="text/javascript" src="./How To Get ALL Active Directory User Object Attributes _ Easy365Manager_files/frontend.min.js.download" id="elementor-frontend-js"></script><span id="elementor-device-mode" class="elementor-screen-only"></span>
+<script>var css = ".sfsibeforpstwpr .sfsiplus_norm_row.sfsi_plus_wDivothr .sfsi_plus_wicons, .sfsiaftrpstwpr .sfsiplus_norm_row.sfsi_plus_wDivothr .sfsi_plus_wicons{width: 40px !important;height: 40px !important; margin-left: 5px !important;}",
+			    head = document.head || document.getElementsByTagName("head")[0],
+			    style = document.createElement("style");
+
+			head.appendChild(style);
+			if (style.styleSheet){
+			  // This is required for IE8 and below.
+			  style.styleSheet.cssText = css;
+			} else {
+			  style.appendChild(document.createTextNode(css));
+			}</script>
+		<!-- Cookie Notice plugin v1.3.2 by Digital Factory https://dfactory.eu/ -->
+		<div id="cookie-notice" role="banner" class="cn-position-bottom cn-effect-fade cookie-notice-hidden cookie-revoke-visible cn-animated" aria-label="Cookie Notice" style="background-color: rgba(0,0,0,1);"><div class="cookie-notice-container" style="color: #fff;"><span id="cn-notice-text" class="cn-text-container">We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.</span><span id="cn-notice-buttons" class="cn-buttons-container"><a href="https://www.easy365manager.com/how-to-get-all-active-directory-user-object-attributes/#" id="cn-accept-cookie" data-cookie-set="accept" class="cn-set-cookie cn-button bootstrap button" aria-label="Ok">Ok</a></span><a href="javascript:void(0);" id="cn-close-notice" data-cookie-set="accept" class="cn-close-icon" aria-label="Ok"></a></div>
+			
+		</div>
+		<!-- / Cookie Notice plugin -->
+
+
+<div id="504cb218-b8dc-41ee-b700-c3f927976352" class="IN-staging" style="display: none;"></div></body></html>
