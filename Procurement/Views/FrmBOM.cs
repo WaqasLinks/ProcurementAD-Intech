@@ -15,6 +15,7 @@ using System.Drawing;
 using System.IO;
 using ExcelDataReader;
 using Procurement.CustomClasses;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace Procurement
 {
@@ -58,9 +59,9 @@ namespace Procurement
 
         private void FrmBOM_Load(object sender, EventArgs e)
         {
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView2.AllowUserToDeleteRows = false;
-            dataGridView3.AllowUserToDeleteRows = false;
+            //dx//dataGridView1.AllowUserToDeleteRows = false;
+            //dx//dataGridView2.AllowUserToDeleteRows = false;
+            //dx//dataGridView3.AllowUserToDeleteRows = false;
             try
             {
 
@@ -97,8 +98,8 @@ namespace Procurement
                     _dtSalesBOM.Columns.Remove("BomTypeCode");
                     _dtSalesBOM.Columns.Remove("BOMType");
                     _dtSalesBOM.Columns.Remove("Project");
-                    dataGridView1.AutoGenerateColumns = false;
-                    dataGridView1.DataSource = _dtSalesBOM;
+                    //dx//dataGridView1.AutoGenerateColumns = false;
+                    gridControl1.DataSource = _dtSalesBOM;
 
                     List<BOM> list2 = _currentLoadedProject.BOMs.Where(y => y.BOMTypeCode == 2).ToList();
                     _dtDesignBOM = ToDataTable<BOM>(list2);
@@ -107,8 +108,8 @@ namespace Procurement
                     _dtDesignBOM.Columns.Remove("BomTypeCode");
                     _dtDesignBOM.Columns.Remove("BOMType");
                     _dtDesignBOM.Columns.Remove("Project");
-                    dataGridView2.AutoGenerateColumns = false;
-                    dataGridView2.DataSource = _dtDesignBOM;
+                    //dx//dataGridView2.AutoGenerateColumns = false;
+                    gridControl2.DataSource = _dtDesignBOM;
 
                     List<BOM> list3 = _currentLoadedProject.BOMs.Where(y => y.BOMTypeCode == 3).ToList();
                     _dtActualBOM = ToDataTable<BOM>(list3);
@@ -117,8 +118,8 @@ namespace Procurement
                     _dtActualBOM.Columns.Remove("BomTypeCode");
                     _dtActualBOM.Columns.Remove("BOMType");
                     _dtActualBOM.Columns.Remove("Project");
-                    dataGridView3.AutoGenerateColumns = false;
-                    dataGridView3.DataSource = _dtActualBOM;
+                    //dx//dataGridView3.AutoGenerateColumns = false;
+                    gridControl3.DataSource = _dtActualBOM;
                 }
 
             }
@@ -185,7 +186,7 @@ namespace Procurement
                         dtBOM.Columns.Add(_columnNames[25], typeof(string));
                         dtBOM.Columns.Add(_columnNames[26], typeof(string));
 
-                        dataGridView1.AutoGenerateColumns = false;
+                        //dx//dataGridView1.AutoGenerateColumns = false;
 
                         foreach (DataRow dr in tempDataSet.Tables[0].Rows)
                         {
@@ -225,19 +226,19 @@ namespace Procurement
                         if (tabControl1.SelectedTab == tabControl1.TabPages["tabSaleBOM"])
                         {
                             _dtSalesBOM = dtBOM;
-                            dataGridView1.DataSource = _dtSalesBOM;
+                            gridControl1.DataSource = _dtSalesBOM;
                             IsGridView1Changed = true;
                         }
                         if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
                         {
                             _dtDesignBOM = dtBOM;
-                            dataGridView2.DataSource = _dtDesignBOM;
+                            gridControl2.DataSource = _dtDesignBOM;
                             IsGridView2Changed = true;
                         }
                         if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
                         {
                             _dtActualBOM = dtBOM;
-                            dataGridView3.DataSource = _dtActualBOM;
+                            gridControl3.DataSource = _dtActualBOM;
                             IsGridView3Changed = true;
                         }
                         MessageBox.Show("BOM Loaded Successfully");
@@ -555,20 +556,26 @@ namespace Procurement
 
         }
         #endregion Summary
-        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+       
+        private void dataGridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
+            var gv = sender as GridView;
+            var rowIndex = gv.FocusedRowHandle;
+            var columnIndex = gv.FocusedColumn.VisibleIndex;
+
             //mnuCopyAllToDesignBOM.ShowDropDown();
             //contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
-            if (e.Button == System.Windows.Forms.MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex == -1)
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && rowIndex >= 0 && columnIndex == -1)
             {
                 //dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];//if we uncomment this. then it will select full row and can not get cell column index. which is necessory for paste at place
-                dataGridView1.Rows[e.RowIndex].Selected = true;
+                //dxe//dataGridView1.Rows[e.RowIndex].Selected = true;
+                dataGridView1.FocusedRowHandle = rowIndex;//dxf
+
                 //dataGridView1.Focus();
                 MenuStripDelete.Show(Cursor.Position);
                 return;
             }
-
-            if (e.Button == System.Windows.Forms.MouseButtons.Right && e.RowIndex == -1 && e.ColumnIndex >= 0)
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && rowIndex == -1 && columnIndex >= 0)
             {
                 flowLayoutPanel1.Location = new Point(Cursor.Position.X, Cursor.Position.Y - 50);
                 //flowLayoutPanel1.Show();
@@ -576,15 +583,81 @@ namespace Procurement
                 return;
             }
 
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            if (rowIndex < 0 || columnIndex < 0) return;
 
-            if (e.Button == System.Windows.Forms.MouseButtons.Right && e.RowIndex > -1 && e.ColumnIndex > -1)
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && rowIndex > -1 && columnIndex > -1)
             {
-                dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                //dxe//dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 MenuStripSaleBOM.Show(Cursor.Position);
             }
+        }
+        private void dataGridView2_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+            var gv = sender as GridView;
+            var rowIndex = gv.FocusedRowHandle;
+            var columnIndex = gv.FocusedColumn.VisibleIndex;
 
+            //mnuCopyAllToDesignBOM.ShowDropDown();
+            //contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && rowIndex >= 0 && columnIndex == -1)
+            {
+                //dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];//if we uncomment this. then it will select full row and can not get cell column index. which is necessory for paste at place
+                //dxe//dataGridView1.Rows[e.RowIndex].Selected = true;
+                dataGridView1.FocusedRowHandle = rowIndex;//dxf
 
+                //dataGridView1.Focus();
+                MenuStripDelete.Show(Cursor.Position);
+                return;
+            }
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && rowIndex == -1 && columnIndex >= 0)
+            {
+                flowLayoutPanel1.Location = new Point(Cursor.Position.X, Cursor.Position.Y - 50);
+                //flowLayoutPanel1.Show();
+                flowLayoutPanel1.Visible = true;
+                return;
+            }
+
+            if (rowIndex < 0 || columnIndex < 0) return;
+
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && rowIndex > -1 && columnIndex > -1)
+            {
+                //dxe//dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                MenuStripDesignBOM.Show(Cursor.Position);
+            }
+        }
+        private void dataGridView3_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+            var gv = sender as GridView;
+            var rowIndex = gv.FocusedRowHandle;
+            var columnIndex = gv.FocusedColumn.VisibleIndex;
+
+            //mnuCopyAllToDesignBOM.ShowDropDown();
+            //contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && rowIndex >= 0 && columnIndex == -1)
+            {
+                //dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];//if we uncomment this. then it will select full row and can not get cell column index. which is necessory for paste at place
+                //dxe//dataGridView1.Rows[e.RowIndex].Selected = true;
+                dataGridView1.FocusedRowHandle = rowIndex;//dxf
+
+                //dataGridView1.Focus();
+                MenuStripDelete.Show(Cursor.Position);
+                return;
+            }
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && rowIndex == -1 && columnIndex >= 0)
+            {
+                flowLayoutPanel1.Location = new Point(Cursor.Position.X, Cursor.Position.Y - 50);
+                //flowLayoutPanel1.Show();
+                flowLayoutPanel1.Visible = true;
+                return;
+            }
+
+            if (rowIndex < 0 || columnIndex < 0) return;
+
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && rowIndex > -1 && columnIndex > -1)
+            {
+                //dxe//dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                MenuStripActualBOM.Show(Cursor.Position);
+            }
         }
         private void itmCopyAllToDesignBOM_Click(object sender, EventArgs e)
         {
@@ -595,70 +668,12 @@ namespace Procurement
                 _dtDesignBOM = _dtSalesBOM.Copy();
 
                 //dataGridView2.DataSource =dataGridView1.DataSource;
-                dataGridView2.DataSource = _dtDesignBOM;
+                gridControl2.DataSource = _dtDesignBOM;
                 tabControl1.SelectedTab = tabDesignBOM;
                 IsGridView2Changed = true;
             }
         }
-
-        private void dataGridView2_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex == -1)
-            {
-                //dataGridView2.CurrentCell = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex];//if we uncomment this. then it will select full row and can not get cell column index. which is necessory for paste at place
-                dataGridView2.Rows[e.RowIndex].Selected = true;
-                //dataGridView2.Focus();
-                MenuStripDelete.Show(Cursor.Position);
-                return;
-            }
-
-            if (e.Button == System.Windows.Forms.MouseButtons.Right && e.RowIndex == -1 && e.ColumnIndex >= 0)
-            {
-                flowLayoutPanel1.Location = new Point(Cursor.Position.X, Cursor.Position.Y - 50);
-                //flowLayoutPanel1.Show();
-                flowLayoutPanel1.Visible = true;
-                return;
-            }
-
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-
-            if (e.Button == System.Windows.Forms.MouseButtons.Right && e.RowIndex > -1 && e.ColumnIndex > -1)
-            {
-                dataGridView2.CurrentCell = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                MenuStripDesignBOM.Show(Cursor.Position);
-            }
-
-
-        }
-
-        private void dataGridView3_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex == -1)
-            {
-                //dataGridView3.CurrentCell = dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex];//if we uncomment this. then it will select full row and can not get cell column index. which is necessory for paste at place
-                dataGridView3.Rows[e.RowIndex].Selected = true;
-                //dataGridView3.Focus();
-                MenuStripDelete.Show(Cursor.Position);
-                return;
-            }
-
-            if (e.Button == System.Windows.Forms.MouseButtons.Right && e.RowIndex == -1 && e.ColumnIndex >= 0)
-            {
-                flowLayoutPanel1.Location = new Point(Cursor.Position.X, Cursor.Position.Y - 50);
-                //flowLayoutPanel1.Show();
-                flowLayoutPanel1.Visible = true;
-                return;
-            }
-
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-
-            if (e.Button == System.Windows.Forms.MouseButtons.Right && e.RowIndex > -1 && e.ColumnIndex > -1)
-            {
-                dataGridView3.CurrentCell = dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                MenuStripActualBOM.Show(Cursor.Position);
-            }
-
-        }
+        
         private void itmCopyAllToActualBOM_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("All data from Planned BOM will copy to Actual BOM... Sure?", "Confirmation", MessageBoxButtons.YesNo);
@@ -668,7 +683,7 @@ namespace Procurement
                 _dtActualBOM = _dtDesignBOM.Copy();
 
                 //dataGridView2.DataSource =dataGridView1.DataSource;
-                dataGridView3.DataSource = _dtActualBOM;
+                gridControl3.DataSource = _dtActualBOM;
                 tabControl1.SelectedTab = tabActualBOM;
                 IsGridView3Changed = true;
             }
@@ -728,6 +743,7 @@ namespace Procurement
             progressBar1.Value = 10;
             Application.DoEvents();
             List<BOM> LstObjBom;
+            //--
             if (IsGridView1Changed == true)
             {
                 LstObjBom = FillBOMModel1(ref projModel);
@@ -786,10 +802,19 @@ namespace Procurement
         private List<BOM> FillBOMModel1(ref Project pProjectModel)
         {
             List<BOM> LstObjBom = new List<BOM>();
-            foreach (DataGridViewRow gvr in dataGridView1.Rows)
+            //dxe//
+            //foreach (DataGridViewRow gvr in dataGridView1.Rows)
+            //{
+            //    FillBOMModelSub(ref pProjectModel, ref LstObjBom, gvr, 1);
+            //}
+
+            for (int i = 0; i < dataGridView1.DataRowCount; i++)
             {
-                FillBOMModelSub(ref pProjectModel, ref LstObjBom, gvr, 1);
+                DataRow row = dataGridView1.GetDataRow(i);
+                FillBOMModelSub(ref pProjectModel, ref LstObjBom, row, 1);
             }
+
+
             return LstObjBom;
 
         }
@@ -797,9 +822,15 @@ namespace Procurement
         private List<BOM> FillBOMModel2(ref Project pProjectModel)
         {
             List<BOM> LstObjBom = new List<BOM>();
-            foreach (DataGridViewRow gvr in dataGridView2.Rows)
+            //foreach (DataGridViewRow gvr in dataGridView2.Rows)
+            //{
+            //    FillBOMModelSub(ref pProjectModel, ref LstObjBom, gvr, 2);
+            //}
+
+            for (int i = 0; i < dataGridView2.DataRowCount; i++)
             {
-                FillBOMModelSub(ref pProjectModel, ref LstObjBom, gvr, 2);
+                DataRow row = dataGridView2.GetDataRow(i);
+                FillBOMModelSub(ref pProjectModel, ref LstObjBom, row, 2);
             }
             return LstObjBom;
 
@@ -807,23 +838,28 @@ namespace Procurement
         private List<BOM> FillBOMModel3(ref Project pProjectModel)
         {
             List<BOM> LstObjBom = new List<BOM>();
-            foreach (DataGridViewRow gvr in dataGridView3.Rows)
+            //foreach (DataGridViewRow gvr in dataGridView3.Rows)
+            //{
+            //    FillBOMModelSub(ref pProjectModel, ref LstObjBom, gvr, 3);
+            //}
+            for (int i = 0; i < dataGridView3.DataRowCount; i++)
             {
-                FillBOMModelSub(ref pProjectModel, ref LstObjBom, gvr, 3);
+                DataRow row = dataGridView3.GetDataRow(i);
+                FillBOMModelSub(ref pProjectModel, ref LstObjBom, row, 3);
             }
             return LstObjBom;
 
         }
         //int cntr = -1;
-        private void FillBOMModelSub(ref Project pProjectModel, ref List<BOM> pLstObjBom, DataGridViewRow pGvr, short pBOMTypeCode)
+        private void FillBOMModelSub(ref Project pProjectModel, ref List<BOM> pLstObjBom, DataRow pGvr, short pBOMTypeCode)
         {
             //string colName=pGvr.Cells[0].OwningColumn.HeaderText;
 
             bool isAdd = false;
-            for (int i = 0; i < pGvr.Cells.Count; i++)
+            for (int i = 0; i < pGvr.ItemArray.Count(); i++)
             {
                 //if (pGvr.Cells[i].Value == null || pGvr.Cells[i].Value == DBNull.Value || String.IsNullOrWhiteSpace(pGvr.Cells[i].Value.ToString()))
-                if (pGvr.Cells[i].Value == null)
+                if (pGvr[i] == null)
                 {
                     isAdd = false;
                 }
@@ -847,109 +883,104 @@ namespace Procurement
                 //cntr += 1;
                 //MessageBox.Show(dataGridView1.Columns[cntr].Name);
                 //string columnName = dataGridView1.Columns[cntr].Name;
-                var cellObj = pGvr.Cells["Category1_" + pBOMTypeCode];
-                lObjBom.Category1 = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                var cellObj = pGvr[0];
+                lObjBom.Category1 = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["Category2_" + pBOMTypeCode];
-                lObjBom.Category2 = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[1];
+                lObjBom.Category2 = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["Category3_" + pBOMTypeCode];
-                lObjBom.Category3 = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[2];
+                lObjBom.Category3 = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["SORef" + pBOMTypeCode];
-                lObjBom.SORef = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[3];
+                lObjBom.SORef = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["Sr" + pBOMTypeCode];
-                //lObjBom.Sr = (cellObj.Value == null) ? (decimal?)null : Convert.ToDecimal (cellObj.Value);
-                if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.Sr = null; } else { lObjBom.Sr = Convert.ToDecimal(cellObj.Value); }
+                cellObj = pGvr[4];
+                //lObjBom.Sr = (cellObj == null) ? (decimal?)null : Convert.ToDecimal (cellObj);
+                if (cellObj == null || cellObj == DBNull.Value) { lObjBom.Sr = null; } else { lObjBom.Sr = Convert.ToDecimal(cellObj); }
 
-                cellObj = pGvr.Cells["ProductCategory" + pBOMTypeCode];
-                lObjBom.ProductCategory = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[5];
+                lObjBom.ProductCategory = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["Product" + pBOMTypeCode];
-                lObjBom.Product = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[6];
+                lObjBom.Product = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["CostHead" + pBOMTypeCode];
-                lObjBom.CostHead = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[7];
+                lObjBom.CostHead = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["CostSubHead" + pBOMTypeCode];
-                lObjBom.CostSubHead = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[8];
+                lObjBom.CostSubHead = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["System" + pBOMTypeCode];
-                lObjBom.System = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[9];
+                lObjBom.System = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["Area" + pBOMTypeCode];
-                lObjBom.Area = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[10];
+                lObjBom.Area = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["Panel" + pBOMTypeCode];
-                //lObjBom.Panel = (cellObj.Value == null) ? (decimal?)null : Convert.ToDecimal(cellObj.Value);
-                if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.Panel = null; } else { lObjBom.Panel = Convert.ToDecimal(cellObj.Value); }
+                cellObj = pGvr[11];
+                //lObjBom.Panel = (cellObj == null) ? (decimal?)null : Convert.ToDecimal(cellObj);
+                if (cellObj == null || cellObj == DBNull.Value) { lObjBom.Panel = null; } else { lObjBom.Panel = Convert.ToDecimal(cellObj); }
 
-                cellObj = pGvr.Cells["Category" + pBOMTypeCode];
-                lObjBom.Category = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[12];
+                lObjBom.Category = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["Manufacturer" + pBOMTypeCode];
-                lObjBom.Manufacturer = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[13];
+                lObjBom.Manufacturer = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["PartNo" + pBOMTypeCode];
-                lObjBom.PartNo = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[14];
+                lObjBom.PartNo = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["Description" + pBOMTypeCode];
-                lObjBom.Description = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[15];
+                lObjBom.Description = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["Qty" + pBOMTypeCode];
-                //lObjBom.Qty = (cellObj.Value == null) ? (decimal?)null : Convert.ToDecimal(cellObj.Value);
-                if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.Qty = null; } else { lObjBom.Qty = Convert.ToDecimal(cellObj.Value); }
-
-
-
-                cellObj = pGvr.Cells["UnitCost" + pBOMTypeCode];
-                //lObjBom.UnitCost = (cellObj.Value == null) ? Convert.ToInt64(null) : Convert.ToDecimal(cellObj.Value);
-                //lObjBom.UnitCost = (cellObj.Value == null) ? (decimal?)null : Convert.ToDecimal(cellObj.Value);
-                if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.UnitCost = null; } else { lObjBom.UnitCost = Convert.ToDecimal(cellObj.Value); }
+                cellObj = pGvr[16];
+                //lObjBom.Qty = (cellObj == null) ? (decimal?)null : Convert.ToDecimal(cellObj);
+                if (cellObj == null || cellObj == DBNull.Value) { lObjBom.Qty = null; } else { lObjBom.Qty = Convert.ToDecimal(cellObj); }
 
 
 
+                cellObj = pGvr[17];
+                //lObjBom.UnitCost = (cellObj == null) ? Convert.ToInt64(null) : Convert.ToDecimal(cellObj);
+                //lObjBom.UnitCost = (cellObj == null) ? (decimal?)null : Convert.ToDecimal(cellObj);
+                if (cellObj == null || cellObj == DBNull.Value) { lObjBom.UnitCost = null; } else { lObjBom.UnitCost = Convert.ToDecimal(cellObj); }
 
-                cellObj = pGvr.Cells["ExtCost" + pBOMTypeCode];
-                //lObjBom.ExtCost = (cellObj.Value == null) ? (decimal?)null : Convert.ToDecimal(cellObj.Value);
-                if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.ExtCost = null; } else { lObjBom.ExtCost = Convert.ToDecimal(cellObj.Value); }
+
+
+
+                cellObj = pGvr[18];
+                //lObjBom.ExtCost = (cellObj == null) ? (decimal?)null : Convert.ToDecimal(cellObj);
+                if (cellObj == null || cellObj == DBNull.Value) { lObjBom.ExtCost = null; } else { lObjBom.ExtCost = Convert.ToDecimal(cellObj); }
 
                 
                 
-                cellObj = pGvr.Cells["UnitPrice" + pBOMTypeCode];
-                //lObjBom.UnitPrice = (cellObj.Value == null) ? (decimal?)null : Convert.ToDecimal(cellObj.Value);
-                if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.UnitPrice = null; } else { lObjBom.UnitPrice = Convert.ToDecimal(cellObj.Value); }
+                cellObj = pGvr[19];
+                //lObjBom.UnitPrice = (cellObj == null) ? (decimal?)null : Convert.ToDecimal(cellObj);
+                if (cellObj == null || cellObj == DBNull.Value) { lObjBom.UnitPrice = null; } else { lObjBom.UnitPrice = Convert.ToDecimal(cellObj); }
 
 
-                cellObj = pGvr.Cells["ExtPrice" + pBOMTypeCode];
-                //lObjBom.ExtPrice = (cellObj.Value == null) ? (decimal?)null : Convert.ToDecimal(cellObj.Value);
-                if (cellObj.Value == null || cellObj.Value == DBNull.Value) { lObjBom.ExtPrice = null; } else { lObjBom.ExtPrice = Convert.ToDecimal(cellObj.Value); }
+                cellObj = pGvr[20];
+                //lObjBom.ExtPrice = (cellObj == null) ? (decimal?)null : Convert.ToDecimal(cellObj);
+                if (cellObj == null || cellObj == DBNull.Value) { lObjBom.ExtPrice = null; } else { lObjBom.ExtPrice = Convert.ToDecimal(cellObj); }
 
 
-                cellObj = pGvr.Cells["ChangeOrder" + pBOMTypeCode];
-                lObjBom.ChangeOrder = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[21];
+                lObjBom.ChangeOrder = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["Column1_" + pBOMTypeCode];
-                lObjBom.Column1 = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[22];
+                lObjBom.Column1 = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["Column2_" + pBOMTypeCode];
-                lObjBom.Column2 = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[23];
+                lObjBom.Column2 = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["Column3_" + pBOMTypeCode];
-                lObjBom.Column3 = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[24];
+                lObjBom.Column3 = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["Column4_" + pBOMTypeCode];
-                lObjBom.Column4 = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+                cellObj = pGvr[25];
+                lObjBom.Column4 = (cellObj == null) ? string.Empty : cellObj.ToString();
 
-                cellObj = pGvr.Cells["Column5_" + pBOMTypeCode];
-                lObjBom.Column5 = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
-
-
-
-
-
-
+                cellObj = pGvr[26];
+                lObjBom.Column5 = (cellObj == null) ? string.Empty : cellObj.ToString();
+                
                 pLstObjBom.Add(lObjBom);
                 pProjectModel.BOMs.Add(lObjBom);
 
@@ -1013,14 +1044,14 @@ namespace Procurement
         private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             IsGridView2Changed = true;
-            decimal quantity = ReturnAppropriateValue(dataGridView2.Rows[e.RowIndex].Cells["Qty2"].Value);
-            decimal rate = ReturnAppropriateValue(dataGridView2.Rows[e.RowIndex].Cells["UnitCost2"].Value);
+            //dxe//decimal quantity = ReturnAppropriateValue(dataGridView2.Rows[e.RowIndex].Cells["Qty2"].Value);
+            //dxe//decimal rate = ReturnAppropriateValue(dataGridView2.Rows[e.RowIndex].Cells["UnitCost2"].Value);
 
             //if (decimal.TryParse(dataGridView2.Rows[e.RowIndex].Cells["Qty"].Value.ToString(), out quantity) && decimal.TryParse(dataGridView2.Rows[e.RowIndex].Cells["UnitCost"].Value.ToString(), out rate))
             //{
-            decimal price = quantity * rate;
+            //dxe//decimal price = quantity * rate;
             //dataGridView2.Rows[e.RowIndex].Cells[15].Value = price.ToString();
-            dataGridView2.Rows[e.RowIndex].Cells["ExtCost2"].Value = price.ToString();
+            //dxe//dataGridView2.Rows[e.RowIndex].Cells["ExtCost2"].Value = price.ToString();
 
             //}
         }
@@ -1042,12 +1073,13 @@ namespace Procurement
         }
         private void dataGridView3_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            IsGridView3Changed = true;
-            decimal quantity = ReturnAppropriateValue(dataGridView3.Rows[e.RowIndex].Cells["Qty3"].Value);
-            decimal rate = ReturnAppropriateValue(dataGridView3.Rows[e.RowIndex].Cells["UnitCost3"].Value);
+            //dxe//
+            //IsGridView3Changed = true;
+            //decimal quantity = ReturnAppropriateValue(dataGridView3.Rows[e.RowIndex].Cells["Qty3"].Value);
+            //decimal rate = ReturnAppropriateValue(dataGridView3.Rows[e.RowIndex].Cells["UnitCost3"].Value);
 
-            decimal price = quantity * rate;
-            dataGridView3.Rows[e.RowIndex].Cells["ExtCost3"].Value = price.ToString();
+            //decimal price = quantity * rate;
+            //dataGridView3.Rows[e.RowIndex].Cells["ExtCost3"].Value = price.ToString();
 
         }
         private void dataGridView3_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -1215,15 +1247,15 @@ namespace Procurement
             switch (gridviewNumber)
             {
                 case 1:
-                    dataGridView1.DataSource = dtRef;
+                    gridControl1.DataSource = dtRef;
                     IsGridView1Changed = true;
                     break;
                 case 2:
-                    dataGridView2.DataSource = dtRef;
+                    gridControl2.DataSource = dtRef;
                     IsGridView2Changed = true;
                     break;
                 case 3:
-                    dataGridView3.DataSource = dtRef;
+                    gridControl3.DataSource = dtRef;
                     IsGridView3Changed = true;
                     break;
             }
@@ -1321,8 +1353,13 @@ namespace Procurement
 
                     case 1:
 
-                        int selectedrowIndex1 = dataGridView1.SelectedCells[0].RowIndex;
-                        int selectedColumnIndex1 = dataGridView1.SelectedCells[0].ColumnIndex;
+                        int selectedrowIndex1= dataGridView1.FocusedRowHandle; //dxe//= dataGridView1.SelectedCells[0].RowIndex;
+                        int selectedColumnIndex1 = dataGridView1.FocusedColumn.VisibleIndex; //dxe//= dataGridView1.SelectedCells[0].ColumnIndex;
+                        int oringalcolumnIndex1= dataGridView1.FocusedColumn.VisibleIndex;
+                        int[] SelectedRowHandles = dataGridView1.GetSelectedRows();
+                        //string B = dataGridView1.GetRowCellValue(SelectedRowHandles[0], dataGridView1.Columns[0]);
+
+
                         //DataGridViewRow selectedRow = dataGridView1.Rows[selectedrowindex];
                         ////string a = Convert.ToString(selectedRow.Cells["enter column name"].Value);
                         //DataRowView currentDataRowView = (DataRowView)dataGridView1.CurrentRow.DataBoundItem;
@@ -1332,6 +1369,8 @@ namespace Procurement
 
                         //dataGridView1.Rows[selectedrowindex].Cells[0].Value = price.ToString();
 
+                        ////////dxe////////////////////////////
+
                         foreach (string row in Rows)
                         {
                             fields = row.Split('\t');
@@ -1340,63 +1379,69 @@ namespace Procurement
                             {
                                 if ((selectedColumnIndex1 >= 0 && selectedColumnIndex1 <= 2) || (selectedColumnIndex1 >= 21 && selectedColumnIndex1 <= 25))
                                 {
-                                    dataGridView1.Rows[selectedrowIndex1].Cells[selectedColumnIndex1].Value = fields[i]; //price.ToString();
+                                    //dataGridView1.Rows[selectedrowIndex1].Cells[selectedColumnIndex1].Value = fields[i]; //price.ToString();
+
+                                    dataGridView1.SetRowCellValue(selectedrowIndex1, dataGridView1.Columns[selectedColumnIndex1], fields[i]);
                                 }
                                 selectedColumnIndex1 += 1;
 
                             }
-                            selectedColumnIndex1 = dataGridView1.SelectedCells[0].ColumnIndex;
+                            selectedColumnIndex1 = oringalcolumnIndex1;//dataGridView1.SelectedCells[0].ColumnIndex;
                             selectedrowIndex1 += 1;
 
                         }
 
                         /////////////////////////////
 
-                        dataGridView1.DataSource = dtRef;
+                        gridControl1.DataSource = dtRef;
                         IsGridView1Changed = true;
                         break;
                     case 2:
-
-                        int selectedrowIndex2 = dataGridView2.SelectedCells[0].RowIndex;
-                        int selectedColumnIndex2 = dataGridView2.SelectedCells[0].ColumnIndex;
+                        ////////dxe////////////////////////////
+                        int selectedrowIndex2 = dataGridView2.FocusedRowHandle;//dataGridView2.SelectedCells[0].RowIndex;
+                        int selectedColumnIndex2 = dataGridView2.FocusedColumn.VisibleIndex;//dataGridView2.SelectedCells[0].ColumnIndex;
+                        int oringalcolumnIndex2 = dataGridView2.FocusedColumn.VisibleIndex;
                         foreach (string row in Rows)
                         {
                             fields = row.Split('\t');
 
                             for (int i = 0; i <= fields.Count() - 1; i++)
                             {
-                                dataGridView2.Rows[selectedrowIndex2].Cells[selectedColumnIndex2].Value = fields[i]; //price.ToString();
+                                //dataGridView2.Rows[selectedrowIndex2].Cells[selectedColumnIndex2].Value = fields[i]; //price.ToString();
+                                dataGridView2.SetRowCellValue(selectedrowIndex2, dataGridView1.Columns[selectedColumnIndex2], fields[i]);
                                 selectedColumnIndex2 += 1;
                             }
-                            selectedColumnIndex2 = dataGridView2.SelectedCells[0].ColumnIndex;
+                            selectedColumnIndex2 = oringalcolumnIndex2;//dataGridView2.SelectedCells[0].ColumnIndex;
                             selectedrowIndex2 += 1;
 
                         }
 
                         /////////////////////////////
-                        dataGridView2.DataSource = dtRef;
+                        gridControl2.DataSource = dtRef;
                         IsGridView2Changed = true;
                         break;
                     case 3:
-
-                        int selectedrowIndex3 = dataGridView3.SelectedCells[0].RowIndex;
-                        int selectedColumnIndex3 = dataGridView3.SelectedCells[0].ColumnIndex;
+                        ////////dxe////////////////////////////
+                        int selectedrowIndex3 = dataGridView3.FocusedRowHandle;//dataGridView3.SelectedCells[0].RowIndex;
+                        int selectedColumnIndex3 = dataGridView3.FocusedColumn.VisibleIndex;//dataGridView3.SelectedCells[0].ColumnIndex;
+                        int oringalcolumnIndex3 = dataGridView3.FocusedColumn.VisibleIndex;
                         foreach (string row in Rows)
                         {
                             fields = row.Split('\t');
 
                             for (int i = 0; i <= fields.Count() - 1; i++)
                             {
-                                dataGridView3.Rows[selectedrowIndex3].Cells[selectedColumnIndex3].Value = fields[i]; //price.ToString();
+                                //dataGridView3.Rows[selectedrowIndex3].Cells[selectedColumnIndex3].Value = fields[i]; //price.ToString();
+                                dataGridView1.SetRowCellValue(selectedrowIndex3, dataGridView3.Columns[selectedColumnIndex3], fields[i]);
                                 selectedColumnIndex3 += 1;
                             }
-                            selectedColumnIndex3 = dataGridView3.SelectedCells[0].ColumnIndex;
+                            selectedColumnIndex3 = oringalcolumnIndex3;//dataGridView3.SelectedCells[0].ColumnIndex;
                             selectedrowIndex3 += 1;
 
                         }
 
                         /////////////////////////////
-                        dataGridView3.DataSource = dtRef;
+                        gridControl3.DataSource = dtRef;
                         IsGridView3Changed = true;
                         break;
                 }
@@ -1411,27 +1456,29 @@ namespace Procurement
 
         private void pasteMe_Click(object sender, EventArgs e)
         {
-            string s = Clipboard.GetText();
+            ////////dxe////////////////////////////
 
-            string[] lines = s.Replace("ss\n", "").Split('\r');
+            //string s = Clipboard.GetText();
 
-            dataGridView2.Rows.Add(lines.Length - 1);
-            string[] fields;
-            int row = 0;
-            int col = 0;
+            //string[] lines = s.Replace("ss\n", "").Split('\r');
 
-            foreach (string item in lines)
-            {
-                fields = item.Split('\t');
-                foreach (string f in fields)
-                {
-                    Console.WriteLine(f);
-                    dataGridView2[col, row].Value = f;
-                    col++;
-                }
-                row++;
-                col = 0;
-            }
+            //dataGridView2.Rows.Add(lines.Length - 1);
+            //string[] fields;
+            //int row = 0;
+            //int col = 0;
+
+            //foreach (string item in lines)
+            //{
+            //    fields = item.Split('\t');
+            //    foreach (string f in fields)
+            //    {
+            //        Console.WriteLine(f);
+            //        dataGridView2[col, row].Value = f;
+            //        col++;
+            //    }
+            //    row++;
+            //    col = 0;
+            //}
 
         }
 
@@ -1906,7 +1953,19 @@ namespace Procurement
         //}
         //bool answervalue = false;
         //bool showDeleteConfirmation = true;
-        private void itemDeleteProject_Click(object sender, EventArgs e)
+        private void deleteRowSaleBOM_Click(object sender, EventArgs e)
+        {
+            DeleteRow();
+        }
+        private void deleteRowDesignBOM_Click(object sender, EventArgs e)
+        {
+            DeleteRow();
+        }
+        private void deleteRowActualBOM_Click(object sender, EventArgs e)
+        {
+            DeleteRow();
+        }
+        public void DeleteRow()
         {
             //showDeleteConfirmation = false;
             DialogResult dialogResult = MessageBox.Show("Do you want to delete row(s)?", "Confirmation", MessageBoxButtons.YesNo);
@@ -1914,26 +1973,72 @@ namespace Procurement
 
             if (tabControl1.SelectedTab == tabControl1.TabPages["tabSaleBOM"])
             {
-                foreach (DataGridViewRow row in dataGridView1.SelectedRows)
-                {
-                    dataGridView1.Rows.RemoveAt(row.Index);
-                }
+                //dx//
+
+                //foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                //{
+                //    dataGridView1.Rows.RemoveAt(row.Index);
+                //}
+
+
+                dataGridView1.DeleteSelectedRows();
+                
                 IsGridView1Changed = true;
             }
             if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
             {
-                foreach (DataGridViewRow row in dataGridView2.SelectedRows)
-                {
-                    dataGridView2.Rows.RemoveAt(row.Index);
-                }
+                ////////dxe////////////////////////////
+                //foreach (DataGridViewRow row in dataGridView2.SelectedRows)
+                //{
+                //    dataGridView2.Rows.RemoveAt(row.Index);
+                //}
+                dataGridView2.DeleteSelectedRows();
+                IsGridView2Changed = true;
+            }
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
+            {
+                ////////dxe////////////////////////////
+                //foreach (DataGridViewRow row in dataGridView3.SelectedRows)
+                //{
+                //    dataGridView3.Rows.RemoveAt(row.Index);
+                //}
+                dataGridView3.DeleteSelectedRows();
+                IsGridView3Changed = true;
+            }
+
+        }
+        private void itemDeleteRow_Click(object sender, EventArgs e)
+        {
+            //showDeleteConfirmation = false;
+            DialogResult dialogResult = MessageBox.Show("Do you want to delete row(s)?", "Confirmation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.No) return;
+
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabSaleBOM"])
+            {
+                //dx//
+
+                //foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                //{
+                //    dataGridView1.Rows.RemoveAt(row.Index);
+                //}
+                IsGridView1Changed = true;
+            }
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
+            {
+                ////////dxe////////////////////////////
+                //foreach (DataGridViewRow row in dataGridView2.SelectedRows)
+                //{
+                //    dataGridView2.Rows.RemoveAt(row.Index);
+                //}
                 IsGridView1Changed = true;
             }
             if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
             {
-                foreach (DataGridViewRow row in dataGridView3.SelectedRows)
-                {
-                    dataGridView3.Rows.RemoveAt(row.Index);
-                }
+                ////////dxe////////////////////////////
+                //foreach (DataGridViewRow row in dataGridView3.SelectedRows)
+                //{
+                //    dataGridView3.Rows.RemoveAt(row.Index);
+                //}
                 IsGridView1Changed = true;
             }
 
@@ -2055,7 +2160,7 @@ namespace Procurement
                     dtBOM.Columns.Add(_columnNames[24], typeof(string));
                     dtBOM.Columns.Add(_columnNames[25], typeof(string));
                     dtBOM.Columns.Add(_columnNames[26], typeof(string));
-                    dataGridView1.AutoGenerateColumns = false;
+                    //dx//dataGridView1.AutoGenerateColumns = false;
 
                     //}
                     //for (int j = 0; j < dtBOM.Columns.Count; j++)
@@ -2099,17 +2204,17 @@ namespace Procurement
                     if (tabControl1.SelectedTab == tabControl1.TabPages["tabSaleBOM"])
                     {
                         _dtSalesBOM = dtBOM;
-                        dataGridView1.DataSource = _dtSalesBOM;
+                        gridControl1.DataSource = _dtSalesBOM;
                     }
                     if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
                     {
                         _dtDesignBOM = dtBOM;
-                        dataGridView2.DataSource = _dtDesignBOM;
+                        gridControl2.DataSource = _dtDesignBOM;
                     }
                     if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
                     {
                         _dtActualBOM = dtBOM;
-                        dataGridView3.DataSource = _dtActualBOM;
+                        gridControl3.DataSource = _dtActualBOM;
                     }
 
 
@@ -2173,6 +2278,8 @@ namespace Procurement
         {
             GetSummary();
         }
+
+      
     }
 }
 

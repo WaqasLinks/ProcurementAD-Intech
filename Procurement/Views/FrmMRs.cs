@@ -57,7 +57,7 @@ namespace Procurement
                 _dtMRVs = ToDataTable<MRVersion>(_LstMRVs);
                 _dtMRVs.Columns.Remove("Project");
                 _dtMRVs.Columns.Remove("MRs");
-                
+                _dtMRVs.Columns.Remove("IsVersion");
                 _dtMRVs.Columns.Remove("IsModified");
 
                 //_dtProjects.Columns.Remove("ProjectEmployeeDetails");
