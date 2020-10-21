@@ -308,6 +308,8 @@
             this.dataGridView1.GridControl = this.gridControl1;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.dataGridView1_RowCellClick);
+            this.dataGridView1.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.dataGridView1_CustomRowCellEdit);
+            this.dataGridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.dataGridView1_CellValueChanged);
             // 
             // Category1_1
             // 
@@ -338,6 +340,7 @@
             this.SORef1.Caption = "SO Ref";
             this.SORef1.FieldName = "SORef";
             this.SORef1.Name = "SORef1";
+            this.SORef1.OptionsColumn.ReadOnly = true;
             this.SORef1.Visible = true;
             this.SORef1.VisibleIndex = 3;
             // 
@@ -346,6 +349,7 @@
             this.Sr1.Caption = "Sr";
             this.Sr1.FieldName = "Sr";
             this.Sr1.Name = "Sr1";
+            this.Sr1.OptionsColumn.ReadOnly = true;
             this.Sr1.Visible = true;
             this.Sr1.VisibleIndex = 4;
             // 
@@ -354,6 +358,7 @@
             this.ProductCategory1.Caption = "Product Category";
             this.ProductCategory1.FieldName = "ProductCategory";
             this.ProductCategory1.Name = "ProductCategory1";
+            this.ProductCategory1.OptionsColumn.ReadOnly = true;
             this.ProductCategory1.Visible = true;
             this.ProductCategory1.VisibleIndex = 5;
             // 
@@ -362,6 +367,7 @@
             this.Product1.Caption = "Product";
             this.Product1.FieldName = "Product";
             this.Product1.Name = "Product1";
+            this.Product1.OptionsColumn.ReadOnly = true;
             this.Product1.Visible = true;
             this.Product1.VisibleIndex = 6;
             // 
@@ -370,6 +376,7 @@
             this.CostHead1.Caption = "Cost Head";
             this.CostHead1.FieldName = "CostHead";
             this.CostHead1.Name = "CostHead1";
+            this.CostHead1.OptionsColumn.ReadOnly = true;
             this.CostHead1.Visible = true;
             this.CostHead1.VisibleIndex = 7;
             // 
@@ -378,6 +385,7 @@
             this.CostSubHead1.Caption = "Cost Sub-Head";
             this.CostSubHead1.FieldName = "CostSubHead";
             this.CostSubHead1.Name = "CostSubHead1";
+            this.CostSubHead1.OptionsColumn.ReadOnly = true;
             this.CostSubHead1.Visible = true;
             this.CostSubHead1.VisibleIndex = 8;
             // 
@@ -386,6 +394,7 @@
             this.System1.Caption = "System";
             this.System1.FieldName = "System";
             this.System1.Name = "System1";
+            this.System1.OptionsColumn.ReadOnly = true;
             this.System1.Visible = true;
             this.System1.VisibleIndex = 9;
             // 
@@ -394,6 +403,7 @@
             this.Area1.Caption = "Area";
             this.Area1.FieldName = "Area";
             this.Area1.Name = "Area1";
+            this.Area1.OptionsColumn.ReadOnly = true;
             this.Area1.Visible = true;
             this.Area1.VisibleIndex = 10;
             // 
@@ -402,6 +412,7 @@
             this.Panel1.Caption = "Panel";
             this.Panel1.FieldName = "Panel";
             this.Panel1.Name = "Panel1";
+            this.Panel1.OptionsColumn.ReadOnly = true;
             this.Panel1.Visible = true;
             this.Panel1.VisibleIndex = 11;
             // 
@@ -410,6 +421,7 @@
             this.Category1.Caption = "Category";
             this.Category1.FieldName = "Category";
             this.Category1.Name = "Category1";
+            this.Category1.OptionsColumn.ReadOnly = true;
             this.Category1.Visible = true;
             this.Category1.VisibleIndex = 12;
             // 
@@ -418,6 +430,7 @@
             this.Manufacturer1.Caption = "Manufacturer";
             this.Manufacturer1.FieldName = "Manufacturer";
             this.Manufacturer1.Name = "Manufacturer1";
+            this.Manufacturer1.OptionsColumn.ReadOnly = true;
             this.Manufacturer1.Visible = true;
             this.Manufacturer1.VisibleIndex = 13;
             // 
@@ -426,6 +439,7 @@
             this.PartNo1.Caption = "PartNo";
             this.PartNo1.FieldName = "PartNo";
             this.PartNo1.Name = "PartNo1";
+            this.PartNo1.OptionsColumn.ReadOnly = true;
             this.PartNo1.Visible = true;
             this.PartNo1.VisibleIndex = 14;
             // 
@@ -434,6 +448,7 @@
             this.Description1.Caption = "Description";
             this.Description1.FieldName = "Description";
             this.Description1.Name = "Description1";
+            this.Description1.OptionsColumn.ReadOnly = true;
             this.Description1.Visible = true;
             this.Description1.VisibleIndex = 15;
             // 
@@ -442,6 +457,7 @@
             this.Qty1.Caption = "Qty";
             this.Qty1.FieldName = "Qty";
             this.Qty1.Name = "Qty1";
+            this.Qty1.OptionsColumn.ReadOnly = true;
             this.Qty1.Visible = true;
             this.Qty1.VisibleIndex = 16;
             // 
@@ -450,6 +466,7 @@
             this.UnitCost1.Caption = "UnitCost";
             this.UnitCost1.FieldName = "UnitCost";
             this.UnitCost1.Name = "UnitCost1";
+            this.UnitCost1.OptionsColumn.ReadOnly = true;
             this.UnitCost1.Visible = true;
             this.UnitCost1.VisibleIndex = 17;
             // 
@@ -458,6 +475,7 @@
             this.ExtCost1.Caption = "ExtCost";
             this.ExtCost1.FieldName = "ExtCost";
             this.ExtCost1.Name = "ExtCost1";
+            this.ExtCost1.OptionsColumn.ReadOnly = true;
             this.ExtCost1.Visible = true;
             this.ExtCost1.VisibleIndex = 18;
             // 
@@ -466,6 +484,7 @@
             this.UnitPrice1.Caption = "UnitPrice";
             this.UnitPrice1.FieldName = "UnitPrice";
             this.UnitPrice1.Name = "UnitPrice1";
+            this.UnitPrice1.OptionsColumn.ReadOnly = true;
             this.UnitPrice1.Visible = true;
             this.UnitPrice1.VisibleIndex = 19;
             // 
@@ -474,6 +493,7 @@
             this.ExtPrice1.Caption = "ExtPrice";
             this.ExtPrice1.FieldName = "ExtPrice";
             this.ExtPrice1.Name = "ExtPrice1";
+            this.ExtPrice1.OptionsColumn.ReadOnly = true;
             this.ExtPrice1.Visible = true;
             this.ExtPrice1.VisibleIndex = 20;
             // 
@@ -581,6 +601,8 @@
             this.dataGridView2.GridControl = this.gridControl2;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.dataGridView2_RowCellClick);
+            this.dataGridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.dataGridView2_CellValueChanged);
+            this.dataGridView2.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.dataGridView2_ValidatingEditor);
             // 
             // Category1_2
             // 
@@ -854,6 +876,8 @@
             this.dataGridView3.GridControl = this.gridControl3;
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.dataGridView3_RowCellClick);
+            this.dataGridView3.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.dataGridView3_CellValueChanged);
+            this.dataGridView3.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.dataGridView3_ValidatingEditor);
             // 
             // Category1_3
             // 

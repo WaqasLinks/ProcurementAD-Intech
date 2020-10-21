@@ -34,6 +34,7 @@ namespace Procurement
         bool IsGridView1Changed;
         bool IsGridView2Changed;
         bool IsGridView3Changed;
+        bool gFlag = false;
         //SingleTon 
         private static FrmBOM instance = null;
         private FrmBOM()
@@ -404,6 +405,10 @@ namespace Procurement
         #region Summary
         private void GetSummary()
         {
+            try
+            {
+
+            
             List<Summary> LstSummary = new List<Summary>();
             Summary summary;
             //Summary summary = new Summary { A_Category= "Project Code",B_Item = CurrentOpenProject.CurrentProject.ProjectCode,C_BidCost="",D_PlanCost="",E_ActualCost="",F_CostInFuture="",G_ProjectedCost=""};
@@ -548,6 +553,12 @@ namespace Procurement
 
             //Styling
             dataGridView4.Rows[6].DefaultCellStyle.Font  = new Font("Microsoft Sans Serif", 8F, FontStyle.Bold);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Please Close and reopen this form", ex.Message);
+                //throw ex;
+            }
         }
         public class ProductCategoryTotal
         {
@@ -1039,8 +1050,17 @@ namespace Procurement
         }
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+           
+        }
+        private void dataGridView1_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
+        {
+         
+        }
+        private void dataGridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
             IsGridView1Changed = true;
         }
+        
         private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             IsGridView2Changed = true;
@@ -1055,33 +1075,94 @@ namespace Procurement
 
             //}
         }
-        private void dataGridView2_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        
+        private void dataGridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            if (dataGridView2.Columns[e.ColumnIndex].Name == "Sr2" ||
-                dataGridView2.Columns[e.ColumnIndex].Name == "Qty2" ||
-                dataGridView2.Columns[e.ColumnIndex].Name == "UnitCost2" ||
-                dataGridView2.Columns[e.ColumnIndex].Name == "UnitPrice2" ||
-                dataGridView2.Columns[e.ColumnIndex].Name == "ExtPrice2")
+            if (gFlag == false)
             {
-                decimal parsedValue;
-                if (!String.IsNullOrEmpty(e.FormattedValue.ToString()) && decimal.TryParse(e.FormattedValue.ToString(), out parsedValue) == false)
+                gFlag = true;
+                IsGridView2Changed = true;
+                var gv = sender as GridView;
+                var rowIndex = gv.FocusedRowHandle;
+                var columnIndex = gv.FocusedColumn.VisibleIndex;
+
+                //decimal quantity = ReturnAppropriateValue(dataGridView2.Rows[e.RowIndex].Cells["Qty2"].Value);
+                //decimal rate = ReturnAppropriateValue(dataGridView2.Rows[e.RowIndex].Cells["UnitCost2"].Value);
+
+                //decimal quantity = ReturnAppropriateValue(gv.GetRowCellDisplayText(rowIndex, dataGridView2.Columns[columnIndex]));
+                var abc = gv.GetRowCellValue(rowIndex, "Qty");
+                decimal quantity = ReturnAppropriateValue(gv.GetRowCellDisplayText(rowIndex, "Qty"));
+                decimal rate = ReturnAppropriateValue(gv.GetRowCellDisplayText(rowIndex, "UnitCost"));
+
+                //if (decimal.TryParse(dataGridView2.Rows[e.RowIndex].Cells["Qty"].Value.ToString(), out quantity) && decimal.TryParse(dataGridView2.Rows[e.RowIndex].Cells["UnitCost"].Value.ToString(), out rate))
+                //{
+                    decimal price = quantity * rate;
+                //dataGridView2.Rows[e.RowIndex].Cells[15].Value = price.ToString();
+                //dataGridView2.Rows[e.RowIndex].Cells["ExtCost2"].Value = price.ToString();
+                gv.SetFocusedRowCellValue("ExtCost", price);
+                gFlag = false;
+                //}
+            }
+        }
+        private void dataGridView3_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (gFlag == false)
+            {
+                gFlag = true;
+                IsGridView3Changed = true;
+                var gv = sender as GridView;
+                var rowIndex = gv.FocusedRowHandle;
+                var columnIndex = gv.FocusedColumn.VisibleIndex;
+
+                //decimal quantity = ReturnAppropriateValue(dataGridView3.Rows[e.RowIndex].Cells["Qty2"].Value);
+                //decimal rate = ReturnAppropriateValue(dataGridView3.Rows[e.RowIndex].Cells["UnitCost2"].Value);
+
+                //decimal quantity = ReturnAppropriateValue(gv.GetRowCellDisplayText(rowIndex, dataGridView3.Columns[columnIndex]));
+                var abc = gv.GetRowCellValue(rowIndex, "Qty");
+                decimal quantity = ReturnAppropriateValue(gv.GetRowCellDisplayText(rowIndex, "Qty"));
+                decimal rate = ReturnAppropriateValue(gv.GetRowCellDisplayText(rowIndex, "UnitCost"));
+
+                //if (decimal.TryParse(dataGridView3.Rows[e.RowIndex].Cells["Qty"].Value.ToString(), out quantity) && decimal.TryParse(dataGridView3.Rows[e.RowIndex].Cells["UnitCost"].Value.ToString(), out rate))
+                //{
+                decimal price = quantity * rate;
+                //dataGridView3.Rows[e.RowIndex].Cells[15].Value = price.ToString();
+                //dataGridView3.Rows[e.RowIndex].Cells["ExtCost2"].Value = price.ToString();
+                gv.SetFocusedRowCellValue("ExtCost", price);
+                gFlag = false;
+                //}
+            }
+        }
+     
+        private void dataGridView2_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (view.FocusedColumn.FieldName == "Sr" || view.FocusedColumn.FieldName == "Qty" || view.FocusedColumn.FieldName == "UnitCost" ||
+                view.FocusedColumn.FieldName == "UnitPrice" || view.FocusedColumn.FieldName == "ExtPrice")
+            {
+                double price = 0;
+                if (!String.IsNullOrEmpty(e.Value.ToString()) && !Double.TryParse(e.Value as String, out price))
                 {
-                    MessageBox.Show("Only numeric values are allowed");
-                    e.Cancel = true;
+                    e.Valid = false;
+                    e.ErrorText = "Only numeric values are accepted.";
+                }
+            }
+            
+        }
+        private void dataGridView3_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (view.FocusedColumn.FieldName == "Sr" || view.FocusedColumn.FieldName == "Qty" || view.FocusedColumn.FieldName == "UnitCost" ||
+                view.FocusedColumn.FieldName == "UnitPrice" || view.FocusedColumn.FieldName == "ExtPrice")
+            {
+                double price = 0;
+                if (!String.IsNullOrEmpty(e.Value.ToString()) && !Double.TryParse(e.Value as String, out price))
+                {
+                    e.Valid = false;
+                    e.ErrorText = "Only numeric values are accepted.";
                 }
             }
         }
-        private void dataGridView3_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            //dxe//
-            //IsGridView3Changed = true;
-            //decimal quantity = ReturnAppropriateValue(dataGridView3.Rows[e.RowIndex].Cells["Qty3"].Value);
-            //decimal rate = ReturnAppropriateValue(dataGridView3.Rows[e.RowIndex].Cells["UnitCost3"].Value);
 
-            //decimal price = quantity * rate;
-            //dataGridView3.Rows[e.RowIndex].Cells["ExtCost3"].Value = price.ToString();
-
-        }
         private void dataGridView3_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             if (dataGridView3.Columns[e.ColumnIndex].Name == "Sr3" ||
@@ -2279,7 +2360,7 @@ namespace Procurement
             GetSummary();
         }
 
-      
+       
     }
 }
 

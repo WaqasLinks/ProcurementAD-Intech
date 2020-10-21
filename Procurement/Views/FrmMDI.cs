@@ -265,6 +265,31 @@ namespace Procurement.Views
 
             }
         }
+        private void spreadSheetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmSpreadSheet_Show();
+        }
+        private void FrmSpreadSheet_Show()
+        {
+            frmSpreadSheetControl.Instance.MdiParent = FrmMDI.Instance; //this;
+
+            if (!frmSpreadSheetControl.Instance.Visible)
+            {
+                frmSpreadSheetControl.Instance.Show();
+            }
+            else
+            {
+                if (frmSpreadSheetControl.Instance.WindowState == FormWindowState.Minimized)
+                {
+                    frmSpreadSheetControl.Instance.WindowState = FormWindowState.Normal;
+                }
+                else
+                {
+                    frmSpreadSheetControl.Instance.BringToFront();
+                }
+
+            }
+        }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -303,5 +328,7 @@ namespace Procurement.Views
 
             //}
         }
+
+      
     }
 }

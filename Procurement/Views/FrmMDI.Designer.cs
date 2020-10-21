@@ -69,6 +69,7 @@
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.spreadSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -83,11 +84,12 @@
             this.MaterialRequestToolStripMenuItem,
             this.employeesToolStripMenuItem,
             this.logoutToolStripMenuItem,
-            this.userToolStripMenuItem});
+            this.userToolStripMenuItem,
+            this.spreadSheetToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(758, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1011, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -97,20 +99,20 @@
             this.newProjectToolStripMenuItem,
             this.projectsListToolStripMenuItem});
             this.projectsToolStripMenuItem.Name = "projectsToolStripMenuItem";
-            this.projectsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.projectsToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
             this.projectsToolStripMenuItem.Text = "Projects";
             // 
             // newProjectToolStripMenuItem
             // 
             this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
-            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(170, 26);
             this.newProjectToolStripMenuItem.Text = "New Project";
             this.newProjectToolStripMenuItem.Click += new System.EventHandler(this.newProjectToolStripMenuItem_Click);
             // 
             // projectsListToolStripMenuItem
             // 
             this.projectsListToolStripMenuItem.Name = "projectsListToolStripMenuItem";
-            this.projectsListToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.projectsListToolStripMenuItem.Size = new System.Drawing.Size(170, 26);
             this.projectsListToolStripMenuItem.Text = "Open Project";
             this.projectsListToolStripMenuItem.Click += new System.EventHandler(this.projectsListToolStripMenuItem_Click);
             // 
@@ -119,13 +121,13 @@
             this.bOMsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openBOMsToolStripMenuItem});
             this.bOMsToolStripMenuItem.Name = "bOMsToolStripMenuItem";
-            this.bOMsToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.bOMsToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
             this.bOMsToolStripMenuItem.Text = "BOMs";
             // 
             // openBOMsToolStripMenuItem
             // 
             this.openBOMsToolStripMenuItem.Name = "openBOMsToolStripMenuItem";
-            this.openBOMsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.openBOMsToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
             this.openBOMsToolStripMenuItem.Text = "Open BOMs";
             this.openBOMsToolStripMenuItem.Click += new System.EventHandler(this.openBOMsToolStripMenuItem_Click);
             // 
@@ -136,34 +138,34 @@
             this.createMaterialRequestToolStripMenuItem,
             this.modifyMaterialRequestToolStripMenuItem});
             this.MaterialRequestToolStripMenuItem.Name = "MaterialRequestToolStripMenuItem";
-            this.MaterialRequestToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
+            this.MaterialRequestToolStripMenuItem.Size = new System.Drawing.Size(133, 24);
             this.MaterialRequestToolStripMenuItem.Text = "Material Request";
             // 
             // materialRequestListToolStripMenuItem
             // 
             this.materialRequestListToolStripMenuItem.Name = "materialRequestListToolStripMenuItem";
-            this.materialRequestListToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.materialRequestListToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
             this.materialRequestListToolStripMenuItem.Text = "Material Request List";
             this.materialRequestListToolStripMenuItem.Click += new System.EventHandler(this.mRListToolStripMenuItem_Click);
             // 
             // createMaterialRequestToolStripMenuItem
             // 
             this.createMaterialRequestToolStripMenuItem.Name = "createMaterialRequestToolStripMenuItem";
-            this.createMaterialRequestToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.createMaterialRequestToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
             this.createMaterialRequestToolStripMenuItem.Text = "Create Material Request";
             this.createMaterialRequestToolStripMenuItem.Click += new System.EventHandler(this.openMaterialRequestToolStripMenuItem_Click);
             // 
             // modifyMaterialRequestToolStripMenuItem
             // 
             this.modifyMaterialRequestToolStripMenuItem.Name = "modifyMaterialRequestToolStripMenuItem";
-            this.modifyMaterialRequestToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.modifyMaterialRequestToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
             this.modifyMaterialRequestToolStripMenuItem.Text = "Modify Material Request";
             this.modifyMaterialRequestToolStripMenuItem.Click += new System.EventHandler(this.modifyMaterialRequestToolStripMenuItem_Click);
             // 
             // employeesToolStripMenuItem
             // 
             this.employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
-            this.employeesToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.employeesToolStripMenuItem.Size = new System.Drawing.Size(93, 24);
             this.employeesToolStripMenuItem.Text = "Employees";
             this.employeesToolStripMenuItem.Click += new System.EventHandler(this.employeesToolStripMenuItem_Click);
             // 
@@ -171,7 +173,7 @@
             // 
             this.logoutToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Visible = false;
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
@@ -180,7 +182,7 @@
             // 
             this.userToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(50, 24);
             this.userToolStripMenuItem.Text = "User";
             this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
             // 
@@ -201,84 +203,84 @@
             this.userToolStripMenuItem1,
             this.logoutToolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(216, 268);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(258, 292);
             // 
             // projectsToolStripMenuItem1
             // 
             this.projectsToolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.projectsToolStripMenuItem1.Name = "projectsToolStripMenuItem1";
-            this.projectsToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
+            this.projectsToolStripMenuItem1.Size = new System.Drawing.Size(257, 24);
             this.projectsToolStripMenuItem1.Text = "Projects";
             // 
             // newProjectToolStripMenuItem1
             // 
             this.newProjectToolStripMenuItem1.Name = "newProjectToolStripMenuItem1";
-            this.newProjectToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
+            this.newProjectToolStripMenuItem1.Size = new System.Drawing.Size(257, 24);
             this.newProjectToolStripMenuItem1.Text = "    New Project";
             // 
             // openProjectToolStripMenuItem
             // 
             this.openProjectToolStripMenuItem.Name = "openProjectToolStripMenuItem";
-            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(257, 24);
             this.openProjectToolStripMenuItem.Text = "    Open Project";
             // 
             // bOMsToolStripMenuItem1
             // 
             this.bOMsToolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.bOMsToolStripMenuItem1.Name = "bOMsToolStripMenuItem1";
-            this.bOMsToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
+            this.bOMsToolStripMenuItem1.Size = new System.Drawing.Size(257, 24);
             this.bOMsToolStripMenuItem1.Text = "BOMs";
             // 
             // openBOMsToolStripMenuItem1
             // 
             this.openBOMsToolStripMenuItem1.Name = "openBOMsToolStripMenuItem1";
-            this.openBOMsToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
+            this.openBOMsToolStripMenuItem1.Size = new System.Drawing.Size(257, 24);
             this.openBOMsToolStripMenuItem1.Text = "    Open BOMs";
             // 
             // materialRequestToolStripMenuItem1
             // 
             this.materialRequestToolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.materialRequestToolStripMenuItem1.Name = "materialRequestToolStripMenuItem1";
-            this.materialRequestToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
+            this.materialRequestToolStripMenuItem1.Size = new System.Drawing.Size(257, 24);
             this.materialRequestToolStripMenuItem1.Text = "Material Request";
             // 
             // materialRequestListToolStripMenuItem1
             // 
             this.materialRequestListToolStripMenuItem1.Name = "materialRequestListToolStripMenuItem1";
-            this.materialRequestListToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
+            this.materialRequestListToolStripMenuItem1.Size = new System.Drawing.Size(257, 24);
             this.materialRequestListToolStripMenuItem1.Text = "    Material Request List";
             // 
             // createMaterialRequestToolStripMenuItem1
             // 
             this.createMaterialRequestToolStripMenuItem1.Name = "createMaterialRequestToolStripMenuItem1";
-            this.createMaterialRequestToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
+            this.createMaterialRequestToolStripMenuItem1.Size = new System.Drawing.Size(257, 24);
             this.createMaterialRequestToolStripMenuItem1.Text = "    Create Material Request";
             // 
             // modifyMaterialRequestToolStripMenuItem1
             // 
             this.modifyMaterialRequestToolStripMenuItem1.Name = "modifyMaterialRequestToolStripMenuItem1";
-            this.modifyMaterialRequestToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
+            this.modifyMaterialRequestToolStripMenuItem1.Size = new System.Drawing.Size(257, 24);
             this.modifyMaterialRequestToolStripMenuItem1.Text = "    Modify Material Request";
             // 
             // employeesToolStripMenuItem1
             // 
             this.employeesToolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.employeesToolStripMenuItem1.Name = "employeesToolStripMenuItem1";
-            this.employeesToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
+            this.employeesToolStripMenuItem1.Size = new System.Drawing.Size(257, 24);
             this.employeesToolStripMenuItem1.Text = "Employees";
             // 
             // userToolStripMenuItem1
             // 
             this.userToolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.userToolStripMenuItem1.Name = "userToolStripMenuItem1";
-            this.userToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
+            this.userToolStripMenuItem1.Size = new System.Drawing.Size(257, 24);
             this.userToolStripMenuItem1.Text = "User";
             // 
             // logoutToolStripMenuItem1
             // 
             this.logoutToolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(257, 24);
             this.logoutToolStripMenuItem1.Text = "Logout";
             // 
             // panel1
@@ -298,60 +300,55 @@
             this.panel1.Controls.Add(this.linkLabel4);
             this.panel1.Controls.Add(this.linkLabel3);
             this.panel1.Controls.Add(this.linkLabel2);
-            this.panel1.Location = new System.Drawing.Point(211, 68);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Location = new System.Drawing.Point(281, 84);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(364, 434);
+            this.panel1.Size = new System.Drawing.Size(485, 534);
             this.panel1.TabIndex = 4;
             this.panel1.Visible = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(24, 293);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(32, 361);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(259, 13);
+            this.label4.Size = new System.Drawing.Size(344, 17);
             this.label4.TabIndex = 13;
             this.label4.Text = "__________________________________________";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 165);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(37, 203);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 13);
+            this.label3.Size = new System.Drawing.Size(115, 17);
             this.label3.TabIndex = 12;
             this.label3.Text = "Material Request";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 98);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(32, 121);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 13);
+            this.label2.Size = new System.Drawing.Size(46, 17);
             this.label2.TabIndex = 11;
             this.label2.Text = "BOMs";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 14);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(32, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.Size = new System.Drawing.Size(52, 17);
             this.label1.TabIndex = 10;
             this.label1.Text = "Project";
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(43, 38);
-            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel1.Location = new System.Drawing.Point(57, 47);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(65, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(83, 17);
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "New Project";
@@ -359,10 +356,9 @@
             // linkLabel9
             // 
             this.linkLabel9.AutoSize = true;
-            this.linkLabel9.Location = new System.Drawing.Point(43, 395);
-            this.linkLabel9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel9.Location = new System.Drawing.Point(57, 486);
             this.linkLabel9.Name = "linkLabel9";
-            this.linkLabel9.Size = new System.Drawing.Size(40, 13);
+            this.linkLabel9.Size = new System.Drawing.Size(52, 17);
             this.linkLabel9.TabIndex = 8;
             this.linkLabel9.TabStop = true;
             this.linkLabel9.Text = "Logout";
@@ -370,10 +366,9 @@
             // linkLabel8
             // 
             this.linkLabel8.AutoSize = true;
-            this.linkLabel8.Location = new System.Drawing.Point(43, 366);
-            this.linkLabel8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel8.Location = new System.Drawing.Point(57, 450);
             this.linkLabel8.Name = "linkLabel8";
-            this.linkLabel8.Size = new System.Drawing.Size(29, 13);
+            this.linkLabel8.Size = new System.Drawing.Size(38, 17);
             this.linkLabel8.TabIndex = 7;
             this.linkLabel8.TabStop = true;
             this.linkLabel8.Text = "User";
@@ -381,10 +376,9 @@
             // linkLabel7
             // 
             this.linkLabel7.AutoSize = true;
-            this.linkLabel7.Location = new System.Drawing.Point(43, 336);
-            this.linkLabel7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel7.Location = new System.Drawing.Point(57, 414);
             this.linkLabel7.Name = "linkLabel7";
-            this.linkLabel7.Size = new System.Drawing.Size(58, 13);
+            this.linkLabel7.Size = new System.Drawing.Size(77, 17);
             this.linkLabel7.TabIndex = 6;
             this.linkLabel7.TabStop = true;
             this.linkLabel7.Text = "Employees";
@@ -392,10 +386,9 @@
             // linkLabel6
             // 
             this.linkLabel6.AutoSize = true;
-            this.linkLabel6.Location = new System.Drawing.Point(43, 250);
-            this.linkLabel6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel6.Location = new System.Drawing.Point(57, 308);
             this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(121, 13);
+            this.linkLabel6.Size = new System.Drawing.Size(160, 17);
             this.linkLabel6.TabIndex = 5;
             this.linkLabel6.TabStop = true;
             this.linkLabel6.Text = "Modify Material Request";
@@ -403,10 +396,9 @@
             // linkLabel5
             // 
             this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Location = new System.Drawing.Point(43, 220);
-            this.linkLabel5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel5.Location = new System.Drawing.Point(57, 271);
             this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(121, 13);
+            this.linkLabel5.Size = new System.Drawing.Size(161, 17);
             this.linkLabel5.TabIndex = 4;
             this.linkLabel5.TabStop = true;
             this.linkLabel5.Text = "Create Material Request";
@@ -415,10 +407,9 @@
             // linkLabel4
             // 
             this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(43, 193);
-            this.linkLabel4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel4.Location = new System.Drawing.Point(57, 238);
             this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(106, 13);
+            this.linkLabel4.Size = new System.Drawing.Size(141, 17);
             this.linkLabel4.TabIndex = 3;
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Text = "Material Request List";
@@ -426,10 +417,9 @@
             // linkLabel3
             // 
             this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(43, 119);
-            this.linkLabel3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel3.Location = new System.Drawing.Point(57, 146);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(65, 13);
+            this.linkLabel3.Size = new System.Drawing.Size(85, 17);
             this.linkLabel3.TabIndex = 2;
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "Open BOMs";
@@ -437,24 +427,30 @@
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(43, 60);
-            this.linkLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel2.Location = new System.Drawing.Point(57, 74);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(69, 13);
+            this.linkLabel2.Size = new System.Drawing.Size(91, 17);
             this.linkLabel2.TabIndex = 1;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Open Project";
             // 
+            // spreadSheetToolStripMenuItem
+            // 
+            this.spreadSheetToolStripMenuItem.Name = "spreadSheetToolStripMenuItem";
+            this.spreadSheetToolStripMenuItem.Size = new System.Drawing.Size(109, 24);
+            this.spreadSheetToolStripMenuItem.Text = "Spread Sheet";
+            this.spreadSheetToolStripMenuItem.Click += new System.EventHandler(this.spreadSheetToolStripMenuItem_Click);
+            // 
             // FrmMDI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 535);
+            this.ClientSize = new System.Drawing.Size(1011, 658);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrmMDI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Control Sheet";
@@ -515,5 +511,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStripMenuItem spreadSheetToolStripMenuItem;
     }
 }
