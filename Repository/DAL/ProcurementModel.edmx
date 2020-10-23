@@ -82,6 +82,7 @@
           <Property Name="Sr" Type="nvarchar" MaxLength="500" />
           <Property Name="PartNo" Type="nvarchar" MaxLength="500" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" />
           <Property Name="Qty" Type="nvarchar" MaxLength="500" />
           <Property Name="UnitCost" Type="nvarchar" MaxLength="500" />
           <Property Name="ExtCost" Type="nvarchar" MaxLength="500" />
@@ -389,6 +390,7 @@
           <Property Name="UnitPrice" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ExtPrice" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MRVersion" Relationship="ProcurementModel.FK_MR_MRVersion" FromRole="MR" ToRole="MRVersion" />
+          <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MRVersion">
           <Key>
@@ -610,6 +612,7 @@
           <EntitySetMapping Name="MRs">
             <EntityTypeMapping TypeName="ProcurementModel.MR">
               <MappingFragment StoreEntitySet="MR">
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
                 <ScalarProperty Name="ExtPrice" ColumnName="ExtPrice" />
                 <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
                 <ScalarProperty Name="ExtCost" ColumnName="ExtCost" />

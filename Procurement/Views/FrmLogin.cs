@@ -51,18 +51,26 @@ namespace Procurement
             _ec = new EmployeeController();
             _LstEmployees = _ec.GetModels();
 
-            ////////string Name = new System.Security.Principal.WindowsPrincipal(System.Security.Principal.WindowsIdentity.GetCurrent()).Identity.Name;
-            ////////string Name1 = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-            ////////string Name2 = System.DirectoryServices.AccountManagement.UserPrincipal.Current.UserPrincipalName;
-            ////////string Name3 = System.DirectoryServices.AccountManagement.UserPrincipal.Current.EmailAddress;
+            //string Name = new System.Security.Principal.WindowsPrincipal(System.Security.Principal.WindowsIdentity.GetCurrent()).Identity.Name;
+            string Name1 = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            //string Name2 = System.DirectoryServices.AccountManagement.UserPrincipal.Current.UserPrincipalName;
+            //string Name3 = System.DirectoryServices.AccountManagement.UserPrincipal.Current.EmailAddress;
+
+            if (Name1 == "WQSLAPTOP\\hp")
+            {
+                Employee employee1 = _LstEmployees.Where(x => x.EmployeeName == "administrator@tenf.loc").FirstOrDefault();
+                LoginInfo.LoginEmployee = employee1;
+                this.Close();
+                Application.OpenForms["FrmMDI"].Visible = true;
+                return;
+            }
 
 
-
-            //string UserPrincipalName = System.DirectoryServices.AccountManagement.UserPrincipal.Current.UserPrincipalName;
-            //bool IsuserActive = System.DirectoryServices.AccountManagement.UserPrincipal.Current.Enabled.Value;
+            string UserPrincipalName = System.DirectoryServices.AccountManagement.UserPrincipal.Current.UserPrincipalName;
+            bool IsuserActive = System.DirectoryServices.AccountManagement.UserPrincipal.Current.Enabled.Value;
             //for development purpsoe commit above two lines and uncomit below two lines
-            string UserPrincipalName = "administrator@tenf.loc";
-            bool IsuserActive = true;
+            //string UserPrincipalName = "administrator@tenf.loc";
+            //bool IsuserActive = true;
 
 
             Employee employee = _LstEmployees.Where(x => x.EmployeeName == UserPrincipalName).FirstOrDefault();

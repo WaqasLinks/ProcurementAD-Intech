@@ -178,7 +178,8 @@ namespace Procurement
 
                 for (int i = _dtExportMRtoExcel.Columns.Count - 1; i >= 0; i--)
                 {
-                    if (!(_dtExportMRtoExcel.Columns[i].ColumnName == "PartNo" || _dtExportMRtoExcel.Columns[i].ColumnName == "Qty"))
+                    if (!(_dtExportMRtoExcel.Columns[i].ColumnName == "PartNo" || _dtExportMRtoExcel.Columns[i].ColumnName == "Qty" ||
+                            _dtExportMRtoExcel.Columns[i].ColumnName == "Description" || _dtExportMRtoExcel.Columns[i].ColumnName == "Manufacturer"))
                     {
                         _dtExportMRtoExcel.Columns.RemoveAt(i);
                     }
@@ -187,7 +188,8 @@ namespace Procurement
 
                 for (int i = 1; i < _dtExportMRtoExcel.Columns.Count + 1; i++)
                 {
-                    if (_dtExportMRtoExcel.Columns[i - 1].ColumnName == "PartNo" || _dtExportMRtoExcel.Columns[i - 1].ColumnName == "Qty")
+                    if (_dtExportMRtoExcel.Columns[i - 1].ColumnName == "PartNo" || _dtExportMRtoExcel.Columns[i - 1].ColumnName == "Qty" ||
+                            _dtExportMRtoExcel.Columns[i - 1].ColumnName == "Description" || _dtExportMRtoExcel.Columns[i - 1].ColumnName == "Manufacturer")
                     {
                         Microsoft.Office.Interop.Excel.Range xlRange = (Microsoft.Office.Interop.Excel.Range)objexcelapp.Cells[1, i];
                         xlRange.Font.Bold = -1;
@@ -202,7 +204,8 @@ namespace Procurement
                 {
                     for (int j = 0; j < _dtExportMRtoExcel.Columns.Count; j++)
                     {
-                        if (_dtExportMRtoExcel.Columns[j].ColumnName == "PartNo" || _dtExportMRtoExcel.Columns[j].ColumnName == "Qty")
+                        if (_dtExportMRtoExcel.Columns[j].ColumnName == "PartNo" || _dtExportMRtoExcel.Columns[j].ColumnName == "Qty" || 
+                            _dtExportMRtoExcel.Columns[j].ColumnName == "Description" || _dtExportMRtoExcel.Columns[j].ColumnName == "Manufacturer")
                         {
                             if (_dtExportMRtoExcel.Rows[i][j] != null)
                             {
@@ -291,6 +294,9 @@ namespace Procurement
 
                 cellObj = pGvr.Cells["Description" + pBOMTypeCode];
                 lObjBom.Description = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
+
+                cellObj = pGvr.Cells["Manufacturer" + pBOMTypeCode];
+                lObjBom.Manufacturer = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
 
                 cellObj = pGvr.Cells["Qty" + pBOMTypeCode];
                 lObjBom.Qty = (cellObj.Value == null) ? string.Empty : cellObj.Value.ToString();
@@ -428,6 +434,7 @@ namespace Procurement
             dtMR.Columns.Add("Sr");
             dtMR.Columns.Add("PartNo");
             dtMR.Columns.Add("Description");
+            dtMR.Columns.Add("Manufacturer");
             dtMR.Columns.Add("Qty");
             dtMR.Columns.Add("UnitCost");
             dtMR.Columns.Add("ExtCost");
@@ -443,6 +450,7 @@ namespace Procurement
                     newRow["Sr"] = gvr.Cells["Sr2"].Value;
                     newRow["PartNo"] = gvr.Cells["PartNo2"].Value;
                     newRow["Description"] = gvr.Cells["Description2"].Value;
+                    newRow["Manufacturer"] = gvr.Cells["Manufacturer2"].Value;
                     newRow["Qty"] = gvr.Cells["Qty2"].Value;
                     newRow["UnitCost"] = gvr.Cells["UnitCost2"].Value;
                     newRow["ExtCost"] = gvr.Cells["ExtCost2"].Value;
@@ -464,6 +472,7 @@ namespace Procurement
             dtMR.Columns.Add("Sr");
             dtMR.Columns.Add("PartNo");
             dtMR.Columns.Add("Description");
+            dtMR.Columns.Add("Manufacturer");
             dtMR.Columns.Add("Qty");
             dtMR.Columns.Add("UnitCost");
             dtMR.Columns.Add("ExtCost");
@@ -481,6 +490,7 @@ namespace Procurement
                     newRow["PartNo"] = gvr.Cells["PartNo2"].Value;
                     frmGetQty.gPartNo = gvr.Cells["PartNo2"].Value.ToString();
                     newRow["Description"] = gvr.Cells["Description2"].Value;
+                    newRow["Manufacturer"] = gvr.Cells["Manufacturer2"].Value;
 
                     var result = frmGetQty.ShowDialog();
                     if (result == DialogResult.OK)

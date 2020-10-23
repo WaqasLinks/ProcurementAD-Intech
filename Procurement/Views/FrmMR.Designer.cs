@@ -66,14 +66,6 @@
             this.itmCopyAllToActualBOM = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.Sr4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PartNo4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitCost4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExtCost4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitPrice4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExtPrice4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCopySame = new System.Windows.Forms.Button();
             this.btnCopyUserSpecified = new System.Windows.Forms.Button();
             this.MenuStripProjects = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -84,6 +76,15 @@
             this.loadChageOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Sr4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PartNo4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Manufacturer4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitCost4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExtCost4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPrice4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExtPrice4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.MenuStripSaleBOM.SuspendLayout();
             this.MenuStripDesignBOM.SuspendLayout();
@@ -581,6 +582,7 @@
             this.Sr4,
             this.PartNo4,
             this.Description4,
+            this.Manufacturer4,
             this.Qty4,
             this.UnitCost4,
             this.ExtCost4,
@@ -594,78 +596,6 @@
             this.dataGridView4.RowTemplate.Height = 24;
             this.dataGridView4.Size = new System.Drawing.Size(1347, 251);
             this.dataGridView4.TabIndex = 20;
-            // 
-            // Sr4
-            // 
-            this.Sr4.DataPropertyName = "Sr";
-            this.Sr4.HeaderText = "Sr";
-            this.Sr4.MinimumWidth = 6;
-            this.Sr4.Name = "Sr4";
-            this.Sr4.ReadOnly = true;
-            this.Sr4.Width = 125;
-            // 
-            // PartNo4
-            // 
-            this.PartNo4.DataPropertyName = "PartNo";
-            this.PartNo4.HeaderText = "PartNo";
-            this.PartNo4.MinimumWidth = 6;
-            this.PartNo4.Name = "PartNo4";
-            this.PartNo4.ReadOnly = true;
-            this.PartNo4.Width = 125;
-            // 
-            // Description4
-            // 
-            this.Description4.DataPropertyName = "Description";
-            this.Description4.HeaderText = "Description";
-            this.Description4.MinimumWidth = 6;
-            this.Description4.Name = "Description4";
-            this.Description4.ReadOnly = true;
-            this.Description4.Width = 125;
-            // 
-            // Qty4
-            // 
-            this.Qty4.DataPropertyName = "Qty";
-            this.Qty4.HeaderText = "Qty";
-            this.Qty4.MinimumWidth = 6;
-            this.Qty4.Name = "Qty4";
-            this.Qty4.ReadOnly = true;
-            this.Qty4.Width = 125;
-            // 
-            // UnitCost4
-            // 
-            this.UnitCost4.DataPropertyName = "UnitCost";
-            this.UnitCost4.HeaderText = "UnitCost";
-            this.UnitCost4.MinimumWidth = 6;
-            this.UnitCost4.Name = "UnitCost4";
-            this.UnitCost4.ReadOnly = true;
-            this.UnitCost4.Width = 125;
-            // 
-            // ExtCost4
-            // 
-            this.ExtCost4.DataPropertyName = "ExtCost";
-            this.ExtCost4.HeaderText = "ExtCost";
-            this.ExtCost4.MinimumWidth = 6;
-            this.ExtCost4.Name = "ExtCost4";
-            this.ExtCost4.ReadOnly = true;
-            this.ExtCost4.Width = 125;
-            // 
-            // UnitPrice4
-            // 
-            this.UnitPrice4.DataPropertyName = "UnitPrice";
-            this.UnitPrice4.HeaderText = "UnitPrice";
-            this.UnitPrice4.MinimumWidth = 6;
-            this.UnitPrice4.Name = "UnitPrice4";
-            this.UnitPrice4.ReadOnly = true;
-            this.UnitPrice4.Width = 125;
-            // 
-            // ExtPrice4
-            // 
-            this.ExtPrice4.DataPropertyName = "ExtPrice";
-            this.ExtPrice4.HeaderText = "ExtPrice";
-            this.ExtPrice4.MinimumWidth = 6;
-            this.ExtPrice4.Name = "ExtPrice4";
-            this.ExtPrice4.ReadOnly = true;
-            this.ExtPrice4.Width = 125;
             // 
             // btnCopySame
             // 
@@ -738,10 +668,10 @@
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(517, 399);
+            this.textBox1.Location = new System.Drawing.Point(542, 399);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(842, 22);
+            this.textBox1.Size = new System.Drawing.Size(817, 22);
             this.textBox1.TabIndex = 21;
             // 
             // label1
@@ -753,6 +683,85 @@
             this.label1.Size = new System.Drawing.Size(79, 17);
             this.label1.TabIndex = 22;
             this.label1.Text = "Description";
+            // 
+            // Sr4
+            // 
+            this.Sr4.DataPropertyName = "Sr";
+            this.Sr4.HeaderText = "Sr";
+            this.Sr4.MinimumWidth = 6;
+            this.Sr4.Name = "Sr4";
+            this.Sr4.ReadOnly = true;
+            this.Sr4.Width = 125;
+            // 
+            // PartNo4
+            // 
+            this.PartNo4.DataPropertyName = "PartNo";
+            this.PartNo4.HeaderText = "PartNo";
+            this.PartNo4.MinimumWidth = 6;
+            this.PartNo4.Name = "PartNo4";
+            this.PartNo4.ReadOnly = true;
+            this.PartNo4.Width = 125;
+            // 
+            // Description4
+            // 
+            this.Description4.DataPropertyName = "Description";
+            this.Description4.HeaderText = "Description";
+            this.Description4.MinimumWidth = 6;
+            this.Description4.Name = "Description4";
+            this.Description4.ReadOnly = true;
+            this.Description4.Width = 125;
+            // 
+            // Manufacturer4
+            // 
+            this.Manufacturer4.DataPropertyName = "Manufacturer";
+            this.Manufacturer4.HeaderText = "Manufacturer";
+            this.Manufacturer4.Name = "Manufacturer4";
+            this.Manufacturer4.ReadOnly = true;
+            // 
+            // Qty4
+            // 
+            this.Qty4.DataPropertyName = "Qty";
+            this.Qty4.HeaderText = "Qty";
+            this.Qty4.MinimumWidth = 6;
+            this.Qty4.Name = "Qty4";
+            this.Qty4.ReadOnly = true;
+            this.Qty4.Width = 125;
+            // 
+            // UnitCost4
+            // 
+            this.UnitCost4.DataPropertyName = "UnitCost";
+            this.UnitCost4.HeaderText = "UnitCost";
+            this.UnitCost4.MinimumWidth = 6;
+            this.UnitCost4.Name = "UnitCost4";
+            this.UnitCost4.ReadOnly = true;
+            this.UnitCost4.Width = 125;
+            // 
+            // ExtCost4
+            // 
+            this.ExtCost4.DataPropertyName = "ExtCost";
+            this.ExtCost4.HeaderText = "ExtCost";
+            this.ExtCost4.MinimumWidth = 6;
+            this.ExtCost4.Name = "ExtCost4";
+            this.ExtCost4.ReadOnly = true;
+            this.ExtCost4.Width = 125;
+            // 
+            // UnitPrice4
+            // 
+            this.UnitPrice4.DataPropertyName = "UnitPrice";
+            this.UnitPrice4.HeaderText = "UnitPrice";
+            this.UnitPrice4.MinimumWidth = 6;
+            this.UnitPrice4.Name = "UnitPrice4";
+            this.UnitPrice4.ReadOnly = true;
+            this.UnitPrice4.Width = 125;
+            // 
+            // ExtPrice4
+            // 
+            this.ExtPrice4.DataPropertyName = "ExtPrice";
+            this.ExtPrice4.HeaderText = "ExtPrice";
+            this.ExtPrice4.MinimumWidth = 6;
+            this.ExtPrice4.Name = "ExtPrice4";
+            this.ExtPrice4.ReadOnly = true;
+            this.ExtPrice4.Width = 125;
             // 
             // FrmMR
             // 
@@ -805,14 +814,6 @@
         private System.Windows.Forms.Button btnCopySame;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridView dataGridView4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sr4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PartNo4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Qty4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitCost4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ExtCost4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ExtPrice4;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Select2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Category1_2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Category2_2;
@@ -842,6 +843,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5_2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sr4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PartNo4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Manufacturer4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Qty4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitCost4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExtCost4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExtPrice4;
     }
 }
 

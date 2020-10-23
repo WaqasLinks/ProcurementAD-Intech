@@ -38,14 +38,6 @@
             this.itmCopyAllToActualBOM = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.Sr4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PartNo4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitCost4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExtCost4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitPrice4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExtPrice4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCopySame = new System.Windows.Forms.Button();
             this.btnCopyUserSpecified = new System.Windows.Forms.Button();
             this.MenuStripProjects = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -55,19 +47,29 @@
             this.loadBOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadChageOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbMRList = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.Select2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Sr2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PartNo2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Manufacturer2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Qty2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitCost2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExtCost2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitPrice2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExtPrice2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbMRList = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Sr4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PartNo4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Manufacturer4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitCost4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExtCost4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPrice4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExtPrice4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MenuStripSaleBOM.SuspendLayout();
             this.MenuStripDesignBOM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
@@ -302,6 +304,7 @@
             this.Sr4,
             this.PartNo4,
             this.Description4,
+            this.Manufacturer4,
             this.Qty4,
             this.UnitCost4,
             this.ExtCost4,
@@ -315,78 +318,6 @@
             this.dataGridView4.RowTemplate.Height = 24;
             this.dataGridView4.Size = new System.Drawing.Size(1347, 251);
             this.dataGridView4.TabIndex = 20;
-            // 
-            // Sr4
-            // 
-            this.Sr4.DataPropertyName = "Sr";
-            this.Sr4.HeaderText = "Sr";
-            this.Sr4.MinimumWidth = 6;
-            this.Sr4.Name = "Sr4";
-            this.Sr4.ReadOnly = true;
-            this.Sr4.Width = 125;
-            // 
-            // PartNo4
-            // 
-            this.PartNo4.DataPropertyName = "PartNo";
-            this.PartNo4.HeaderText = "PartNo";
-            this.PartNo4.MinimumWidth = 6;
-            this.PartNo4.Name = "PartNo4";
-            this.PartNo4.ReadOnly = true;
-            this.PartNo4.Width = 125;
-            // 
-            // Description4
-            // 
-            this.Description4.DataPropertyName = "Description";
-            this.Description4.HeaderText = "Description";
-            this.Description4.MinimumWidth = 6;
-            this.Description4.Name = "Description4";
-            this.Description4.ReadOnly = true;
-            this.Description4.Width = 125;
-            // 
-            // Qty4
-            // 
-            this.Qty4.DataPropertyName = "Qty";
-            this.Qty4.HeaderText = "Qty";
-            this.Qty4.MinimumWidth = 6;
-            this.Qty4.Name = "Qty4";
-            this.Qty4.ReadOnly = true;
-            this.Qty4.Width = 125;
-            // 
-            // UnitCost4
-            // 
-            this.UnitCost4.DataPropertyName = "UnitCost";
-            this.UnitCost4.HeaderText = "UnitCost";
-            this.UnitCost4.MinimumWidth = 6;
-            this.UnitCost4.Name = "UnitCost4";
-            this.UnitCost4.ReadOnly = true;
-            this.UnitCost4.Width = 125;
-            // 
-            // ExtCost4
-            // 
-            this.ExtCost4.DataPropertyName = "ExtCost";
-            this.ExtCost4.HeaderText = "ExtCost";
-            this.ExtCost4.MinimumWidth = 6;
-            this.ExtCost4.Name = "ExtCost4";
-            this.ExtCost4.ReadOnly = true;
-            this.ExtCost4.Width = 125;
-            // 
-            // UnitPrice4
-            // 
-            this.UnitPrice4.DataPropertyName = "UnitPrice";
-            this.UnitPrice4.HeaderText = "UnitPrice";
-            this.UnitPrice4.MinimumWidth = 6;
-            this.UnitPrice4.Name = "UnitPrice4";
-            this.UnitPrice4.ReadOnly = true;
-            this.UnitPrice4.Width = 125;
-            // 
-            // ExtPrice4
-            // 
-            this.ExtPrice4.DataPropertyName = "ExtPrice";
-            this.ExtPrice4.HeaderText = "ExtPrice";
-            this.ExtPrice4.MinimumWidth = 6;
-            this.ExtPrice4.Name = "ExtPrice4";
-            this.ExtPrice4.ReadOnly = true;
-            this.ExtPrice4.Width = 125;
             // 
             // btnCopySame
             // 
@@ -466,6 +397,7 @@
             this.Sr2,
             this.PartNo2,
             this.Description2,
+            this.Manufacturer2,
             this.Qty2,
             this.UnitCost2,
             this.ExtCost2,
@@ -478,6 +410,46 @@
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(1347, 290);
             this.dataGridView2.TabIndex = 21;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 17);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Request Ref";
+            // 
+            // cmbMRList
+            // 
+            this.cmbMRList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMRList.FormattingEnabled = true;
+            this.cmbMRList.Location = new System.Drawing.Point(105, 11);
+            this.cmbMRList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbMRList.Name = "cmbMRList";
+            this.cmbMRList.Size = new System.Drawing.Size(487, 24);
+            this.cmbMRList.TabIndex = 23;
+            this.cmbMRList.SelectedIndexChanged += new System.EventHandler(this.cmbMRList_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(457, 403);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 17);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "Description";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(542, 399);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(817, 22);
+            this.textBox1.TabIndex = 24;
             // 
             // Select2
             // 
@@ -514,6 +486,12 @@
             this.Description2.Name = "Description2";
             this.Description2.ReadOnly = true;
             this.Description2.Width = 125;
+            // 
+            // Manufacturer2
+            // 
+            this.Manufacturer2.DataPropertyName = "Manufacturer";
+            this.Manufacturer2.HeaderText = "Manufacturer";
+            this.Manufacturer2.Name = "Manufacturer2";
             // 
             // Qty2
             // 
@@ -560,45 +538,84 @@
             this.ExtPrice2.ReadOnly = true;
             this.ExtPrice2.Width = 125;
             // 
-            // label1
+            // Sr4
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 17);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "Request Ref";
+            this.Sr4.DataPropertyName = "Sr";
+            this.Sr4.HeaderText = "Sr";
+            this.Sr4.MinimumWidth = 6;
+            this.Sr4.Name = "Sr4";
+            this.Sr4.ReadOnly = true;
+            this.Sr4.Width = 125;
             // 
-            // cmbMRList
+            // PartNo4
             // 
-            this.cmbMRList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMRList.FormattingEnabled = true;
-            this.cmbMRList.Location = new System.Drawing.Point(105, 11);
-            this.cmbMRList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmbMRList.Name = "cmbMRList";
-            this.cmbMRList.Size = new System.Drawing.Size(487, 24);
-            this.cmbMRList.TabIndex = 23;
-            this.cmbMRList.SelectedIndexChanged += new System.EventHandler(this.cmbMRList_SelectedIndexChanged);
+            this.PartNo4.DataPropertyName = "PartNo";
+            this.PartNo4.HeaderText = "PartNo";
+            this.PartNo4.MinimumWidth = 6;
+            this.PartNo4.Name = "PartNo4";
+            this.PartNo4.ReadOnly = true;
+            this.PartNo4.Width = 125;
             // 
-            // label2
+            // Description4
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(457, 403);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 17);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Reason";
+            this.Description4.DataPropertyName = "Description";
+            this.Description4.HeaderText = "Description";
+            this.Description4.MinimumWidth = 6;
+            this.Description4.Name = "Description4";
+            this.Description4.ReadOnly = true;
+            this.Description4.Width = 125;
             // 
-            // textBox1
+            // Manufacturer4
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(517, 399);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(842, 22);
-            this.textBox1.TabIndex = 24;
+            this.Manufacturer4.DataPropertyName = "Manufacturer";
+            this.Manufacturer4.HeaderText = "Manufacturer";
+            this.Manufacturer4.Name = "Manufacturer4";
+            this.Manufacturer4.ReadOnly = true;
+            // 
+            // Qty4
+            // 
+            this.Qty4.DataPropertyName = "Qty";
+            this.Qty4.HeaderText = "Qty";
+            this.Qty4.MinimumWidth = 6;
+            this.Qty4.Name = "Qty4";
+            this.Qty4.ReadOnly = true;
+            this.Qty4.Width = 125;
+            // 
+            // UnitCost4
+            // 
+            this.UnitCost4.DataPropertyName = "UnitCost";
+            this.UnitCost4.HeaderText = "UnitCost";
+            this.UnitCost4.MinimumWidth = 6;
+            this.UnitCost4.Name = "UnitCost4";
+            this.UnitCost4.ReadOnly = true;
+            this.UnitCost4.Width = 125;
+            // 
+            // ExtCost4
+            // 
+            this.ExtCost4.DataPropertyName = "ExtCost";
+            this.ExtCost4.HeaderText = "ExtCost";
+            this.ExtCost4.MinimumWidth = 6;
+            this.ExtCost4.Name = "ExtCost4";
+            this.ExtCost4.ReadOnly = true;
+            this.ExtCost4.Width = 125;
+            // 
+            // UnitPrice4
+            // 
+            this.UnitPrice4.DataPropertyName = "UnitPrice";
+            this.UnitPrice4.HeaderText = "UnitPrice";
+            this.UnitPrice4.MinimumWidth = 6;
+            this.UnitPrice4.Name = "UnitPrice4";
+            this.UnitPrice4.ReadOnly = true;
+            this.UnitPrice4.Width = 125;
+            // 
+            // ExtPrice4
+            // 
+            this.ExtPrice4.DataPropertyName = "ExtPrice";
+            this.ExtPrice4.HeaderText = "ExtPrice";
+            this.ExtPrice4.MinimumWidth = 6;
+            this.ExtPrice4.Name = "ExtPrice4";
+            this.ExtPrice4.ReadOnly = true;
+            this.ExtPrice4.Width = 125;
             // 
             // FrmModifyMR
             // 
@@ -652,28 +669,30 @@
         private System.Windows.Forms.Button btnCopyUserSpecified;
         private System.Windows.Forms.Button btnCopySame;
         private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbMRList;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sr4;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartNo4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Manufacturer4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty4;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitCost4;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExtCost4;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice4;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExtPrice4;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbMRList;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Select2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sr2;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartNo2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Manufacturer2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty2;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitCost2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExtCost2;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExtPrice2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

@@ -24,6 +24,7 @@ namespace Repository.DAL
         public string ExtCost { get; set; }
         public string UnitPrice { get; set; }
         public string ExtPrice { get; set; }
+        public string Manufacturer { get; set; }
     
         public virtual MRVersion MRVersion { get; set; }
     }
