@@ -107,9 +107,9 @@
             <PropertyRef Name="ProjectCode" />
           </Key>
           <Property Name="ProjectCode" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="ProjectName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Customer" Type="nvarchar" MaxLength="50" />
-          <Property Name="EndUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjectName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="500" />
+          <Property Name="EndUser" Type="nvarchar" MaxLength="500" />
           <Property Name="CreatedBy" Type="decimal" Precision="10" Scale="0" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="UpdatedBy" Type="decimal" Precision="10" Scale="0" />
@@ -412,9 +412,9 @@
             <PropertyRef Name="ProjectCode" />
           </Key>
           <Property Name="ProjectCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EndUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Customer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EndUser" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="Decimal" Precision="10" Scale="0" />

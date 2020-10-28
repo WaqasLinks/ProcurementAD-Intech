@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMDI));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.projectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +43,7 @@
             this.employeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.spreadSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.projectsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.newProjectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,7 +71,6 @@
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.spreadSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -99,20 +100,20 @@
             this.newProjectToolStripMenuItem,
             this.projectsListToolStripMenuItem});
             this.projectsToolStripMenuItem.Name = "projectsToolStripMenuItem";
-            this.projectsToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
+            this.projectsToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
             this.projectsToolStripMenuItem.Text = "Projects";
             // 
             // newProjectToolStripMenuItem
             // 
             this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
-            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(170, 26);
+            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.newProjectToolStripMenuItem.Text = "New Project";
             this.newProjectToolStripMenuItem.Click += new System.EventHandler(this.newProjectToolStripMenuItem_Click);
             // 
             // projectsListToolStripMenuItem
             // 
             this.projectsListToolStripMenuItem.Name = "projectsListToolStripMenuItem";
-            this.projectsListToolStripMenuItem.Size = new System.Drawing.Size(170, 26);
+            this.projectsListToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.projectsListToolStripMenuItem.Text = "Open Project";
             this.projectsListToolStripMenuItem.Click += new System.EventHandler(this.projectsListToolStripMenuItem_Click);
             // 
@@ -121,13 +122,13 @@
             this.bOMsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openBOMsToolStripMenuItem});
             this.bOMsToolStripMenuItem.Name = "bOMsToolStripMenuItem";
-            this.bOMsToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
+            this.bOMsToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
             this.bOMsToolStripMenuItem.Text = "BOMs";
             // 
             // openBOMsToolStripMenuItem
             // 
             this.openBOMsToolStripMenuItem.Name = "openBOMsToolStripMenuItem";
-            this.openBOMsToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
+            this.openBOMsToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
             this.openBOMsToolStripMenuItem.Text = "Open BOMs";
             this.openBOMsToolStripMenuItem.Click += new System.EventHandler(this.openBOMsToolStripMenuItem_Click);
             // 
@@ -138,34 +139,34 @@
             this.createMaterialRequestToolStripMenuItem,
             this.modifyMaterialRequestToolStripMenuItem});
             this.MaterialRequestToolStripMenuItem.Name = "MaterialRequestToolStripMenuItem";
-            this.MaterialRequestToolStripMenuItem.Size = new System.Drawing.Size(133, 24);
+            this.MaterialRequestToolStripMenuItem.Size = new System.Drawing.Size(135, 24);
             this.MaterialRequestToolStripMenuItem.Text = "Material Request";
             // 
             // materialRequestListToolStripMenuItem
             // 
             this.materialRequestListToolStripMenuItem.Name = "materialRequestListToolStripMenuItem";
-            this.materialRequestListToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
+            this.materialRequestListToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.materialRequestListToolStripMenuItem.Text = "Material Request List";
             this.materialRequestListToolStripMenuItem.Click += new System.EventHandler(this.mRListToolStripMenuItem_Click);
             // 
             // createMaterialRequestToolStripMenuItem
             // 
             this.createMaterialRequestToolStripMenuItem.Name = "createMaterialRequestToolStripMenuItem";
-            this.createMaterialRequestToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
+            this.createMaterialRequestToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.createMaterialRequestToolStripMenuItem.Text = "Create Material Request";
             this.createMaterialRequestToolStripMenuItem.Click += new System.EventHandler(this.openMaterialRequestToolStripMenuItem_Click);
             // 
             // modifyMaterialRequestToolStripMenuItem
             // 
             this.modifyMaterialRequestToolStripMenuItem.Name = "modifyMaterialRequestToolStripMenuItem";
-            this.modifyMaterialRequestToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
+            this.modifyMaterialRequestToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.modifyMaterialRequestToolStripMenuItem.Text = "Modify Material Request";
             this.modifyMaterialRequestToolStripMenuItem.Click += new System.EventHandler(this.modifyMaterialRequestToolStripMenuItem_Click);
             // 
             // employeesToolStripMenuItem
             // 
             this.employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
-            this.employeesToolStripMenuItem.Size = new System.Drawing.Size(93, 24);
+            this.employeesToolStripMenuItem.Size = new System.Drawing.Size(95, 24);
             this.employeesToolStripMenuItem.Text = "Employees";
             this.employeesToolStripMenuItem.Click += new System.EventHandler(this.employeesToolStripMenuItem_Click);
             // 
@@ -173,7 +174,7 @@
             // 
             this.logoutToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Visible = false;
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
@@ -182,9 +183,16 @@
             // 
             this.userToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(50, 24);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(52, 24);
             this.userToolStripMenuItem.Text = "User";
             this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
+            // 
+            // spreadSheetToolStripMenuItem
+            // 
+            this.spreadSheetToolStripMenuItem.Name = "spreadSheetToolStripMenuItem";
+            this.spreadSheetToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
+            this.spreadSheetToolStripMenuItem.Text = "Spread Sheet";
+            this.spreadSheetToolStripMenuItem.Click += new System.EventHandler(this.spreadSheetToolStripMenuItem_Click);
             // 
             // contextMenuStrip1
             // 
@@ -434,13 +442,6 @@
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Open Project";
             // 
-            // spreadSheetToolStripMenuItem
-            // 
-            this.spreadSheetToolStripMenuItem.Name = "spreadSheetToolStripMenuItem";
-            this.spreadSheetToolStripMenuItem.Size = new System.Drawing.Size(109, 24);
-            this.spreadSheetToolStripMenuItem.Text = "Spread Sheet";
-            this.spreadSheetToolStripMenuItem.Click += new System.EventHandler(this.spreadSheetToolStripMenuItem_Click);
-            // 
             // FrmMDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -448,6 +449,7 @@
             this.ClientSize = new System.Drawing.Size(1011, 658);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
