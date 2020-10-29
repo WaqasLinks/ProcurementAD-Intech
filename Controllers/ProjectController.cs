@@ -39,6 +39,10 @@ namespace Procurement.Controllers
             return interfaceObj.GetModels().ToList<Project>().Where(x => x.ProjectEmployeeDetails.Any(y => y.EmployeeCode == LoginInfo.LoginEmployee.EmployeeCode)).ToList<Project>();
             //return interfaceObj.GetModels().ToList<Project>();
         }
+        public List<Project> GetModelsByCreatedByLoginedEmp()
+        {
+            return interfaceObj.GetModels().ToList<Project>().Where(x => x.CreatedBy== LoginInfo.LoginEmployee.EmployeeCode).ToList<Project>();
+        }
         public void UpdateModel(Project model)
         {
             interfaceObj.UpdateModel(model);

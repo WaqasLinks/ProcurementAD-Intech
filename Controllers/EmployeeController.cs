@@ -34,7 +34,7 @@ namespace Procurement.Controllers
             
             return interfaceObj.GetModels().ToList<Employee>();
         }
-        public List<Employee> GetModelsByCreatedBy()
+        public List<Employee> GetModelsByCreatedByLoginedEmp()
         {
             //return GetModels().ToList<Employee>().Where(x => x.EmployeeCode == LoginInfo.LoginEmployee.EmployeeCode || x.EmployeeTypeCode == Constants.EMPLOYEE).ToList<Employee>();
             return GetModels().ToList<Employee>().Where(x => x.EmployeeCode == LoginInfo.LoginEmployee.EmployeeCode || x.CreatedBy == LoginInfo.LoginEmployee.EmployeeCode).ToList<Employee>();

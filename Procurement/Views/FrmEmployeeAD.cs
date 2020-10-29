@@ -126,7 +126,7 @@ namespace Procurement
 
 
 
-                _LstProjects = _pc.GetModels();
+                _LstProjects = _pc.GetModelsByCreatedByLoginedEmp();//_pc.GetModels();
 
 
 
@@ -327,7 +327,8 @@ namespace Procurement
                 }
             }
 
-
+            MessageBox.Show("Updated Successfully");
+            this.Close();
             //FillCmbManagers();
             //_LstProjects
             this.Enabled = true;
@@ -399,6 +400,7 @@ namespace Procurement
                     ped = new ProjectEmployeeDetail();
                     ped.EmployeeCode = _EmployeeCode;
                     ped.ProjectCode = (string)row1["ProjectCode"];
+                    //ped.IsSelected = Convert.ToBoolean( row1[0]);
                     LstPed.Add(ped);
                 }
 
@@ -670,7 +672,7 @@ namespace Procurement
 
         private void btnSync_Click(object sender, EventArgs e)
         {
-            
+            this.Enabled = false;
             //string Name = new System.Security.Principal.WindowsPrincipal(System.Security.Principal.WindowsIdentity.GetCurrent()).Identity.Name;
             //string Name1 = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             //string Name2 = System.DirectoryServices.AccountManagement.UserPrincipal.Current.UserPrincipalName;
@@ -790,8 +792,9 @@ namespace Procurement
             
 
             }
-            
 
+            this.Enabled = false;
+            this.Close();
         }
         private void InsertEmployee(DirectoryEntry de)
         {
