@@ -55,7 +55,15 @@ namespace Procurement
                 
 
                 _pc = new ProjectController();
-                _LstProjects = _pc.GetModels();
+                if (LoginInfo.LoginEmployee.EmployeeTypeCode == Constants.ADMIN)
+                {
+                    _LstProjects = _pc.GetModels();
+                }
+                else
+                {
+                    _LstProjects = _pc.GetModels_whereLoginedEmpIsAdded();
+                }
+                
 
 
                 //foreach (Project project in _LstProjects)

@@ -37,7 +37,10 @@ namespace Procurement.Views
             OnFormLoad();
             FrmProjects_Show();
             //contextMenuStrip1.Show();
-         
+            if (LoginInfo.LoginEmployee.EmployeeTypeCode == Constants.EMPLOYEE)
+            {
+                employeesToolStripMenuItem.Visible = false;
+            }
         }
         private void FrmMDI_Activated(object sender, EventArgs e)
         {

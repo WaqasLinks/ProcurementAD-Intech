@@ -809,7 +809,7 @@ namespace Procurement
 
             emp.CreatedBy = LoginInfo.LoginEmployee.EmployeeCode;
             emp.CreatedDate = DateTime.Now;
-            emp.EmployeeTypeCode = 3;
+            emp.EmployeeTypeCode = Constants.MANAGER;
             emp.Active = IsActive(de);
 
             _ec = new EmployeeController(emp);

@@ -92,28 +92,41 @@ namespace Procurement
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Do you want to save?", "Confirmation", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No) return;
-
+            //---------Validations-------------------
             if (txtProjectCode.Text.Trim() == string.Empty)
             {
                 MessageBox.Show("Project Code can not be empty");
                 txtProjectCode.Focus();
                 return;
             }
-
+            if (txtProjectName.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Project Name can not be empty");
+                txtProjectCode.Focus();
+                return;
+            }
             //List<Project> projects=  _pc.GetModels();
             foreach (Project project in _pc.GetModels())
             {
                 if (txtProjectCode.Text.Trim().ToUpper() == project.ProjectCode.ToUpper())
                 {
-                    MessageBox.Show("Thie Project Code is already taken");
+                    MessageBox.Show("This Project Code is already taken");
+                    txtProjectCode.Focus();
+                    //break;
+                    return;
+                }
+                if (txtProjectName.Text.Trim().ToUpper() == project.ProjectName.ToUpper())
+                {
+                    MessageBox.Show("This Project Name is already taken");
                     txtProjectCode.Focus();
                     //break;
                     return;
                 }
             }
-
+            //---------^-------------------
+            DialogResult dialogResult = MessageBox.Show("Do you want to save?", "Confirmation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.No) return;
+            
             this.Enabled = false;
             Project projModel;
             ProjectEmployeeDetail ped;
