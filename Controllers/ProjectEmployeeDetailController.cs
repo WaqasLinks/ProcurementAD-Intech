@@ -37,7 +37,7 @@ namespace Procurement.Controllers
             interfaceObj.Save();
         }
         public void SaveList(decimal pEmployeeCode)
-        {
+            {
             List<ProjectEmployeeDetail> LstDbPed = GetModels(pEmployeeCode); //.Products.where(x => x.StoreId == store.StoreId)
                                                                              //if (LstDbPed.Count > 0)
                                                                              //{
@@ -58,9 +58,24 @@ namespace Procurement.Controllers
 
             //--------------------------
             ProjectController projectController = new ProjectController();
-            List<Project> LstProjectsCreatedbyLoginedEmpDb = projectController.GetModelsByCreatedByLoginedEmp();
+            List<Project> LstProjectsOwnedbyLoginedEmpDb;
+
+            if (LoginInfo.LoginEmployee.EmployeeTypeCode == Constants.ADMIN)
+            {
+                //get all
+                LstProjectsOwnedbyLoginedEmpDb = projectController.GetModels();
+            }
+            else
+            {
+                //get only logined manager
+                LstProjectsOwnedbyLoginedEmpDb = projectController.GetModelsByCreatedByLoginedEmp();
+            }
+
+
+
+
             //bool Found = false;
-            foreach (Project prjDb in LstProjectsCreatedbyLoginedEmpDb)
+            foreach (Project prjDb in LstProjectsOwnedbyLoginedEmpDb)
             {
                 ProjectEmployeeDetail pedRunningObj = _gLstPedModelRunning.FirstOrDefault(x => x.ProjectCode == prjDb.ProjectCode && x.EmployeeCode == pEmployeeCode);
                 if (pedRunningObj == null)

@@ -125,8 +125,17 @@ namespace Procurement
 
 
 
-
-                _LstProjects = _pc.GetModelsByCreatedByLoginedEmp();//_pc.GetModels();
+                if (LoginInfo.LoginEmployee.EmployeeTypeCode==Constants.ADMIN)
+                {
+                    //get all
+                    _LstProjects = _pc.GetModels();
+                }
+                else
+                {
+                    //get only logined manager
+                    _LstProjects = _pc.GetModelsByCreatedByLoginedEmp();//_pc.GetModels();
+                }
+                
 
 
 

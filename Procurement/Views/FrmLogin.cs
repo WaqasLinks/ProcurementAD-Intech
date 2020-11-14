@@ -61,7 +61,8 @@ namespace Procurement
                 //Muzammil.Riaz@intechww.com
                 //administrator@tenf.loc
                 //Employee employee1 = _LstEmployees.Where(x => x.EmployeeName == "administrator@tenf.loc").FirstOrDefault();
-                Employee employee1 = _LstEmployees.Where(x => x.EmployeeName == "Muzammil.Riaz@intechww.com").FirstOrDefault();
+                //Employee employee1 = _LstEmployees.Where(x => x.EmployeeName == "Muzammil.Riaz@intechww.com").FirstOrDefault();
+                Employee employee1 = _LstEmployees.Where(x => x.EmployeeName == "a@tenf.loc").FirstOrDefault();
                 LoginInfo.LoginEmployee = employee1;
                 this.Close();
                 Application.OpenForms["FrmMDI"].Visible = true;
