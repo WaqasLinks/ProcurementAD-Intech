@@ -395,5 +395,17 @@ namespace Procurement
             DialogResult dialogResult = MessageBox.Show("Close this window?", "Confirmation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No) e.Cancel = true;
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string filter = string.Empty;
+            BindingSource bs = new BindingSource();
+            bs.DataSource = dataGridViewProjects.DataSource;
+            filter = "ProjectName" + " like '%" + txtSearch.Text + "%' ";
+            filter += "OR ";
+            filter += "convert(ProjectCode, 'System.String')" + " like '%" + txtSearch.Text + "%'";
+            bs.Filter = filter;
+            dataGridViewProjects.DataSource = bs;
+        }
     }
 }

@@ -868,9 +868,9 @@ namespace Procurement
             string filter=string.Empty;
             BindingSource bs = new BindingSource();
             bs.DataSource = dataGridViewEmployees.DataSource;
-            filter = "EmployeeName" + " like '%" + textBox1.Text + "%' ";
+            filter = "EmployeeName" + " like '%" + txtSearch.Text + "%' ";
             filter += "OR ";
-            filter += "convert(EmployeeId, 'System.String')"  + " like '%" + textBox1.Text + "%'";
+            filter += "convert(EmployeeId, 'System.String')"  + " like '%" + txtSearch.Text + "%'";
             bs.Filter = filter;
             dataGridViewEmployees.DataSource = bs;
         }

@@ -28,7 +28,7 @@ namespace Repository.DAL
         public string CostSubHead { get; set; }
         public string System { get; set; }
         public string Area { get; set; }
-        public Nullable<decimal> Panel { get; set; }
+        public string Panel { get; set; }
         public string Category { get; set; }
         public string Manufacturer { get; set; }
         public string PartNo { get; set; }

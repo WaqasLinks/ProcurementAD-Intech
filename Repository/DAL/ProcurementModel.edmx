@@ -23,7 +23,7 @@
           <Property Name="CostSubHead" Type="nvarchar" MaxLength="500" />
           <Property Name="System" Type="nvarchar" MaxLength="500" />
           <Property Name="Area" Type="nvarchar" MaxLength="500" />
-          <Property Name="Panel" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="Panel" Type="nvarchar" MaxLength="500" />
           <Property Name="Category" Type="nvarchar" MaxLength="500" />
           <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" />
           <Property Name="PartNo" Type="nvarchar" MaxLength="500" />
@@ -319,7 +319,7 @@
           <Property Name="CostSubHead" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="System" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Area" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Panel" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="Panel" Type="String" />
           <Property Name="Category" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="PartNo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />

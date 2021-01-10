@@ -42,6 +42,8 @@
             this.loadBOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadChageOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.linkAddNewProject = new System.Windows.Forms.LinkLabel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProjects)).BeginInit();
             this.MenuStripProjects.SuspendLayout();
             this.MenuStripLoad.SuspendLayout();
@@ -207,7 +209,7 @@
             this.dataGridViewProjects.AllowUserToAddRows = false;
             this.dataGridViewProjects.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridViewProjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewProjects.Location = new System.Drawing.Point(31, 53);
+            this.dataGridViewProjects.Location = new System.Drawing.Point(31, 84);
             this.dataGridViewProjects.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridViewProjects.Name = "dataGridViewProjects";
             this.dataGridViewProjects.ReadOnly = true;
@@ -215,7 +217,7 @@
             this.dataGridViewProjects.RowHeadersWidth = 51;
             this.dataGridViewProjects.RowTemplate.Height = 24;
             this.dataGridViewProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewProjects.Size = new System.Drawing.Size(1090, 650);
+            this.dataGridViewProjects.Size = new System.Drawing.Size(1090, 619);
             this.dataGridViewProjects.TabIndex = 2;
             this.dataGridViewProjects.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProjects_CellDoubleClick);
             this.dataGridViewProjects.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewProjects_CellMouseDown);
@@ -301,7 +303,7 @@
             // linkAddNewProject
             // 
             this.linkAddNewProject.AutoSize = true;
-            this.linkAddNewProject.Location = new System.Drawing.Point(28, 23);
+            this.linkAddNewProject.Location = new System.Drawing.Point(28, 11);
             this.linkAddNewProject.Name = "linkAddNewProject";
             this.linkAddNewProject.Size = new System.Drawing.Size(112, 17);
             this.linkAddNewProject.TabIndex = 10;
@@ -309,12 +311,35 @@
             this.linkAddNewProject.Text = "Add New Project";
             this.linkAddNewProject.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkAddNewProject_LinkClicked);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(33, 58);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 17);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Search";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Location = new System.Drawing.Point(95, 55);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(1025, 22);
+            this.txtSearch.TabIndex = 0;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // FrmProjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1133, 750);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.linkAddNewProject);
             this.Controls.Add(this.btnOpenProject);
@@ -350,6 +375,8 @@
         private System.Windows.Forms.LinkLabel linkAddNewProject;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }
 

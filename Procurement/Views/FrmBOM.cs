@@ -35,6 +35,9 @@ namespace Procurement
         bool IsGridView2Changed;
         bool IsGridView3Changed;
         bool gFlag = false;
+        
+        decimal _TotExtCost = 0;
+        decimal _TotExtCost_CO = 0;
         //SingleTon 
         private static FrmBOM instance = null;
         private FrmBOM()
@@ -188,7 +191,9 @@ namespace Procurement
                         dtBOM.Columns.Add(_columnNames[26], typeof(string));
 
                         //dx//dataGridView1.AutoGenerateColumns = false;
-
+                        dtBOM.Rows.Add();
+                        //_TotExtCost = 0;
+                        
                         foreach (DataRow dr in tempDataSet.Tables[0].Rows)
                         {
                             //string colName=gvr.Cells[0].OwningColumn.HeaderText;
@@ -218,27 +223,48 @@ namespace Procurement
 
                                 //}
                                 //dtBOM.Rows.Add(newDataRow);
+                                //////////////////
+                                //var varObj = dr[18];//ExtCost
+
+                                //if (!(varObj == null || varObj == DBNull.Value) )
+                                //{
+                                //    _TotExtCost += Convert.ToDecimal(dr[18]);
+                                //} 
+                                ////////////////////
+                                //else 
+                                //{ 
+                                //    lObjBom.ExtCost = Convert.ToDecimal(cellObj); 
+                                //}
+
+
 
                                 dtBOM.Rows.Add(dr.ItemArray);
                                 //if (dtBOM.Rows.Count > 337) MessageBox.Show("338");
+                                
                             }
 
                         }
                         if (tabControl1.SelectedTab == tabControl1.TabPages["tabSaleBOM"])
                         {
+                            //dtBOM.Rows[0][18] = _TotExtCost;
                             _dtSalesBOM = dtBOM;
+                            GetSetExtCostTotal(ref _dtSalesBOM);
                             gridControl1.DataSource = _dtSalesBOM;
                             IsGridView1Changed = true;
                         }
                         if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
                         {
+                            //dtBOM.Rows[0][18] = _TotExtCost;
                             _dtDesignBOM = dtBOM;
+                            GetSetExtCostTotal(ref _dtDesignBOM);
                             gridControl2.DataSource = _dtDesignBOM;
                             IsGridView2Changed = true;
                         }
                         if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
                         {
+                            //dtBOM.Rows[0][18] = _TotExtCost;
                             _dtActualBOM = dtBOM;
+                            GetSetExtCostTotal(ref _dtActualBOM);
                             gridControl3.DataSource = _dtActualBOM;
                             IsGridView3Changed = true;
                         }
@@ -340,7 +366,7 @@ namespace Procurement
                         }
 
 
-
+                        //_TotExtCost_CO = 0;
                         foreach (DataRow dr in tempDataSet.Tables[0].Rows)
                         {
                             //string colName=gvr.Cells[0].OwningColumn.HeaderText;
@@ -370,27 +396,48 @@ namespace Procurement
 
                                 //}
                                 //dtBOM.Rows.Add(newDataRow);
+                                ////////////////
+                                //var varObj = dr[18];//ExtCost
 
-
-
+                                //if (!(varObj == null || varObj == DBNull.Value))
+                                //{
+                                //    _TotExtCost += Convert.ToDecimal(dr[18]);
+                                //}
+                                //////////////////
+                                
                                 if (tabControl1.SelectedTab == tabControl1.TabPages["tabSaleBOM"])
                                 {
+                                    //_dtSalesBOM.Rows[0][18] = _TotExtCost;
                                     _dtSalesBOM.Rows.Add(dr.ItemArray);
                                     IsGridView1Changed = true;
                                 }
                                 if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
                                 {
+                                    //_dtDesignBOM.Rows[0][18] = _TotExtCost;
                                     _dtDesignBOM.Rows.Add(dr.ItemArray);
                                     IsGridView2Changed = true;
                                 }
                                 if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
                                 {
+                                    //_dtActualBOM.Rows[0][18] = _TotExtCost;
                                     _dtActualBOM.Rows.Add(dr.ItemArray);
                                     IsGridView3Changed = true;
                                 }
 
                             }
 
+                        }
+                        if (tabControl1.SelectedTab == tabControl1.TabPages["tabSaleBOM"])
+                        {
+                            GetSetExtCostTotal(ref _dtSalesBOM);
+                        }
+                        if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
+                        {
+                            GetSetExtCostTotal(ref _dtDesignBOM);
+                        }
+                        if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
+                        {
+                            GetSetExtCostTotal(ref _dtActualBOM);
                         }
                         MessageBox.Show("Change Order Loaded Successfully");
 
@@ -929,8 +976,9 @@ namespace Procurement
                 lObjBom.Area = (cellObj == null) ? string.Empty : cellObj.ToString();
 
                 cellObj = pGvr[11];
+                lObjBom.Panel = (cellObj == null) ? string.Empty : cellObj.ToString();
                 //lObjBom.Panel = (cellObj == null) ? (decimal?)null : Convert.ToDecimal(cellObj);
-                if (cellObj == null || cellObj == DBNull.Value) { lObjBom.Panel = null; } else { lObjBom.Panel = Convert.ToDecimal(cellObj); }
+                //if (cellObj == null || cellObj == DBNull.Value) { lObjBom.Panel = null; } else { lObjBom.Panel = Convert.ToDecimal(cellObj); }
 
                 cellObj = pGvr[12];
                 lObjBom.Category = (cellObj == null) ? string.Empty : cellObj.ToString();
@@ -1101,8 +1149,43 @@ namespace Procurement
                 //dataGridView2.Rows[e.RowIndex].Cells["ExtCost2"].Value = price.ToString();
                 gv.SetFocusedRowCellValue("ExtCost", price);
                 gFlag = false;
+
+                //v--------cal total and show on top-------------------
+                //_TotExtCost = 0;
+                //for (int i = 0; i < dataGridView2.DataRowCount; i++)
+                //{
+                //    if (i == 0) continue;
+                //    DataRow row = dataGridView2.GetDataRow(i);
+                //    //FillBOMModelSub(ref pProjectModel, ref LstObjBom, row, 3);
+                //    var varObj = row[18];//ExtCost
+
+                //    if (!(varObj == null || varObj == DBNull.Value))
+                //    {
+                //        _TotExtCost += Convert.ToDecimal(row[18]);
+                //    }
                 //}
+                //_dtDesignBOM.Rows[0][18] = _TotExtCost;
+
+                //^--------cal total and show on top------------------
+                GetSetExtCostTotal(ref _dtDesignBOM);
+
+
             }
+        }
+        private void  GetSetExtCostTotal(ref DataTable dataTable)
+        {
+            _TotExtCost = 0;
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+            {
+                if (i == 0) continue;
+                DataRow row = dataTable.Rows[i];
+                var varObj = row[18];//ExtCost
+                if (!(varObj == null || varObj == DBNull.Value))
+                {
+                    _TotExtCost += Convert.ToDecimal(row[18]);
+                }
+            }
+            dataTable.Rows[0][18] = _TotExtCost;
         }
         private void dataGridView3_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
@@ -1113,7 +1196,7 @@ namespace Procurement
                 var gv = sender as GridView;
                 var rowIndex = gv.FocusedRowHandle;
                 var columnIndex = gv.FocusedColumn.VisibleIndex;
-
+                
                 //decimal quantity = ReturnAppropriateValue(dataGridView3.Rows[e.RowIndex].Cells["Qty2"].Value);
                 //decimal rate = ReturnAppropriateValue(dataGridView3.Rows[e.RowIndex].Cells["UnitCost2"].Value);
 
@@ -1129,7 +1212,25 @@ namespace Procurement
                 //dataGridView3.Rows[e.RowIndex].Cells["ExtCost2"].Value = price.ToString();
                 gv.SetFocusedRowCellValue("ExtCost", price);
                 gFlag = false;
+
+                //v--------cal total and show on top-------------------
+                //_TotExtCost = 0;
+                //for (int i = 0; i < dataGridView3.DataRowCount; i++)
+                //{
+                //    if (i == 0) continue;
+                //    DataRow row = dataGridView3.GetDataRow(i);
+                //    //FillBOMModelSub(ref pProjectModel, ref LstObjBom, row, 3);
+                //    var varObj = row[18];//ExtCost
+
+                //    if (!(varObj == null || varObj == DBNull.Value))
+                //    {
+                //        _TotExtCost += Convert.ToDecimal(row[18]);
+                //    }
                 //}
+                //_dtActualBOM.Rows[0][18] = _TotExtCost;
+
+                //^--------cal total and show on top------------------
+                GetSetExtCostTotal( ref _dtActualBOM);
             }
         }
      
@@ -2063,7 +2164,7 @@ namespace Procurement
 
 
                 dataGridView1.DeleteSelectedRows();
-                
+                GetSetExtCostTotal(ref _dtSalesBOM);
                 IsGridView1Changed = true;
             }
             if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
@@ -2074,6 +2175,7 @@ namespace Procurement
                 //    dataGridView2.Rows.RemoveAt(row.Index);
                 //}
                 dataGridView2.DeleteSelectedRows();
+                GetSetExtCostTotal(ref _dtDesignBOM);
                 IsGridView2Changed = true;
             }
             if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
@@ -2084,6 +2186,7 @@ namespace Procurement
                 //    dataGridView3.Rows.RemoveAt(row.Index);
                 //}
                 dataGridView3.DeleteSelectedRows();
+                GetSetExtCostTotal(ref _dtActualBOM);
                 IsGridView3Changed = true;
             }
 

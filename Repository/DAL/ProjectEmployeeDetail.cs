@@ -11,8 +11,7 @@ namespace Repository.DAL
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class ProjectEmployeeDetail
     {
         public decimal Id { get; set; }
@@ -21,6 +20,5 @@ namespace Repository.DAL
     
         public virtual Employee Employee { get; set; }
         public virtual Project Project { get; set; }
-        
     }
 }
