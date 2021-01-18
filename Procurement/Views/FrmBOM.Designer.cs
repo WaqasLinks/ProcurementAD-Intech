@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBOM));
             this.txtBOMFilePath = new System.Windows.Forms.TextBox();
             this.btnLoadBOM = new System.Windows.Forms.Button();
@@ -191,6 +191,10 @@
             this.listBoxWorkSheets = new System.Windows.Forms.ListBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button2 = new System.Windows.Forms.Button();
+            this.txtExtCostSubTotal = new System.Windows.Forms.TextBox();
+            this.txtExtCostTotal = new System.Windows.Forms.TextBox();
+            this.lblExtTotal = new System.Windows.Forms.Label();
+            this.lblExtTotalSub = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabSaleBOM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -249,8 +253,9 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1263, 469);
+            this.tabControl1.Size = new System.Drawing.Size(1759, 633);
             this.tabControl1.TabIndex = 8;
+            this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
             // 
             // tabSaleBOM
             // 
@@ -259,7 +264,7 @@
             this.tabSaleBOM.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabSaleBOM.Name = "tabSaleBOM";
             this.tabSaleBOM.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabSaleBOM.Size = new System.Drawing.Size(1255, 440);
+            this.tabSaleBOM.Size = new System.Drawing.Size(1751, 604);
             this.tabSaleBOM.TabIndex = 0;
             this.tabSaleBOM.Text = "Bid BOM";
             this.tabSaleBOM.UseVisualStyleBackColor = true;
@@ -270,7 +275,7 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 2);
             this.gridControl1.MainView = this.dataGridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1249, 436);
+            this.gridControl1.Size = new System.Drawing.Size(1745, 600);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dataGridView1});
@@ -552,7 +557,7 @@
             this.tabDesignBOM.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabDesignBOM.Name = "tabDesignBOM";
             this.tabDesignBOM.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabDesignBOM.Size = new System.Drawing.Size(1255, 440);
+            this.tabDesignBOM.Size = new System.Drawing.Size(1751, 604);
             this.tabDesignBOM.TabIndex = 1;
             this.tabDesignBOM.Text = "Planned BOM";
             this.tabDesignBOM.UseVisualStyleBackColor = true;
@@ -563,7 +568,7 @@
             this.gridControl2.Location = new System.Drawing.Point(3, 2);
             this.gridControl2.MainView = this.dataGridView2;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(1249, 436);
+            this.gridControl2.Size = new System.Drawing.Size(1745, 600);
             this.gridControl2.TabIndex = 1;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dataGridView2});
@@ -827,7 +832,7 @@
             this.tabActualBOM.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabActualBOM.Name = "tabActualBOM";
             this.tabActualBOM.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabActualBOM.Size = new System.Drawing.Size(1255, 440);
+            this.tabActualBOM.Size = new System.Drawing.Size(1751, 604);
             this.tabActualBOM.TabIndex = 2;
             this.tabActualBOM.Text = "Actual BOM";
             this.tabActualBOM.UseVisualStyleBackColor = true;
@@ -838,7 +843,7 @@
             this.gridControl3.Location = new System.Drawing.Point(3, 2);
             this.gridControl3.MainView = this.dataGridView3;
             this.gridControl3.Name = "gridControl3";
-            this.gridControl3.Size = new System.Drawing.Size(1249, 436);
+            this.gridControl3.Size = new System.Drawing.Size(1745, 600);
             this.gridControl3.TabIndex = 1;
             this.gridControl3.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dataGridView3});
@@ -1101,7 +1106,7 @@
             this.tabSummary.Location = new System.Drawing.Point(4, 25);
             this.tabSummary.Name = "tabSummary";
             this.tabSummary.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSummary.Size = new System.Drawing.Size(1255, 440);
+            this.tabSummary.Size = new System.Drawing.Size(1751, 604);
             this.tabSummary.TabIndex = 3;
             this.tabSummary.Text = "Summary";
             this.tabSummary.UseVisualStyleBackColor = true;
@@ -1124,7 +1129,7 @@
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 51;
             this.dataGridView4.RowTemplate.Height = 24;
-            this.dataGridView4.Size = new System.Drawing.Size(1249, 434);
+            this.dataGridView4.Size = new System.Drawing.Size(1745, 598);
             this.dataGridView4.TabIndex = 0;
             // 
             // A_Category
@@ -1146,8 +1151,8 @@
             // C_BidCost
             // 
             this.C_BidCost.DataPropertyName = "C_BidCost";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.C_BidCost.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.C_BidCost.DefaultCellStyle = dataGridViewCellStyle6;
             this.C_BidCost.HeaderText = "C";
             this.C_BidCost.MinimumWidth = 6;
             this.C_BidCost.Name = "C_BidCost";
@@ -1156,8 +1161,8 @@
             // D_PlanCost
             // 
             this.D_PlanCost.DataPropertyName = "D_PlanCost";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.D_PlanCost.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.D_PlanCost.DefaultCellStyle = dataGridViewCellStyle7;
             this.D_PlanCost.HeaderText = "D";
             this.D_PlanCost.MinimumWidth = 6;
             this.D_PlanCost.Name = "D_PlanCost";
@@ -1166,8 +1171,8 @@
             // E_ActualCost
             // 
             this.E_ActualCost.DataPropertyName = "E_ActualCost";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.E_ActualCost.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.E_ActualCost.DefaultCellStyle = dataGridViewCellStyle8;
             this.E_ActualCost.HeaderText = "E";
             this.E_ActualCost.MinimumWidth = 6;
             this.E_ActualCost.Name = "E_ActualCost";
@@ -1176,8 +1181,8 @@
             // F_CostInFuture
             // 
             this.F_CostInFuture.DataPropertyName = "F_CostInFuture";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.F_CostInFuture.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.F_CostInFuture.DefaultCellStyle = dataGridViewCellStyle9;
             this.F_CostInFuture.HeaderText = "F";
             this.F_CostInFuture.MinimumWidth = 6;
             this.F_CostInFuture.Name = "F_CostInFuture";
@@ -1186,8 +1191,8 @@
             // G_ProjectedCost
             // 
             this.G_ProjectedCost.DataPropertyName = "G_ProjectedCost";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.G_ProjectedCost.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.G_ProjectedCost.DefaultCellStyle = dataGridViewCellStyle10;
             this.G_ProjectedCost.HeaderText = "G";
             this.G_ProjectedCost.MinimumWidth = 6;
             this.G_ProjectedCost.Name = "G_ProjectedCost";
@@ -1451,7 +1456,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.ImageKey = "Yes.bmp";
-            this.btnCancel.Location = new System.Drawing.Point(1069, 530);
+            this.btnCancel.Location = new System.Drawing.Point(1565, 694);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(97, 30);
@@ -1467,7 +1472,7 @@
             this.btnSave.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.ForeColor = System.Drawing.Color.Black;
-            this.btnSave.Location = new System.Drawing.Point(1171, 530);
+            this.btnSave.Location = new System.Drawing.Point(1667, 694);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(97, 30);
@@ -1581,7 +1586,7 @@
             this.flowLayoutPanel1.Controls.Add(this.cbColumn5);
             this.flowLayoutPanel1.Controls.Add(this.button1);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1067, -255);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(1387, -255);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(163, 730);
             this.flowLayoutPanel1.TabIndex = 11;
@@ -1929,7 +1934,7 @@
             // 
             this.listBoxWorkSheets.FormattingEnabled = true;
             this.listBoxWorkSheets.ItemHeight = 16;
-            this.listBoxWorkSheets.Location = new System.Drawing.Point(1005, 10);
+            this.listBoxWorkSheets.Location = new System.Drawing.Point(1430, 10);
             this.listBoxWorkSheets.Name = "listBoxWorkSheets";
             this.listBoxWorkSheets.Size = new System.Drawing.Size(120, 84);
             this.listBoxWorkSheets.TabIndex = 4;
@@ -1939,9 +1944,9 @@
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(19, 536);
+            this.progressBar1.Location = new System.Drawing.Point(19, 700);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1044, 23);
+            this.progressBar1.Size = new System.Drawing.Size(1540, 23);
             this.progressBar1.TabIndex = 12;
             this.progressBar1.Visible = false;
             // 
@@ -1956,12 +1961,52 @@
             this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // txtExtCostSubTotal
+            // 
+            this.txtExtCostSubTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtExtCostSubTotal.Location = new System.Drawing.Point(1167, 55);
+            this.txtExtCostSubTotal.Name = "txtExtCostSubTotal";
+            this.txtExtCostSubTotal.Size = new System.Drawing.Size(88, 22);
+            this.txtExtCostSubTotal.TabIndex = 14;
+            // 
+            // txtExtCostTotal
+            // 
+            this.txtExtCostTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtExtCostTotal.Location = new System.Drawing.Point(1064, 55);
+            this.txtExtCostTotal.Name = "txtExtCostTotal";
+            this.txtExtCostTotal.Size = new System.Drawing.Size(88, 22);
+            this.txtExtCostTotal.TabIndex = 15;
+            // 
+            // lblExtTotal
+            // 
+            this.lblExtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblExtTotal.AutoSize = true;
+            this.lblExtTotal.Location = new System.Drawing.Point(1063, 35);
+            this.lblExtTotal.Name = "lblExtTotal";
+            this.lblExtTotal.Size = new System.Drawing.Size(40, 17);
+            this.lblExtTotal.TabIndex = 16;
+            this.lblExtTotal.Text = "Total";
+            // 
+            // lblExtTotalSub
+            // 
+            this.lblExtTotalSub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblExtTotalSub.AutoSize = true;
+            this.lblExtTotalSub.Location = new System.Drawing.Point(1165, 35);
+            this.lblExtTotalSub.Name = "lblExtTotalSub";
+            this.lblExtTotalSub.Size = new System.Drawing.Size(69, 17);
+            this.lblExtTotalSub.TabIndex = 17;
+            this.lblExtTotalSub.Text = "Sub Total";
+            // 
             // FrmBOM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1278, 571);
+            this.ClientSize = new System.Drawing.Size(1774, 735);
+            this.Controls.Add(this.lblExtTotalSub);
+            this.Controls.Add(this.lblExtTotal);
+            this.Controls.Add(this.txtExtCostTotal);
+            this.Controls.Add(this.txtExtCostSubTotal);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.listBoxWorkSheets);
@@ -2164,6 +2209,10 @@
         private System.Windows.Forms.ToolStripMenuItem deleteRowSaleBOM;
         private System.Windows.Forms.ToolStripMenuItem deleteRowDesignBOM;
         private System.Windows.Forms.ToolStripMenuItem deleteRowActualBOM;
+        private System.Windows.Forms.TextBox txtExtCostSubTotal;
+        private System.Windows.Forms.TextBox txtExtCostTotal;
+        private System.Windows.Forms.Label lblExtTotal;
+        private System.Windows.Forms.Label lblExtTotalSub;
     }
 }
 
