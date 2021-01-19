@@ -83,8 +83,8 @@
             this.MenuStripLoad = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.loadBOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadChageOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.MenuStripSaleBOM.SuspendLayout();
             this.MenuStripDesignBOM.SuspendLayout();
@@ -745,16 +745,6 @@
             this.loadChageOrderToolStripMenuItem.Size = new System.Drawing.Size(162, 24);
             this.loadChageOrderToolStripMenuItem.Text = "Chage Order";
             // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(542, 399);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(817, 22);
-            this.textBox1.TabIndex = 21;
-            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -765,14 +755,22 @@
             this.label1.TabIndex = 22;
             this.label1.Text = "Description";
             // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBox1.Location = new System.Drawing.Point(542, 401);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(817, 22);
+            this.textBox1.TabIndex = 23;
+            // 
             // FrmMR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1371, 750);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.btnCancel);
@@ -844,7 +842,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3_2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4_2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5_2;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sr4;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartNo4;
@@ -855,6 +852,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ExtCost4;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice4;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExtPrice4;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

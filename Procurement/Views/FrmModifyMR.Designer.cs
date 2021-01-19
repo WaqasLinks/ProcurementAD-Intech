@@ -613,13 +613,11 @@
             // 
             // textBox1
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(542, 399);
-            this.textBox1.Multiline = true;
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBox1.Location = new System.Drawing.Point(543, 400);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(817, 22);
-            this.textBox1.TabIndex = 24;
+            this.textBox1.Size = new System.Drawing.Size(816, 22);
+            this.textBox1.TabIndex = 26;
             // 
             // FrmModifyMR
             // 
@@ -627,8 +625,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1371, 750);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbMRList);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView2);
@@ -678,7 +676,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbMRList;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sr4;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartNo4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description4;
@@ -698,6 +695,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ExtCost2;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExtPrice2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
