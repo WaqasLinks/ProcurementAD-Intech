@@ -16,6 +16,8 @@ using System.IO;
 using ExcelDataReader;
 using Procurement.CustomClasses;
 using DevExpress.XtraGrid.Views.Grid;
+using System.ComponentModel;
+using ClosedXML.Excel;
 
 namespace Procurement
 {
@@ -27,6 +29,7 @@ namespace Procurement
         DataTable _dtSalesBOM;
         DataTable _dtDesignBOM;
         DataTable _dtActualBOM;
+        DataTable _dtSummary;
         decimal _projectCode;
         bool _newMode;
         Project _currentLoadedProject;
@@ -152,9 +155,9 @@ namespace Procurement
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
             txtExtCostTotal.Visible = true;
-            txtExtCostSubTotal.Visible = true;
+            //txtExtCostSubTotal.Visible = true;
             lblExtTotal.Visible = true;
-            lblExtTotalSub.Visible = true;
+            //lblExtTotalSub.Visible = true;
             TabPage currentTab = (sender as TabControl).SelectedTab;
 
             if (currentTab.Name == "tabSaleBOM")
@@ -497,21 +500,22 @@ namespace Procurement
         {
             try
             {
-                
+
 
                 List<Summary> LstSummary = new List<Summary>();
                 Summary summary;
                 //Summary summary = new Summary { A_Category= "Project Code",B_Item = CurrentOpenProject.CurrentProject.ProjectCode,C_BidCost="",D_PlanCost="",E_ActualCost="",F_CostInFuture="",G_ProjectedCost=""};
                 int rowIdx = 0;
-                //row 0
+                //row 1
                 summary = new Summary { A_Category = "Project Code", B_Item = CurrentOpenProject.CurrentProject.ProjectCode };
                 LstSummary.Add(summary);
-                
-                //row 1
+                rowIdx += 1;
+
+                //row 2
                 summary = new Summary { A_Category = "Project Name", B_Item = CurrentOpenProject.CurrentProject.ProjectName };
                 LstSummary.Add(summary);
                 rowIdx += 1;
-                
+
 
 
                 // row 5
@@ -520,6 +524,7 @@ namespace Procurement
                 summary = new Summary { };
                 LstSummary.Add(summary);
                 rowIdx += 1;
+                int SummaryInsertionPoint = rowIdx;
                 // Column Names
                 summary = new Summary { A_Category = "Category", B_Item = "Item", C_BidCost = "BidCost", D_PlanCost = "PlanCost", G_ProjectedCost = "ProjectedCost", F_CostInFuture = "CostInFuture", E_ActualCost = "ActualCost" };
                 LstSummary.Add(summary);
@@ -596,12 +601,12 @@ namespace Procurement
 
                 foreach (var item in SalesGroupBy)
                 {
-                    if (!string.IsNullOrEmpty( item.ProductCategory.Trim()))
+                    if (!string.IsNullOrEmpty(item.ProductCategory.Trim()))
                     {
                         Keys.Add(item.ProductCategory.ToString());
                     }
-                        
-                    
+
+
                 }
 
                 foreach (var item in DesignGroupBy)
@@ -631,12 +636,17 @@ namespace Procurement
                     }
                 }
 
-
-                double salesGTotal = 0;
-                double designGTotal = 0;
-                double actualGTotal = 0;
-                double projectedGTotal = 0;
-                double futureGTotal = 0;
+                
+                double SalesGTotal = 0;
+                double DesignGTotal = 0;
+                double ActualGTotal = 0;
+                double ProjectedGTotal = 0;
+                double FutureGTotal = 0;
+                //--
+                double SalesExtTotalCost=0;
+                double DesignExtTotalCost=0;
+                double ActualExtTotalCost=0;
+                double ProjectedExtTotalCost=0;
                 //making actual summary list for all BOMs
                 foreach (string key in Keys)
                 {
@@ -645,26 +655,26 @@ namespace Procurement
 
                     //var SalesExtTotalCost = SalesgroupBy.FirstOrDefault(x => x.ProductCategory == key);
                     //SalesgroupBy.FirstOrDefault(x => x.ProductCategory == key) == null ? SalesExtTotalCost= 0 : SalesExtTotalCost=SalesgroupBy
-                    double SalesExtTotalCost;
+                    SalesExtTotalCost=0;
                     var sales = SalesGroupBy.Where(x => x.ProductCategory == key).FirstOrDefault();
                     if (sales == null) { SalesExtTotalCost = 0; } else { SalesExtTotalCost = sales.ExtCostTotal; }
-                    salesGTotal += SalesExtTotalCost;
-                    double DesignExtTotalCost;
+                    SalesGTotal += SalesExtTotalCost;
+                    DesignExtTotalCost=0;
                     var design = DesignGroupBy.Where(x => x.ProductCategory == key).FirstOrDefault();
                     if (design == null) { DesignExtTotalCost = 0; } else { DesignExtTotalCost = design.ExtCostTotal; }
-                    designGTotal += DesignExtTotalCost;
+                    DesignGTotal += DesignExtTotalCost;
 
-                    double ActualExtTotalCost;
+                    ActualExtTotalCost=0;
                     var actual = ActualGroupBy.Where(x => x.ProductCategory == key).FirstOrDefault();
                     if (actual == null) { ActualExtTotalCost = 0; } else { ActualExtTotalCost = actual.ExtCostTotal; }
-                    actualGTotal += ActualExtTotalCost;
+                    ActualGTotal += ActualExtTotalCost;
 
-                    double ProjectedExtTotalCost;
+                    ProjectedExtTotalCost=0;
                     var projected = ProjectedGroupBy.Where(x => x.ProductCategory == key).FirstOrDefault();
                     if (projected == null) { ProjectedExtTotalCost = 0; } else { ProjectedExtTotalCost = projected.ExtCostTotal; }
-                    projectedGTotal += ProjectedExtTotalCost;
+                    ProjectedGTotal += ProjectedExtTotalCost;
 
-                    futureGTotal += (ProjectedExtTotalCost - ActualExtTotalCost);
+                    FutureGTotal += (ProjectedExtTotalCost - ActualExtTotalCost);
 
                     summary = new Summary { A_Category = key, C_BidCost = SalesExtTotalCost.ToString(), D_PlanCost = DesignExtTotalCost.ToString(), G_ProjectedCost = ProjectedExtTotalCost.ToString(), F_CostInFuture = (ProjectedExtTotalCost - ActualExtTotalCost).ToString(), E_ActualCost = ActualExtTotalCost.ToString() };
 
@@ -672,19 +682,12 @@ namespace Procurement
                     rowIdx += 1;
 
                 }
+                summary = new Summary { C_BidCost = SalesGTotal.ToString(), D_PlanCost = DesignGTotal.ToString(), G_ProjectedCost = ProjectedGTotal.ToString(), F_CostInFuture = FutureGTotal.ToString(), E_ActualCost = ActualGTotal.ToString() };
+                LstSummary.Insert(SummaryInsertionPoint, summary);
+                rowIdx += 1;
 
-                summary = new Summary { A_Category = "Savings/Loss", B_Item = (designGTotal - actualGTotal).ToString() };
-                LstSummary.Insert(2, summary);
-                summary = new Summary { A_Category = "Cost Diviation", B_Item = ((designGTotal / actualGTotal) * 100 - 100).ToString() + "%" };
-                LstSummary.Insert(3, summary);
-                summary = new Summary { C_BidCost = salesGTotal.ToString(), D_PlanCost = designGTotal.ToString(), G_ProjectedCost = projectedGTotal.ToString(), F_CostInFuture = futureGTotal.ToString(), E_ActualCost = actualGTotal.ToString() };
-                LstSummary.Insert(5, summary);
 
                 //----------------new V ---------------
-                int COSummaryInsertionPoint = rowIdx;
-                summary = new Summary { A_Category = string.Empty, B_Item = string.Empty, C_BidCost = string.Empty, D_PlanCost = string.Empty, G_ProjectedCost = string.Empty, F_CostInFuture = string.Empty, E_ActualCost = string.Empty };
-                LstSummary.Add(summary);
-                rowIdx += 1;
 
                 summary = new Summary { A_Category = string.Empty, B_Item = string.Empty, C_BidCost = string.Empty, D_PlanCost = string.Empty, G_ProjectedCost = string.Empty, F_CostInFuture = string.Empty, E_ActualCost = string.Empty };
                 LstSummary.Add(summary);
@@ -694,7 +697,11 @@ namespace Procurement
                 LstSummary.Add(summary);
                 rowIdx += 1;
 
+                summary = new Summary { A_Category = string.Empty, B_Item = string.Empty, C_BidCost = string.Empty, D_PlanCost = string.Empty, G_ProjectedCost = string.Empty, F_CostInFuture = string.Empty, E_ActualCost = string.Empty };
+                LstSummary.Add(summary);
+                rowIdx += 1;
 
+                int CO_SummaryInsertionPoint = rowIdx;
                 summary = new Summary { A_Category = "Category", B_Item = "Item", C_BidCost = "BidCost", D_PlanCost = "PlanCost", G_ProjectedCost = "ProjectedCost", F_CostInFuture = "CostInFuture", E_ActualCost = "ActualCost" };
                 LstSummary.Add(summary);
                 rowIdx += 1;
@@ -770,7 +777,7 @@ namespace Procurement
                 foreach (var item in SalesGroupBy1)
                 {
                     if (!string.IsNullOrEmpty(item.ProductCategory.Trim()))
-                    { 
+                    {
                         Keys.Add(item.ProductCategory.ToString());
                     }
                 }
@@ -803,11 +810,16 @@ namespace Procurement
                 }
 
 
-                double salesGTotal1 = 0;
-                double designGTotal1 = 0;
-                double actualGTotal1 = 0;
-                double projectedGTotal1 = 0;
-                double futureGTotal1 = 0;
+                double SalesGTotal1 = 0;
+                double DesignGTotal1 = 0;
+                double ActualGTotal1 = 0;
+                double ProjectedGTotal1 = 0;
+                double FutureGTotal1 = 0;
+                //--
+                double SalesExtTotalCost1=0;
+                double DesignExtTotalCost1 = 0;
+                double ActualExtTotalCost1 = 0;
+                double ProjectedExtTotalCost1 = 0;
                 //making actual summary list for all BOMs
                 foreach (string key in Keys)
                 {
@@ -816,26 +828,26 @@ namespace Procurement
 
                     //var SalesExtTotalCost = SalesgroupBy.FirstOrDefault(x => x.ProductCategory == key);
                     //SalesgroupBy.FirstOrDefault(x => x.ProductCategory == key) == null ? SalesExtTotalCost= 0 : SalesExtTotalCost=SalesgroupBy
-                    double SalesExtTotalCost=0;
+                    SalesExtTotalCost1=0;
                     var sales = SalesGroupBy1.Where(x => x.ProductCategory == key).FirstOrDefault();
                     if (sales == null) { SalesExtTotalCost = 0; } else { SalesExtTotalCost = sales.ExtCostTotal; }
-                    salesGTotal1 += SalesExtTotalCost;
-                    double DesignExtTotalCost;
+                    SalesGTotal1 += SalesExtTotalCost;
+                    DesignExtTotalCost1=0;
                     var design = DesignGroupBy1.Where(x => x.ProductCategory == key).FirstOrDefault();
                     if (design == null) { DesignExtTotalCost = 0; } else { DesignExtTotalCost = design.ExtCostTotal; }
-                    designGTotal1 += DesignExtTotalCost;
+                    DesignGTotal1 += DesignExtTotalCost;
 
-                    double ActualExtTotalCost = 0;
+                    ActualExtTotalCost1=0;
                     var actual = ActualGroupBy1.Where(x => x.ProductCategory == key).FirstOrDefault();
                     if (actual == null) { ActualExtTotalCost = 0; } else { ActualExtTotalCost = actual.ExtCostTotal; }
-                    actualGTotal1 += ActualExtTotalCost;
+                    ActualGTotal1 += ActualExtTotalCost;
 
-                    double ProjectedExtTotalCost = 0;
+                    ProjectedExtTotalCost1 = 0;
                     var projected = ProjectedGroupBy1.Where(x => x.ProductCategory == key).FirstOrDefault();
                     if (projected == null) { ProjectedExtTotalCost = 0; } else { ProjectedExtTotalCost = projected.ExtCostTotal; }
-                    projectedGTotal1 += ProjectedExtTotalCost;
+                    ProjectedGTotal1 += ProjectedExtTotalCost;
 
-                    futureGTotal1 += (ProjectedExtTotalCost - ActualExtTotalCost);
+                    FutureGTotal1 += (ProjectedExtTotalCost - ActualExtTotalCost);
 
                     summary = new Summary { A_Category = key, C_BidCost = SalesExtTotalCost.ToString(), D_PlanCost = DesignExtTotalCost.ToString(), G_ProjectedCost = ProjectedExtTotalCost.ToString(), F_CostInFuture = (ProjectedExtTotalCost - ActualExtTotalCost).ToString(), E_ActualCost = ActualExtTotalCost.ToString() };
 
@@ -843,27 +855,33 @@ namespace Procurement
                     rowIdx += 1;
                 }
 
-                summary = new Summary { C_BidCost = salesGTotal1.ToString(), D_PlanCost = designGTotal1.ToString(), G_ProjectedCost = projectedGTotal1.ToString(), F_CostInFuture = futureGTotal1.ToString(), E_ActualCost = actualGTotal1.ToString() };
-                LstSummary.Insert(COSummaryInsertionPoint, summary);
+                summary = new Summary { C_BidCost = SalesGTotal1.ToString(), D_PlanCost = DesignGTotal1.ToString(), G_ProjectedCost = ProjectedGTotal1.ToString(), F_CostInFuture = FutureGTotal1.ToString(), E_ActualCost = ActualGTotal1.ToString() };
+                LstSummary.Insert(CO_SummaryInsertionPoint, summary);
+                rowIdx += 1;
+
+
+                summary = new Summary { A_Category = "Savings/Loss", B_Item = ((DesignGTotal + DesignGTotal1) - (ProjectedGTotal + ProjectedGTotal1)).ToString() };
+                LstSummary.Insert(2, summary);
+                rowIdx += 1;
+                summary = new Summary { A_Category = "Cost Diviation", B_Item = ((((DesignGTotal + DesignGTotal1) - (ProjectedGTotal + ProjectedGTotal1)) / (DesignGTotal + DesignGTotal1)).ToString() + "%") };
+                LstSummary.Insert(3, summary);
+                rowIdx += 1;
+
+                //All Totals
+                summary = new Summary { C_BidCost = (SalesGTotal + SalesGTotal1).ToString(), D_PlanCost = (DesignGTotal + DesignGTotal1).ToString(), G_ProjectedCost = (ProjectedGTotal + ProjectedGTotal1).ToString(), F_CostInFuture = (FutureGTotal + FutureGTotal1).ToString(), E_ActualCost = (ActualGTotal + ActualGTotal1).ToString() };
+                LstSummary.Insert(5, summary);
+                rowIdx += 1;
+
+                
+
+                
                 //----------------new ^ ---------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-                DataTable dtSummary = ToDataTable<Summary>(LstSummary);
-                dataGridView4.DataSource = dtSummary;
+                _dtSummary = ToDataTable<Summary>(LstSummary);
+                dataGridView4.DataSource = _dtSummary;
 
                 //Styling
-                dataGridView4.Rows[6].DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Bold);
+                dataGridView4.Rows[5].DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Bold);
             }
             catch (Exception ex)
             {
@@ -1828,7 +1846,17 @@ namespace Procurement
                                 {
                                     //dataGridView1.Rows[selectedrowIndex1].Cells[selectedColumnIndex1].Value = fields[i]; //price.ToString();
 
-                                    dataGridView1.SetRowCellValue(selectedrowIndex1, dataGridView1.Columns[selectedColumnIndex1], fields[i]);
+                                    string theValue = fields[i].Replace(" ", string.Empty).Replace("$", "").Replace(",", "");
+                                    string ValueWithOutDot = fields[i].Replace(" ", string.Empty).Replace("$", "").Replace(".", "").Replace(",", "");
+                                    if (IsNumeric(ValueWithOutDot))
+                                    {
+                                        dataGridView1.SetRowCellValue(selectedrowIndex1, dataGridView1.Columns[selectedColumnIndex1], theValue);
+                                    }
+                                    else
+                                    {
+                                        dataGridView1.SetRowCellValue(selectedrowIndex1, dataGridView1.Columns[selectedColumnIndex1], fields[i]);
+                                    }
+
                                 }
                                 selectedColumnIndex1 += 1;
 
@@ -1854,8 +1882,20 @@ namespace Procurement
 
                             for (int i = 0; i <= fields.Count() - 1; i++)
                             {
-                                //dataGridView2.Rows[selectedrowIndex2].Cells[selectedColumnIndex2].Value = fields[i]; //price.ToString();
-                                dataGridView2.SetRowCellValue(selectedrowIndex2, dataGridView1.Columns[selectedColumnIndex2], fields[i]);
+                                string theValue = fields[i].Replace(" ", string.Empty).Replace("$", "").Replace(",", "");
+                                string ValueWithOutDot = fields[i].Replace(" ", string.Empty).Replace("$", "").Replace(".", "").Replace(",", "");
+                                if (IsNumeric(ValueWithOutDot))
+                                {
+                                    //dataGridView2.Rows[selectedrowIndex2].Cells[selectedColumnIndex2].Value = fields[i]; //price.ToString();
+                                    dataGridView2.SetRowCellValue(selectedrowIndex2, dataGridView1.Columns[selectedColumnIndex2], theValue);
+                                }
+                                else
+                                {
+                                    //dataGridView2.Rows[selectedrowIndex2].Cells[selectedColumnIndex2].Value = fields[i]; //price.ToString();
+                                    dataGridView2.SetRowCellValue(selectedrowIndex2, dataGridView1.Columns[selectedColumnIndex2], fields[i]);
+                                }
+
+                                
                                 selectedColumnIndex2 += 1;
                             }
                             selectedColumnIndex2 = oringalcolumnIndex2;//dataGridView2.SelectedCells[0].ColumnIndex;
@@ -1878,8 +1918,19 @@ namespace Procurement
 
                             for (int i = 0; i <= fields.Count() - 1; i++)
                             {
-                                //dataGridView3.Rows[selectedrowIndex3].Cells[selectedColumnIndex3].Value = fields[i]; //price.ToString();
-                                dataGridView1.SetRowCellValue(selectedrowIndex3, dataGridView3.Columns[selectedColumnIndex3], fields[i]);
+                                
+                                string theValue = fields[i].Replace(" ", string.Empty).Replace("$", "").Replace(",","");
+                                string ValueWithOutDot= fields[i].Replace(" ", string.Empty).Replace("$", "").Replace(".","").Replace(",","");
+                                if (IsNumeric(ValueWithOutDot))
+                                {
+                                    //dataGridView2.Rows[selectedrowIndex2].Cells[selectedColumnIndex2].Value = fields[i]; //price.ToString();
+                                    dataGridView3.SetRowCellValue(selectedrowIndex3, dataGridView3.Columns[selectedColumnIndex3], theValue);
+                                }
+                                else
+                                {
+                                    //dataGridView2.Rows[selectedrowIndex2].Cells[selectedColumnIndex2].Value = fields[i]; //price.ToString();
+                                    dataGridView3.SetRowCellValue(selectedrowIndex3, dataGridView3.Columns[selectedColumnIndex3], fields[i]);
+                                }
                                 selectedColumnIndex3 += 1;
                             }
                             selectedColumnIndex3 = oringalcolumnIndex3;//dataGridView3.SelectedCells[0].ColumnIndex;
@@ -2727,8 +2778,151 @@ namespace Procurement
         {
             GetSummary();
         }
+        DataTable _exportDT;
+        SaveFileDialog _savefile;
+        private void btnExportXLS_Click(object sender, EventArgs e)
+        {
+            //ExportXLS_Method1(); export single datatable only;
+            ExportXLS_Method2();
+
+        }
+        private void ExportXLS_Method1()
+        {
+            progressBar1.Visible = true;
+            progressBar1.Step = 1;
+            progressBar1.Value = 0;
+
+            _exportDT = new DataTable();
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabSaleBOM"])
+            {
+                _exportDT = _dtSalesBOM;
+            }
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
+            {
+                _exportDT = _dtDesignBOM;
+            }
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
+            {
+                _exportDT = _dtActualBOM;
+            }
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabSummary"])
+            {
+                _exportDT = _dtSummary;
+            }
+
+            progressBar1.Maximum = _exportDT.Rows.Count - 1;
+
+            //--------------
+            _savefile = new SaveFileDialog();
+            // set a default file name
+            string datetime = DateTime.Now.ToString("yyyyMMddHHmmss");
+            datetime = datetime.Replace(":", "");
+
+            _savefile.FileName = _exportDT.TableName + " " + datetime + ".xlsx";
+            // set filters - this can be done in properties as well
+            _savefile.Filter = "Excel Workbook (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+
+            if (_savefile.ShowDialog() == DialogResult.OK)
+            {
+                backgroundWorker1.RunWorkerAsync();
+            }
+
+        }
+        private void ExportXLS_Method2()
+        {
+            _savefile = new SaveFileDialog();
+            // set a default file name
+            string datetime = DateTime.Now.ToString("yyyyMMddHHmmss");
+            datetime = datetime.Replace(":", "");
+
+            _savefile.FileName = "Control Sheet" + " " + datetime + ".xlsx";
+            // set filters - this can be done in properties as well
+            _savefile.Filter = "Excel Workbook (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+
+            if (_savefile.ShowDialog() == DialogResult.OK)
+            {
+
+                XLWorkbook wb = new XLWorkbook();
+
+                wb.Worksheets.Add(_dtSalesBOM, "Bid");
+                wb.Worksheets.Add(_dtDesignBOM, "Planned");
+                wb.Worksheets.Add(_dtActualBOM, "Actual");
+                wb.Worksheets.Add(_dtSummary, "Summary");
+                //wb.SaveAs(@"C:\test\control sheet.xlsx");
+                wb.SaveAs(_savefile.FileName);
+
+                MessageBox.Show("Exported successfully");
+            }
+        }
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            //var backgroundWorker = sender as BackgroundWorker;
+            ExportExl();
+        }
+        private void ExportExl()
+        {
+                        
+                ///////////////export to excel/////////////////
+                // Here is main process
+                Microsoft.Office.Interop.Excel.Application objexcelapp = new Microsoft.Office.Interop.Excel.Application();
+                objexcelapp.Application.Workbooks.Add(Type.Missing);
+                objexcelapp.Columns.AutoFit();
 
 
+                for (int i = 1; i < _exportDT.Columns.Count + 1; i++)
+                {
+                    Microsoft.Office.Interop.Excel.Range xlRange = (Microsoft.Office.Interop.Excel.Range)objexcelapp.Cells[1, i];
+                    xlRange.Font.Bold = -1;
+                    xlRange.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    xlRange.Borders.Weight = 1d;
+                    xlRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    objexcelapp.Cells[1, i] = _exportDT.Columns[i - 1].Caption;
+
+                }
+                //progressBar1.Maximum = exportDT.Rows.Count;
+                /*For storing Each row and column value to excel sheet*/
+                for (int i = 0; i < _exportDT.Rows.Count; i++)
+                {
+                    backgroundWorker1.ReportProgress(i);
+                    for (int j = 0; j < _exportDT.Columns.Count; j++)
+                    {
+                        //if (exportDT.Rows[i][j] != null)
+                        if (!string.IsNullOrEmpty(_exportDT.Rows[i][j].ToString()))
+                        {
+                            Microsoft.Office.Interop.Excel.Range xlRange = (Microsoft.Office.Interop.Excel.Range)objexcelapp.Cells[i + 2, j + 1];
+                            xlRange.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                            xlRange.Borders.Weight = 1d;
+                            objexcelapp.Cells[i + 2, j + 1] = _exportDT.Rows[i][j].ToString();
+                        }
+
+                    }
+                }
+                objexcelapp.Columns.AutoFit(); // Auto fix the columns size
+                //System.Windows.Forms.Application.DoEvents();
+                
+                //if (Directory.Exists("C:\\CTR_Data\\")) // Folder dic
+                //{
+                //    objexcelapp.ActiveWorkbook.SaveCopyAs("C:\\CTR_Data\\" + "excelFilename" + ".xlsx");
+                //}
+                //else
+                //{
+                //    Directory.CreateDirectory("C:\\CTR_Data\\");
+                //    objexcelapp.ActiveWorkbook.SaveCopyAs("C:\\CTR_Data\\" + "excelFilename" + ".xlsx");
+                //}
+
+                objexcelapp.ActiveWorkbook.SaveCopyAs(_savefile.FileName);
+                objexcelapp.ActiveWorkbook.Saved = true;
+                //System.Windows.Forms.Application.DoEvents();
+            MessageBox.Show("Exported successfully");
+
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar1.Value = e.ProgressPercentage;
+        }
+
+       
     }
 }
 
