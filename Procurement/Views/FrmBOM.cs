@@ -30,6 +30,8 @@ namespace Procurement
         DataTable _dtDesignBOM;
         DataTable _dtActualBOM;
         DataTable _dtSummary;
+        List<DataTable> _LstdtSalesBOM = new List<DataTable>();
+        int _SalesBOM_UndoRedo_Idx = -1;
         decimal _projectCode;
         bool _newMode;
         Project _currentLoadedProject;
@@ -40,6 +42,7 @@ namespace Procurement
         bool gFlag = false;
 
         decimal _ExtCostTotal = 0;
+        decimal _ExtCostSubTotal = 0;
         decimal _TotExtCost_CO = 0;
         //SingleTon 
         private static FrmBOM instance = null;
@@ -71,7 +74,8 @@ namespace Procurement
             //dx//dataGridView3.AllowUserToDeleteRows = false;
             try
             {
-
+                
+                //dataGridView1.footer//.IsShowRowFooters();// = true;
                 if (LoginInfo.LoginEmployee.EmployeeTypeCode == Constants.EMPLOYEE)
                 {
 
@@ -107,6 +111,8 @@ namespace Procurement
                     _dtSalesBOM.Columns.Remove("Project");
                     //dx//dataGridView1.AutoGenerateColumns = false;
                     gridControl1.DataSource = _dtSalesBOM;
+                    _SalesBOM_UndoRedo_Idx += 1;
+                    _LstdtSalesBOM.Insert(_SalesBOM_UndoRedo_Idx, _dtSalesBOM.Copy());
 
                     List<BOM> list2 = _currentLoadedProject.BOMs.Where(y => y.BOMTypeCode == 2).ToList();
                     _dtDesignBOM = ToDataTable<BOM>(list2);
@@ -1457,6 +1463,7 @@ namespace Procurement
         private void GetSetExtCostTotal(ref DataTable dataTable)
         {
             _ExtCostTotal = 0;
+            _ExtCostSubTotal = 0;
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 if (i == 0) continue;
@@ -1469,6 +1476,26 @@ namespace Procurement
             }
             //dataTable.Rows[0][18] = _TotExtCost;
             txtExtCostTotal.Text = _ExtCostTotal.ToString();
+
+            //still working on sub total. this code not summing correct. IsRowVisible is not returning correct rows. need some other handle row something.
+            //for (int i = 0; i < dataGridView1.DataRowCount; i++)
+            //{
+            //    var isRowVisible = dataGridView1.IsRowVisible(i);
+            //    if (isRowVisible == RowVisibleState.Visible)
+            //    {
+            //        DataRow row = dataGridView1.GetDataRow(i);
+            //        var varObj = row[18];//ExtCost
+            //        if (!(varObj == null || varObj == DBNull.Value))
+            //        {
+            //            _ExtCostSubTotal += Convert.ToDecimal(row[18]);
+            //        }
+            //    }
+            //}
+            //txtExtCostSubTotal.Text = _ExtCostSubTotal.ToString();
+
+            //var abccc= dataGridView2.Columns["ExtCost"].Summary.Add(DevExpress.Data.SummaryItemType.Sum, "TotalPrice", "Grand Total = {0:c2}");
+            //var abccc = dataGridView2.Columns["ExtCost"].Summary;
+
         }
         private void dataGridView3_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
@@ -1788,7 +1815,7 @@ namespace Procurement
                 //string[] lines = Regex.Split(s.TrimEnd("\r\n".ToCharArray()), "\r\n");
                 string[] fields;
 
-
+                
                 int rowCounter = 0;
                 bool IsPasteData = true;
                 foreach (string row in Rows.ToList<string>())
@@ -1872,6 +1899,7 @@ namespace Procurement
                         IsGridView1Changed = true;
                         break;
                     case 2:
+
                         ////////dxe////////////////////////////
                         int selectedrowIndex2 = dataGridView2.FocusedRowHandle;//dataGridView2.SelectedCells[0].RowIndex;
                         int selectedColumnIndex2 = dataGridView2.FocusedColumn.VisibleIndex;//dataGridView2.SelectedCells[0].ColumnIndex;
@@ -1951,7 +1979,260 @@ namespace Procurement
                 MessageBox.Show(ex.Message);
             }
         }
+        private void toolStripMenuItem_Insert_SalesBOM_Click(object sender, EventArgs e)
+        {
+            InsertColumnsAtPlaceFromExcel(ref _dtSalesBOM, 1);
+        }
+        private void toolStripMenuItem_Insert_DesignBOM_Click(object sender, EventArgs e)
+        {
+            InsertColumnsAtPlaceFromExcel(ref _dtDesignBOM, 2);
+        }
+        private void toolStripMenuItem_Insert_ActualBOM_Click(object sender, EventArgs e)
+        {
+            InsertColumnsAtPlaceFromExcel(ref _dtActualBOM, 3);
+        }
+        private void InsertColumnsAtPlaceFromExcel(ref DataTable dtRef, int gridviewNumber)
+        {
+            try
+            {
 
+
+                string excelData = Clipboard.GetText();
+                List<string> Rows = excelData.Split(new[] { "\r\n" }, StringSplitOptions.None).ToList<string>();
+
+                //mytab.Split(new[] { "\r\n" }, StringSplitOptions.None);
+                //string[] lines = excelData.Replace("\n", "").Split('\r');
+                //string[] lines = Regex.Split(s.TrimEnd("\r\n".ToCharArray()), "\r\n");
+                string[] fields;
+
+
+                int rowCounter = 0;
+                bool IsPasteData = true;
+                foreach (string row in Rows.ToList<string>())
+                {
+                    rowCounter += 1;
+                    fields = row.Split('\t');
+
+                    if (fields.Count() == 1 && fields[0] == string.Empty)
+                    {
+                        Rows.Remove(row);
+                        continue;
+
+                    }
+                    //If there is enter in row. then coloumn count in certain row will be less than 18
+                    //if (fields.Count() < 3)
+                    //{
+                    //    MessageBox.Show("Data not copied. There is a 'Enter' in Cell. Please remove 'Enter' after '" + fields.Last() + "' in column " + _columnNames[fields.Count() - 1] + " from Row number " + rowCounter);
+                    //    IsPasteData = false;
+                    //    break;
+                    //}
+                }
+                if (IsPasteData == false) return;
+                List<string> LSTdataColStr;
+                switch (gridviewNumber)
+                {
+
+
+                    case 1:
+                        
+                        int selectedrowIndex1 = dataGridView1.FocusedRowHandle;
+                        foreach (string row in Rows)
+                        {
+                            LSTdataColStr = new List<string>();
+                            fields = row.Split('\t');
+
+                            for (int i = 0; i <= fields.Count() - 1; i++)
+                            {
+                                string theValue = fields[i].Replace(" ", string.Empty).Replace("$", "").Replace(",", "");
+                                string ValueWithOutDot = fields[i].Replace(" ", string.Empty).Replace("$", "").Replace(".", "").Replace(",", "");
+                                if (IsNumeric(ValueWithOutDot))
+                                {
+                                    LSTdataColStr.Add(theValue);
+                                }
+                                else
+                                {
+                                    LSTdataColStr.Add(fields[i]);
+                                }
+
+                            }
+                            DataRow newRow = dtRef.NewRow();
+                            newRow["Category1"] = LSTdataColStr[0];
+                            newRow["Category2"] = LSTdataColStr[1];
+                            newRow["Category3"] = LSTdataColStr[2];
+                            newRow["SORef"] = LSTdataColStr[3];
+                            newRow["Sr"] = LSTdataColStr[4];
+                            newRow["ProductCategory"] = LSTdataColStr[5];
+                            newRow["Product"] = LSTdataColStr[6];
+                            newRow["CostHead"] = LSTdataColStr[7];
+                            newRow["CostSubHead"] = LSTdataColStr[8];
+                            newRow["System"] = LSTdataColStr[9];
+                            newRow["Area"] = LSTdataColStr[10];
+                            newRow["Panel"] = LSTdataColStr[11];
+                            newRow["Category"] = LSTdataColStr[12];
+                            newRow["Manufacturer"] = LSTdataColStr[13];
+                            newRow["PartNo"] = LSTdataColStr[14];
+                            newRow["Description"] = LSTdataColStr[15];
+                            newRow["Qty"] = LSTdataColStr[16];
+                            newRow["UnitCost"] = LSTdataColStr[17];
+                            newRow["ExtCost"] = LSTdataColStr[18];
+                            newRow["UnitPrice"] = LSTdataColStr[19];
+                            newRow["ExtPrice"] = LSTdataColStr[20];
+                            newRow["ChangeOrder"] = LSTdataColStr[21];
+                            newRow["Column1"] = LSTdataColStr[22];
+                            newRow["Column2"] = LSTdataColStr[23];
+                            newRow["Column3"] = LSTdataColStr[24];
+                            newRow["Column4"] = LSTdataColStr[25];
+                            newRow["Column5"] = LSTdataColStr[26];
+                            dtRef.Rows.InsertAt(newRow, selectedrowIndex1);
+                            selectedrowIndex1 += 1;
+                        }
+
+                        /////////////////////////////
+                        //gridControl1.DataSource = dtRef;
+                        IsGridView1Changed = true;
+                        break;
+                    case 2:
+                        
+                        int selectedrowIndex2 = dataGridView2.FocusedRowHandle;
+                        foreach (string row in Rows)
+                        {
+                            LSTdataColStr = new List<string>();
+                            fields = row.Split('\t');
+
+                            for (int i = 0; i <= fields.Count() - 1; i++)
+                            {
+                                string theValue = fields[i].Replace(" ", string.Empty).Replace("$", "").Replace(",", "");
+                                string ValueWithOutDot = fields[i].Replace(" ", string.Empty).Replace("$", "").Replace(".", "").Replace(",", "");
+                                if (IsNumeric(ValueWithOutDot))
+                                {
+                                    LSTdataColStr.Add(theValue);
+                                }
+                                else
+                                {
+                                    LSTdataColStr.Add(fields[i]);
+                                }
+                                
+                            }
+                            DataRow newRow = dtRef.NewRow();
+                            newRow["Category1"] = LSTdataColStr[0];
+                            newRow["Category2"] = LSTdataColStr[1];
+                            newRow["Category3"] = LSTdataColStr[2];
+                            newRow["SORef"] = LSTdataColStr[3];
+                            newRow["Sr"] = LSTdataColStr[4];
+                            newRow["ProductCategory"] = LSTdataColStr[5];
+                            newRow["Product"] = LSTdataColStr[6];
+                            newRow["CostHead"] = LSTdataColStr[7];
+                            newRow["CostSubHead"] = LSTdataColStr[8];
+                            newRow["System"] = LSTdataColStr[9];
+                            newRow["Area"] = LSTdataColStr[10];
+                            newRow["Panel"] = LSTdataColStr[11];
+                            newRow["Category"] = LSTdataColStr[12];
+                            newRow["Manufacturer"] = LSTdataColStr[13];
+                            newRow["PartNo"] = LSTdataColStr[14];
+                            newRow["Description"] = LSTdataColStr[15];
+                            newRow["Qty"] = LSTdataColStr[16];
+                            newRow["UnitCost"] = LSTdataColStr[17];
+                            newRow["ExtCost"] = LSTdataColStr[18];
+                            newRow["UnitPrice"] = LSTdataColStr[19];
+                            newRow["ExtPrice"] = LSTdataColStr[20];
+                            newRow["ChangeOrder"] = LSTdataColStr[21];
+                            newRow["Column1"] = LSTdataColStr[22];
+                            newRow["Column2"] = LSTdataColStr[23];
+                            newRow["Column3"] = LSTdataColStr[24];
+                            newRow["Column4"] = LSTdataColStr[25];
+                            newRow["Column5"] = LSTdataColStr[26];
+                            dtRef.Rows.InsertAt(newRow, selectedrowIndex2);
+                            selectedrowIndex2 += 1;
+                        }
+
+                        /////////////////////////////
+                        //gridControl2.DataSource = dtRef;
+                        IsGridView2Changed = true;
+                        break;
+                    case 3:
+                        int selectedrowIndex3 = dataGridView3.FocusedRowHandle;
+                        foreach (string row in Rows)
+                        {
+                            LSTdataColStr = new List<string>();
+                            fields = row.Split('\t');
+
+                            for (int i = 0; i <= fields.Count() - 1; i++)
+                            {
+                                string theValue = fields[i].Replace(" ", string.Empty).Replace("$", "").Replace(",", "");
+                                string ValueWithOutDot = fields[i].Replace(" ", string.Empty).Replace("$", "").Replace(".", "").Replace(",", "");
+                                if (IsNumeric(ValueWithOutDot))
+                                {
+                                    LSTdataColStr.Add(theValue);
+                                }
+                                else
+                                {
+                                    LSTdataColStr.Add(fields[i]);
+                                }
+
+                            }
+                            DataRow newRow = dtRef.NewRow();
+                            newRow["Category1"] = LSTdataColStr[0];
+                            newRow["Category2"] = LSTdataColStr[1];
+                            newRow["Category3"] = LSTdataColStr[2];
+                            newRow["SORef"] = LSTdataColStr[3];
+                            newRow["Sr"] = LSTdataColStr[4];
+                            newRow["ProductCategory"] = LSTdataColStr[5];
+                            newRow["Product"] = LSTdataColStr[6];
+                            newRow["CostHead"] = LSTdataColStr[7];
+                            newRow["CostSubHead"] = LSTdataColStr[8];
+                            newRow["System"] = LSTdataColStr[9];
+                            newRow["Area"] = LSTdataColStr[10];
+                            newRow["Panel"] = LSTdataColStr[11];
+                            newRow["Category"] = LSTdataColStr[12];
+                            newRow["Manufacturer"] = LSTdataColStr[13];
+                            newRow["PartNo"] = LSTdataColStr[14];
+                            newRow["Description"] = LSTdataColStr[15];
+                            newRow["Qty"] = LSTdataColStr[16];
+                            newRow["UnitCost"] = LSTdataColStr[17];
+                            newRow["ExtCost"] = LSTdataColStr[18];
+                            newRow["UnitPrice"] = LSTdataColStr[19];
+                            newRow["ExtPrice"] = LSTdataColStr[20];
+                            newRow["ChangeOrder"] = LSTdataColStr[21];
+                            newRow["Column1"] = LSTdataColStr[22];
+                            newRow["Column2"] = LSTdataColStr[23];
+                            newRow["Column3"] = LSTdataColStr[24];
+                            newRow["Column4"] = LSTdataColStr[25];
+                            newRow["Column5"] = LSTdataColStr[26];
+                            dtRef.Rows.InsertAt(newRow, selectedrowIndex3);
+                            selectedrowIndex3 += 1;
+                        }
+
+                        /////////////////////////////
+                        //gridControl3.DataSource = dtRef;
+                        IsGridView3Changed = true;
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void toolStripMenuSales_InsertEmptyRow_Click(object sender, EventArgs e)
+        {
+            int selectedrowIndex = dataGridView1.FocusedRowHandle;
+            DataRow newRow = _dtSalesBOM.NewRow();
+            _dtSalesBOM.Rows.InsertAt(newRow, selectedrowIndex);
+        }
+        private void toolStripMenuDesign_InsertEmptyRow_Click(object sender, EventArgs e)
+        {
+            int selectedrowIndex = dataGridView2.FocusedRowHandle;
+            DataRow newRow = _dtDesignBOM.NewRow();
+            _dtDesignBOM.Rows.InsertAt(newRow, selectedrowIndex);
+        }
+        private void toolStripMenuActual_InsertEmptyRow_Click(object sender, EventArgs e)
+        {
+            int selectedrowIndex = dataGridView3.FocusedRowHandle;
+            DataRow newRow = _dtActualBOM.NewRow();
+            _dtActualBOM.Rows.InsertAt(newRow, selectedrowIndex);
+        }
         private void pasteMe_Click(object sender, EventArgs e)
         {
             ////////dxe////////////////////////////
@@ -2465,6 +2746,7 @@ namespace Procurement
         }
         public void DeleteRow()
         {
+            
             //showDeleteConfirmation = false;
             DialogResult dialogResult = MessageBox.Show("Do you want to delete row(s)?", "Confirmation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No) return;
@@ -2482,6 +2764,8 @@ namespace Procurement
                 dataGridView1.DeleteSelectedRows();
                 GetSetExtCostTotal(ref _dtSalesBOM);
                 IsGridView1Changed = true;
+                _SalesBOM_UndoRedo_Idx += 1;
+                _LstdtSalesBOM.Insert(_SalesBOM_UndoRedo_Idx,_dtSalesBOM.Copy());
             }
             if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
             {
@@ -2766,9 +3050,31 @@ namespace Procurement
 
         private void button2_Click(object sender, EventArgs e)
         {
-            GetSummary();
-        }
+            //GetSummary();
+            //List<DataTable> LstdataTables = new List<DataTable>();
+            //for (int i=1; i<200; i++)
+            //{
+            //    LstdataTables.Add(_dtDesignBOM.Copy());
 
+            //}
+            //MessageBox.Show("200");
+            //undo
+            
+            
+            if (_SalesBOM_UndoRedo_Idx == 0) return;
+            _SalesBOM_UndoRedo_Idx -= 1;
+            gridControl1.DataSource = _LstdtSalesBOM[_SalesBOM_UndoRedo_Idx].Copy();
+            //_LstdtSalesBOM.RemoveAt(_SalesBOM_UndoRedo_Idx);
+
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //redo
+            if (_SalesBOM_UndoRedo_Idx == _LstdtSalesBOM.Count - 1) return;
+            _SalesBOM_UndoRedo_Idx += 1;
+            gridControl1.DataSource = _LstdtSalesBOM[_SalesBOM_UndoRedo_Idx].Copy();
+            //_LstdtSalesBOM.RemoveAt(_SalesBOM_UndoRedo_Idx);
+        }
         private void tabSummary_Click(object sender, EventArgs e)
         {
             //GetSummary();
@@ -2788,6 +3094,7 @@ namespace Procurement
         }
         private void ExportXLS_Method1()
         {
+            
             progressBar1.Visible = true;
             progressBar1.Step = 1;
             progressBar1.Value = 0;
@@ -2830,6 +3137,7 @@ namespace Procurement
         }
         private void ExportXLS_Method2()
         {
+            
             _savefile = new SaveFileDialog();
             // set a default file name
             string datetime = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -2841,7 +3149,7 @@ namespace Procurement
 
             if (_savefile.ShowDialog() == DialogResult.OK)
             {
-
+                tabControl1.SelectedTab  = tabControl1.TabPages["tabSummary"];
                 XLWorkbook wb = new XLWorkbook();
 
                 wb.Worksheets.Add(_dtSalesBOM, "Bid");
@@ -2922,7 +3230,7 @@ namespace Procurement
             progressBar1.Value = e.ProgressPercentage;
         }
 
-       
+        
     }
 }
 
