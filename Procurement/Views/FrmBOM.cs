@@ -532,19 +532,20 @@ namespace Procurement
                 rowIdx += 1;
                 int SummaryInsertionPoint = rowIdx;
                 // Column Names
-                summary = new Summary { A_Category = "Category", B_Item = "Item", C_BidCost = "BidCost", D_PlanCost = "PlanCost", G_ProjectedCost = "ProjectedCost", F_CostInFuture = "CostInFuture", E_ActualCost = "ActualCost" };
+                summary = new Summary {H_ChangeOrder="MainOrder",  A_Category = "CostHead", B_Item = "CostSubHead", C_BidCost = "BidCost", D_PlanCost = "PlanCost", G_ProjectedCost = "ProjectedCost", F_CostInFuture = "CostInFuture", E_ActualCost = "ActualCost" };
                 LstSummary.Add(summary);
                 rowIdx += 1;
 
                 //------------------------------------------------------------
                 var SalesGroupBy = _dtSalesBOM.AsEnumerable().Where(x => string.IsNullOrEmpty(x.Field<string>("ChangeOrder"))).GroupBy(d => new
                 {
-                    productCategory = d.Field<string>("ProductCategory"),
+                    productCategory1 = d.Field<string>("CostHead"),
+                    productCategory2 = d.Field<string>("CostSubHead"),
                 })
                        .Select(x => new
                        {
-                           ProductCategory = x.Key.productCategory,
-
+                           ProductCategory1 = x.Key.productCategory1,
+                           productCategory2 = x.Key.productCategory2,
                            //replace ItemArray Index with appropriate values in your code
                            //ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
 
@@ -561,88 +562,109 @@ namespace Procurement
                 //DataTable dt = (DataTable)grouped;
                 //grouped.Dump();
                 //------------------------------------------------------------
+                //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
                 var DesignGroupBy = _dtDesignBOM.AsEnumerable().Where(x => string.IsNullOrEmpty(x.Field<string>("ChangeOrder"))).GroupBy(d => new
                 {
-                    productCategory = d.Field<string>("ProductCategory"),
+                    productCategory1 = d.Field<string>("CostHead"),
+                    productCategory2 = d.Field<string>("CostSubHead"),
                 })
                        .Select(x => new
                        {
-                           ProductCategory = x.Key.productCategory,
+                           ProductCategory1 = x.Key.productCategory1,
+                           productCategory2 = x.Key.productCategory2,
 
                            //replace ItemArray Index with appropriate values in your code
                            //ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
                            ExtCostTotal = x.Sum(y => Convert.ToDouble(y.Field<decimal?>("ExtCost") == null ? 0 : y.Field<decimal>("ExtCost")))
                        });
-                //------------------------------------------------------------
+                ////------------------------------------------------------------
                 var ActualGroupBy = _dtActualBOM.AsEnumerable().Where(x => string.IsNullOrEmpty(x.Field<string>("ChangeOrder"))).GroupBy(d => new
                 {
-                    productCategory = d.Field<string>("ProductCategory"),
+                    productCategory1 = d.Field<string>("CostHead"),
+                    productCategory2 = d.Field<string>("CostSubHead"),
                 })
                        .Select(x => new
                        {
-                           ProductCategory = x.Key.productCategory,
+                           ProductCategory1 = x.Key.productCategory1,
+                           productCategory2 = x.Key.productCategory2,
 
                            //replace ItemArray Index with appropriate values in your code
                            //ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
 
                            ExtCostTotal = x.Sum(y => Convert.ToDouble((y.Field<decimal?>("ExtCost") == null) ? 0 : string.IsNullOrEmpty(y.Field<string>("Column1")) ? 0 : y.Field<decimal>("ExtCost")))
                        });
-                //------------------------------------------------------------
+                ////------------------------------------------------------------
                 var ProjectedGroupBy = _dtActualBOM.AsEnumerable().Where(x => string.IsNullOrEmpty(x.Field<string>("ChangeOrder"))).GroupBy(d => new
                 {
-                    productCategory = d.Field<string>("ProductCategory"),
+                    productCategory1 = d.Field<string>("CostHead"),
+                    productCategory2 = d.Field<string>("CostSubHead"),
                 })
                        .Select(x => new
                        {
-                           ProductCategory = x.Key.productCategory,
+                           ProductCategory1 = x.Key.productCategory1,
+                           productCategory2 = x.Key.productCategory2,
 
                            //replace ItemArray Index with appropriate values in your code
                            //ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
 
                            ExtCostTotal = x.Sum(y => Convert.ToDouble(y.Field<decimal?>("ExtCost") == null ? 0 : y.Field<decimal>("ExtCost")))
                        });
-                //------------------------------------------------------------
+                //$$$$$$$$$------------------------------------------------------------
                 //collect name of productCategory from every bom
                 List<string> Keys = new List<string>();
 
                 foreach (var item in SalesGroupBy)
                 {
-                    if (!string.IsNullOrEmpty(item.ProductCategory.Trim()))
-                    {
-                        Keys.Add(item.ProductCategory.ToString());
-                    }
-
-
+                    //if (!string.IsNullOrEmpty(item.ProductCategory1.Trim()))
+                    //{
+                        if (!Keys.Contains(item.ProductCategory1 + "@#$" + item.productCategory2))
+                        {
+                            Keys.Add(item.ProductCategory1 + "@#$" + item.productCategory2);
+                        }
+                        //Keys.Add();
+                    //}
                 }
-
+                //$$$$$$$$$
                 foreach (var item in DesignGroupBy)
                 {
-                    bool isHere = Keys.Any(x => x == item.ProductCategory);
-                    if (isHere == false && !string.IsNullOrEmpty(item.ProductCategory.Trim()))
+                    //bool isHere = Keys.Any(x => x == item.ProductCategory);
+                    //if (isHere == false && !string.IsNullOrEmpty(item.ProductCategory.Trim()))
+                    //{
+                    //    Keys.Add(item.ProductCategory.ToString());
+                    //}
+                    if (!Keys.Contains(item.ProductCategory1 + "@#$" + item.productCategory2))
                     {
-                        Keys.Add(item.ProductCategory.ToString());
+                        Keys.Add(item.ProductCategory1 + "@#$" + item.productCategory2);
                     }
-
                 }
                 foreach (var item in ActualGroupBy)
                 {
-                    bool isHere = Keys.Any(x => x == item.ProductCategory);
-                    if (isHere == false && !string.IsNullOrEmpty(item.ProductCategory.Trim()))
+                    //bool isHere = Keys.Any(x => x == item.ProductCategory);
+                    //if (isHere == false && !string.IsNullOrEmpty(item.ProductCategory.Trim()))
+                    //{
+                    //    Keys.Add(item.ProductCategory.ToString());
+                    //}
+                    if (!Keys.Contains(item.ProductCategory1 + "@#$" + item.productCategory2))
                     {
-                        Keys.Add(item.ProductCategory.ToString());
+                        Keys.Add(item.ProductCategory1 + "@#$" + item.productCategory2);
                     }
                 }
 
                 foreach (var item in ProjectedGroupBy)
                 {
-                    bool isHere = Keys.Any(x => x == item.ProductCategory);
-                    if (isHere == false && !string.IsNullOrEmpty(item.ProductCategory.Trim()))
+                    //bool isHere = Keys.Any(x => x == item.ProductCategory);
+                    //if (isHere == false && !string.IsNullOrEmpty(item.ProductCategory.Trim()))
+                    //{
+                    //    Keys.Add(item.ProductCategory.ToString());
+                    //}
+                    if (!Keys.Contains(item.ProductCategory1 + "@#$" + item.productCategory2))
                     {
-                        Keys.Add(item.ProductCategory.ToString());
+                        Keys.Add(item.ProductCategory1 + "@#$" + item.productCategory2);
                     }
                 }
+                //$$$$$$$$$
 
-                
                 double SalesGTotal = 0;
                 double DesignGTotal = 0;
                 double ActualGTotal = 0;
@@ -656,39 +678,47 @@ namespace Procurement
                 //making actual summary list for all BOMs
                 foreach (string key in Keys)
                 {
+
+                    List<string> p1p2 = key.Split(new[] { "@#$" }, StringSplitOptions.None).ToList<string>();
+
+                    string p1 = p1p2.First(); //key.Split(new[] { "@#$" },StringSplitOptions.None).First();
+                    string p2 = p1p2.Last();//key.Split(new[] { "@#$" }, StringSplitOptions.None).Last();
+
+                    //string p2=
                     //SalesgroupBy//DesignGroupBy//ActualGroupBy
                     //ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
 
                     //var SalesExtTotalCost = SalesgroupBy.FirstOrDefault(x => x.ProductCategory == key);
                     //SalesgroupBy.FirstOrDefault(x => x.ProductCategory == key) == null ? SalesExtTotalCost= 0 : SalesExtTotalCost=SalesgroupBy
-                    SalesExtTotalCost=0;
-                    var sales = SalesGroupBy.Where(x => x.ProductCategory == key).FirstOrDefault();
+                    SalesExtTotalCost =0;
+                    var sales = SalesGroupBy.Where(x => x.ProductCategory1 == p1 && x.productCategory2==p2).FirstOrDefault();
                     if (sales == null) { SalesExtTotalCost = 0; } else { SalesExtTotalCost = sales.ExtCostTotal; }
                     SalesGTotal += SalesExtTotalCost;
-                    DesignExtTotalCost=0;
-                    var design = DesignGroupBy.Where(x => x.ProductCategory == key).FirstOrDefault();
+                    //$$$$$
+                    DesignExtTotalCost = 0;
+                    var design = DesignGroupBy.Where(x => x.ProductCategory1 == p1 && x.productCategory2 == p2).FirstOrDefault();
                     if (design == null) { DesignExtTotalCost = 0; } else { DesignExtTotalCost = design.ExtCostTotal; }
                     DesignGTotal += DesignExtTotalCost;
 
-                    ActualExtTotalCost=0;
-                    var actual = ActualGroupBy.Where(x => x.ProductCategory == key).FirstOrDefault();
+                    ActualExtTotalCost = 0;
+                    var actual = ActualGroupBy.Where(x => x.ProductCategory1 == p1 && x.productCategory2 == p2).FirstOrDefault();
                     if (actual == null) { ActualExtTotalCost = 0; } else { ActualExtTotalCost = actual.ExtCostTotal; }
                     ActualGTotal += ActualExtTotalCost;
 
-                    ProjectedExtTotalCost=0;
-                    var projected = ProjectedGroupBy.Where(x => x.ProductCategory == key).FirstOrDefault();
+                    ProjectedExtTotalCost = 0;
+                    var projected = ProjectedGroupBy.Where(x => x.ProductCategory1 == p1 && x.productCategory2 == p2).FirstOrDefault();
                     if (projected == null) { ProjectedExtTotalCost = 0; } else { ProjectedExtTotalCost = projected.ExtCostTotal; }
                     ProjectedGTotal += ProjectedExtTotalCost;
-
+                    //$$$$$
                     FutureGTotal += (ProjectedExtTotalCost - ActualExtTotalCost);
 
-                    summary = new Summary { A_Category = key, C_BidCost = SalesExtTotalCost.ToString(), D_PlanCost = DesignExtTotalCost.ToString(), G_ProjectedCost = ProjectedExtTotalCost.ToString(), F_CostInFuture = (ProjectedExtTotalCost - ActualExtTotalCost).ToString(), E_ActualCost = ActualExtTotalCost.ToString() };
+                    summary = new Summary { H_ChangeOrder="Main Order", A_Category = p1, B_Item = p2, C_BidCost = SalesExtTotalCost.ToString(), D_PlanCost = DesignExtTotalCost.ToString(), G_ProjectedCost = ProjectedExtTotalCost.ToString(), F_CostInFuture = (ProjectedExtTotalCost - ActualExtTotalCost).ToString(), E_ActualCost = ActualExtTotalCost.ToString() };
 
                     LstSummary.Add(summary);
                     rowIdx += 1;
 
                 }
-                summary = new Summary { C_BidCost = SalesGTotal.ToString(), D_PlanCost = DesignGTotal.ToString(), G_ProjectedCost = ProjectedGTotal.ToString(), F_CostInFuture = FutureGTotal.ToString(), E_ActualCost = ActualGTotal.ToString() };
+                summary = new Summary {  C_BidCost = SalesGTotal.ToString(), D_PlanCost = DesignGTotal.ToString(), G_ProjectedCost = ProjectedGTotal.ToString(), F_CostInFuture = FutureGTotal.ToString(), E_ActualCost = ActualGTotal.ToString() };
                 LstSummary.Insert(SummaryInsertionPoint, summary);
                 rowIdx += 1;
 
@@ -707,18 +737,23 @@ namespace Procurement
                 LstSummary.Add(summary);
                 rowIdx += 1;
 
-                int CO_SummaryInsertionPoint = rowIdx;
-                summary = new Summary { A_Category = "Category", B_Item = "Item", C_BidCost = "BidCost", D_PlanCost = "PlanCost", G_ProjectedCost = "ProjectedCost", F_CostInFuture = "CostInFuture", E_ActualCost = "ActualCost" };
+                int ChangeOrder_SummaryInsertionPoint = rowIdx;
+                summary = new Summary { A_Category = "CostHead", B_Item = "CostSubHead", C_BidCost = "BidCost", D_PlanCost = "PlanCost", G_ProjectedCost = "ProjectedCost", F_CostInFuture = "CostInFuture", E_ActualCost = "ActualCost" };
                 LstSummary.Add(summary);
                 rowIdx += 1;
                 //------------------------------------------------------------
                 var SalesGroupBy1 = _dtSalesBOM.AsEnumerable().Where(x => !string.IsNullOrEmpty(x.Field<string>("ChangeOrder"))).GroupBy(d => new
                 {
-                    productCategory = d.Field<string>("ProductCategory"),
+                    productCategory1 = d.Field<string>("CostHead"),
+                    productCategory2 = d.Field<string>("CostSubHead"),
+                    productCategory3 = d.Field<string>("ChangeOrder"),
+                    
                 })
                        .Select(x => new
                        {
-                           ProductCategory = x.Key.productCategory,
+                           ProductCategory1 = x.Key.productCategory1,
+                           productCategory2 = x.Key.productCategory2,
+                           productCategory3 = x.Key.productCategory3,
 
                            //replace ItemArray Index with appropriate values in your code
                            //ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
@@ -738,11 +773,15 @@ namespace Procurement
                 //------------------------------------------------------------
                 var DesignGroupBy1 = _dtDesignBOM.AsEnumerable().Where(x => !string.IsNullOrEmpty(x.Field<string>("ChangeOrder"))).GroupBy(d => new
                 {
-                    productCategory = d.Field<string>("ProductCategory"),
+                    productCategory1 = d.Field<string>("CostHead"),
+                    productCategory2 = d.Field<string>("CostSubHead"),
+                    productCategory3 = d.Field<string>("ChangeOrder"),
                 })
                        .Select(x => new
                        {
-                           ProductCategory = x.Key.productCategory,
+                           ProductCategory1 = x.Key.productCategory1,
+                           productCategory2 = x.Key.productCategory2,
+                           productCategory3 = x.Key.productCategory3,
 
                            //replace ItemArray Index with appropriate values in your code
                            //ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
@@ -751,11 +790,15 @@ namespace Procurement
                 //------------------------------------------------------------
                 var ActualGroupBy1 = _dtActualBOM.AsEnumerable().Where(x => !string.IsNullOrEmpty(x.Field<string>("ChangeOrder"))).GroupBy(d => new
                 {
-                    productCategory = d.Field<string>("ProductCategory"),
+                    productCategory1 = d.Field<string>("CostHead"),
+                    productCategory2 = d.Field<string>("CostSubHead"),
+                    productCategory3 = d.Field<string>("ChangeOrder"),
                 })
                        .Select(x => new
                        {
-                           ProductCategory = x.Key.productCategory,
+                           ProductCategory1 = x.Key.productCategory1,
+                           productCategory2 = x.Key.productCategory2,
+                           productCategory3 = x.Key.productCategory3,
 
                            //replace ItemArray Index with appropriate values in your code
                            //ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
@@ -765,11 +808,15 @@ namespace Procurement
                 //------------------------------------------------------------
                 var ProjectedGroupBy1 = _dtActualBOM.AsEnumerable().Where(x => !string.IsNullOrEmpty(x.Field<string>("ChangeOrder"))).GroupBy(d => new
                 {
-                    productCategory = d.Field<string>("ProductCategory"),
+                    productCategory1 = d.Field<string>("CostHead"),
+                    productCategory2 = d.Field<string>("CostSubHead"),
+                    productCategory3 = d.Field<string>("ChangeOrder"),
                 })
                        .Select(x => new
                        {
-                           ProductCategory = x.Key.productCategory,
+                           ProductCategory1 = x.Key.productCategory1,
+                           productCategory2 = x.Key.productCategory2,
+                           productCategory3 = x.Key.productCategory3,
 
                            //replace ItemArray Index with appropriate values in your code
                            //ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
@@ -782,36 +829,33 @@ namespace Procurement
 
                 foreach (var item in SalesGroupBy1)
                 {
-                    if (!string.IsNullOrEmpty(item.ProductCategory.Trim()))
+                    if (!Keys.Contains(item.ProductCategory1 + "@#$" + item.productCategory2 + "@#$" + item.productCategory3))
                     {
-                        Keys.Add(item.ProductCategory.ToString());
+                        Keys.Add(item.ProductCategory1 + "@#$" + item.productCategory2 + "@#$" + item.productCategory3);
                     }
                 }
 
                 foreach (var item in DesignGroupBy1)
                 {
-                    bool isHere = Keys.Any(x => x == item.ProductCategory);
-                    if (isHere == false && !string.IsNullOrEmpty(item.ProductCategory.Trim()))
+                    if (!Keys.Contains(item.ProductCategory1 + "@#$" + item.productCategory2 + "@#$" + item.productCategory3))
                     {
-                        Keys.Add(item.ProductCategory.ToString());
+                        Keys.Add(item.ProductCategory1 + "@#$" + item.productCategory2 + "@#$" + item.productCategory3);
                     }
 
                 }
                 foreach (var item in ActualGroupBy1)
                 {
-                    bool isHere = Keys.Any(x => x == item.ProductCategory);
-                    if (isHere == false && !string.IsNullOrEmpty(item.ProductCategory.Trim()))
+                    if (!Keys.Contains(item.ProductCategory1 + "@#$" + item.productCategory2 + "@#$" + item.productCategory3))
                     {
-                        Keys.Add(item.ProductCategory.ToString());
+                        Keys.Add(item.ProductCategory1 + "@#$" + item.productCategory2 + "@#$" + item.productCategory3);
                     }
                 }
 
                 foreach (var item in ProjectedGroupBy1)
                 {
-                    bool isHere = Keys.Any(x => x == item.ProductCategory);
-                    if (isHere == false && !string.IsNullOrEmpty(item.ProductCategory.Trim()))
+                    if (!Keys.Contains(item.ProductCategory1 + "@#$" + item.productCategory2 + "@#$" + item.productCategory3))
                     {
-                        Keys.Add(item.ProductCategory.ToString());
+                        Keys.Add(item.ProductCategory1 + "@#$" + item.productCategory2 + "@#$" + item.productCategory3);
                     }
                 }
 
@@ -829,47 +873,53 @@ namespace Procurement
                 //making actual summary list for all BOMs
                 foreach (string key in Keys)
                 {
+                    List<string> p1p2p3 = key.Split(new[] { "@#$" }, StringSplitOptions.None).ToList<string>();
+
+                    string p1 = p1p2p3[0]; //key.Split(new[] { "@#$" },StringSplitOptions.None).First();
+                    string p2 = p1p2p3[1];//key.Split(new[] { "@#$" }, StringSplitOptions.None).Last();
+                    string p3 = p1p2p3[2];
+
                     //SalesgroupBy//DesignGroupBy//ActualGroupBy
                     //ExtCostTotal = x.Sum(y => Convert.ToDouble(string.IsNullOrEmpty(y.Field<string>("ExtCost")) ? "0" : y.Field<string>("ExtCost")))
 
                     //var SalesExtTotalCost = SalesgroupBy.FirstOrDefault(x => x.ProductCategory == key);
                     //SalesgroupBy.FirstOrDefault(x => x.ProductCategory == key) == null ? SalesExtTotalCost= 0 : SalesExtTotalCost=SalesgroupBy
-                    SalesExtTotalCost1=0;
-                    var sales = SalesGroupBy1.Where(x => x.ProductCategory == key).FirstOrDefault();
+                    SalesExtTotalCost1 =0;
+                    var sales = SalesGroupBy1.Where(x => x.ProductCategory1 == p1 && x.productCategory2 == p2 && x.productCategory3 == p3).FirstOrDefault();
                     if (sales == null) { SalesExtTotalCost = 0; } else { SalesExtTotalCost = sales.ExtCostTotal; }
                     SalesGTotal1 += SalesExtTotalCost;
                     DesignExtTotalCost1=0;
-                    var design = DesignGroupBy1.Where(x => x.ProductCategory == key).FirstOrDefault();
+                    var design = DesignGroupBy1.Where(x => x.ProductCategory1 == p1 && x.productCategory2 == p2 && x.productCategory3 == p3).FirstOrDefault();
                     if (design == null) { DesignExtTotalCost = 0; } else { DesignExtTotalCost = design.ExtCostTotal; }
                     DesignGTotal1 += DesignExtTotalCost;
 
                     ActualExtTotalCost1=0;
-                    var actual = ActualGroupBy1.Where(x => x.ProductCategory == key).FirstOrDefault();
+                    var actual = ActualGroupBy1.Where(x => x.ProductCategory1 == p1 && x.productCategory2 == p2 && x.productCategory3 == p3).FirstOrDefault();
                     if (actual == null) { ActualExtTotalCost = 0; } else { ActualExtTotalCost = actual.ExtCostTotal; }
                     ActualGTotal1 += ActualExtTotalCost;
 
                     ProjectedExtTotalCost1 = 0;
-                    var projected = ProjectedGroupBy1.Where(x => x.ProductCategory == key).FirstOrDefault();
+                    var projected = ProjectedGroupBy1.Where(x => x.ProductCategory1 == p1 && x.productCategory2 == p2 && x.productCategory3 == p3).FirstOrDefault();
                     if (projected == null) { ProjectedExtTotalCost = 0; } else { ProjectedExtTotalCost = projected.ExtCostTotal; }
                     ProjectedGTotal1 += ProjectedExtTotalCost;
 
                     FutureGTotal1 += (ProjectedExtTotalCost - ActualExtTotalCost);
 
-                    summary = new Summary { A_Category = key, C_BidCost = SalesExtTotalCost.ToString(), D_PlanCost = DesignExtTotalCost.ToString(), G_ProjectedCost = ProjectedExtTotalCost.ToString(), F_CostInFuture = (ProjectedExtTotalCost - ActualExtTotalCost).ToString(), E_ActualCost = ActualExtTotalCost.ToString() };
+                    summary = new Summary {H_ChangeOrder=p3  , A_Category = p1, B_Item = p2, C_BidCost = SalesExtTotalCost.ToString(), D_PlanCost = DesignExtTotalCost.ToString(), G_ProjectedCost = ProjectedExtTotalCost.ToString(), F_CostInFuture = (ProjectedExtTotalCost - ActualExtTotalCost).ToString(), E_ActualCost = ActualExtTotalCost.ToString() };
 
                     LstSummary.Add(summary);
                     rowIdx += 1;
                 }
 
                 summary = new Summary { C_BidCost = SalesGTotal1.ToString(), D_PlanCost = DesignGTotal1.ToString(), G_ProjectedCost = ProjectedGTotal1.ToString(), F_CostInFuture = FutureGTotal1.ToString(), E_ActualCost = ActualGTotal1.ToString() };
-                LstSummary.Insert(CO_SummaryInsertionPoint, summary);
+                LstSummary.Insert(ChangeOrder_SummaryInsertionPoint, summary);
                 rowIdx += 1;
 
 
-                summary = new Summary { A_Category = "Savings/Loss", B_Item = ((DesignGTotal + DesignGTotal1) - (ProjectedGTotal + ProjectedGTotal1)).ToString() };
+                summary = new Summary { A_Category = "Savings/Loss", B_Item = ((DesignGTotal + DesignGTotal1) - (ProjectedGTotal + ProjectedGTotal1)).ToString("#.##") };
                 LstSummary.Insert(2, summary);
                 rowIdx += 1;
-                summary = new Summary { A_Category = "Cost Diviation", B_Item = ((((DesignGTotal + DesignGTotal1) - (ProjectedGTotal + ProjectedGTotal1)) / (DesignGTotal + DesignGTotal1)).ToString() + "%") };
+                summary = new Summary { A_Category = "Cost Diviation", B_Item = ((((DesignGTotal + DesignGTotal1) - (ProjectedGTotal + ProjectedGTotal1)) / (DesignGTotal + DesignGTotal1)).ToString("#.##") + "%") };
                 LstSummary.Insert(3, summary);
                 rowIdx += 1;
 

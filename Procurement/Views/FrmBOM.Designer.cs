@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBOM));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBOM));
             this.txtBOMFilePath = new System.Windows.Forms.TextBox();
             this.btnLoadBOM = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -130,13 +130,6 @@
             this.Column5_3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tabSummary = new System.Windows.Forms.TabPage();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.A_Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.B_Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C_BidCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.D_PlanCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.G_ProjectedCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.F_CostInFuture = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.E_ActualCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MenuStripSaleBOM = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.itmCopyAllToDesignBOM = new System.Windows.Forms.ToolStripMenuItem();
             this.copyFromExcelToSaleBOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -204,6 +197,14 @@
             this.lblExtTotalSub = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.btnRedo = new System.Windows.Forms.Button();
+            this.H_ChangeOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.A_Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.B_Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C_BidCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.D_PlanCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.G_ProjectedCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.F_CostInFuture = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.E_ActualCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabSaleBOM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -1135,6 +1136,7 @@
             // 
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.H_ChangeOrder,
             this.A_Category,
             this.B_Item,
             this.C_BidCost,
@@ -1149,72 +1151,6 @@
             this.dataGridView4.RowTemplate.Height = 24;
             this.dataGridView4.Size = new System.Drawing.Size(1745, 598);
             this.dataGridView4.TabIndex = 0;
-            // 
-            // A_Category
-            // 
-            this.A_Category.DataPropertyName = "A_Category";
-            this.A_Category.HeaderText = "A";
-            this.A_Category.MinimumWidth = 6;
-            this.A_Category.Name = "A_Category";
-            this.A_Category.Width = 125;
-            // 
-            // B_Item
-            // 
-            this.B_Item.DataPropertyName = "B_Item";
-            this.B_Item.HeaderText = "B";
-            this.B_Item.MinimumWidth = 6;
-            this.B_Item.Name = "B_Item";
-            this.B_Item.Width = 125;
-            // 
-            // C_BidCost
-            // 
-            this.C_BidCost.DataPropertyName = "C_BidCost";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.C_BidCost.DefaultCellStyle = dataGridViewCellStyle1;
-            this.C_BidCost.HeaderText = "C";
-            this.C_BidCost.MinimumWidth = 6;
-            this.C_BidCost.Name = "C_BidCost";
-            this.C_BidCost.Width = 125;
-            // 
-            // D_PlanCost
-            // 
-            this.D_PlanCost.DataPropertyName = "D_PlanCost";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.D_PlanCost.DefaultCellStyle = dataGridViewCellStyle2;
-            this.D_PlanCost.HeaderText = "D";
-            this.D_PlanCost.MinimumWidth = 6;
-            this.D_PlanCost.Name = "D_PlanCost";
-            this.D_PlanCost.Width = 125;
-            // 
-            // G_ProjectedCost
-            // 
-            this.G_ProjectedCost.DataPropertyName = "G_ProjectedCost";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.G_ProjectedCost.DefaultCellStyle = dataGridViewCellStyle3;
-            this.G_ProjectedCost.HeaderText = "G";
-            this.G_ProjectedCost.MinimumWidth = 6;
-            this.G_ProjectedCost.Name = "G_ProjectedCost";
-            this.G_ProjectedCost.Width = 125;
-            // 
-            // F_CostInFuture
-            // 
-            this.F_CostInFuture.DataPropertyName = "F_CostInFuture";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.F_CostInFuture.DefaultCellStyle = dataGridViewCellStyle4;
-            this.F_CostInFuture.HeaderText = "F";
-            this.F_CostInFuture.MinimumWidth = 6;
-            this.F_CostInFuture.Name = "F_CostInFuture";
-            this.F_CostInFuture.Width = 125;
-            // 
-            // E_ActualCost
-            // 
-            this.E_ActualCost.DataPropertyName = "E_ActualCost";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.E_ActualCost.DefaultCellStyle = dataGridViewCellStyle5;
-            this.E_ActualCost.HeaderText = "E";
-            this.E_ActualCost.MinimumWidth = 6;
-            this.E_ActualCost.Name = "E_ActualCost";
-            this.E_ActualCost.Width = 125;
             // 
             // MenuStripSaleBOM
             // 
@@ -2100,6 +2036,80 @@
             this.btnRedo.Visible = false;
             this.btnRedo.Click += new System.EventHandler(this.button3_Click);
             // 
+            // H_ChangeOrder
+            // 
+            this.H_ChangeOrder.DataPropertyName = "H_ChangeOrder";
+            this.H_ChangeOrder.HeaderText = "H";
+            this.H_ChangeOrder.MinimumWidth = 6;
+            this.H_ChangeOrder.Name = "H_ChangeOrder";
+            this.H_ChangeOrder.Width = 125;
+            // 
+            // A_Category
+            // 
+            this.A_Category.DataPropertyName = "A_Category";
+            this.A_Category.HeaderText = "A";
+            this.A_Category.MinimumWidth = 6;
+            this.A_Category.Name = "A_Category";
+            this.A_Category.Width = 125;
+            // 
+            // B_Item
+            // 
+            this.B_Item.DataPropertyName = "B_Item";
+            this.B_Item.HeaderText = "B";
+            this.B_Item.MinimumWidth = 6;
+            this.B_Item.Name = "B_Item";
+            this.B_Item.Width = 125;
+            // 
+            // C_BidCost
+            // 
+            this.C_BidCost.DataPropertyName = "C_BidCost";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.C_BidCost.DefaultCellStyle = dataGridViewCellStyle1;
+            this.C_BidCost.HeaderText = "C";
+            this.C_BidCost.MinimumWidth = 6;
+            this.C_BidCost.Name = "C_BidCost";
+            this.C_BidCost.Width = 125;
+            // 
+            // D_PlanCost
+            // 
+            this.D_PlanCost.DataPropertyName = "D_PlanCost";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.D_PlanCost.DefaultCellStyle = dataGridViewCellStyle2;
+            this.D_PlanCost.HeaderText = "D";
+            this.D_PlanCost.MinimumWidth = 6;
+            this.D_PlanCost.Name = "D_PlanCost";
+            this.D_PlanCost.Width = 125;
+            // 
+            // G_ProjectedCost
+            // 
+            this.G_ProjectedCost.DataPropertyName = "G_ProjectedCost";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.G_ProjectedCost.DefaultCellStyle = dataGridViewCellStyle3;
+            this.G_ProjectedCost.HeaderText = "G";
+            this.G_ProjectedCost.MinimumWidth = 6;
+            this.G_ProjectedCost.Name = "G_ProjectedCost";
+            this.G_ProjectedCost.Width = 125;
+            // 
+            // F_CostInFuture
+            // 
+            this.F_CostInFuture.DataPropertyName = "F_CostInFuture";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.F_CostInFuture.DefaultCellStyle = dataGridViewCellStyle4;
+            this.F_CostInFuture.HeaderText = "F";
+            this.F_CostInFuture.MinimumWidth = 6;
+            this.F_CostInFuture.Name = "F_CostInFuture";
+            this.F_CostInFuture.Width = 125;
+            // 
+            // E_ActualCost
+            // 
+            this.E_ActualCost.DataPropertyName = "E_ActualCost";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.E_ActualCost.DefaultCellStyle = dataGridViewCellStyle5;
+            this.E_ActualCost.HeaderText = "E";
+            this.E_ActualCost.MinimumWidth = 6;
+            this.E_ActualCost.Name = "E_ActualCost";
+            this.E_ActualCost.Width = 125;
+            // 
             // FrmBOM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2311,13 +2321,6 @@
         private System.Windows.Forms.TextBox txtExtCostTotal;
         private System.Windows.Forms.Label lblExtTotal;
         private System.Windows.Forms.Label lblExtTotalSub;
-        private System.Windows.Forms.DataGridViewTextBoxColumn A_Category;
-        private System.Windows.Forms.DataGridViewTextBoxColumn B_Item;
-        private System.Windows.Forms.DataGridViewTextBoxColumn C_BidCost;
-        private System.Windows.Forms.DataGridViewTextBoxColumn D_PlanCost;
-        private System.Windows.Forms.DataGridViewTextBoxColumn G_ProjectedCost;
-        private System.Windows.Forms.DataGridViewTextBoxColumn F_CostInFuture;
-        private System.Windows.Forms.DataGridViewTextBoxColumn E_ActualCost;
         private System.Windows.Forms.Button btnExportXLS;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Insert_SalesBOM;
@@ -2327,6 +2330,14 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuDesign_InsertEmptyRow;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuActual_InsertEmptyRow;
         private System.Windows.Forms.Button btnRedo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn H_ChangeOrder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn A_Category;
+        private System.Windows.Forms.DataGridViewTextBoxColumn B_Item;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C_BidCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn D_PlanCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn G_ProjectedCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn F_CostInFuture;
+        private System.Windows.Forms.DataGridViewTextBoxColumn E_ActualCost;
     }
 }
 

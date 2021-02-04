@@ -8,7 +8,7 @@ namespace Procurement.CustomClasses
 {
     public class Summary
     {
-
+        public string H_ChangeOrder { get; set; }
         public string A_Category { get; set; }
         public string B_Item { get; set; }
         public string C_BidCost { get; set; }
