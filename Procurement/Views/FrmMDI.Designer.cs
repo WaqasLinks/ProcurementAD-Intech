@@ -35,7 +35,6 @@
             this.newProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bOMsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openBOMsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MaterialRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materialRequestListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createMaterialRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +70,8 @@
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.exportBOMXLSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportBOMsXLSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -86,7 +87,8 @@
             this.employeesToolStripMenuItem,
             this.logoutToolStripMenuItem,
             this.userToolStripMenuItem,
-            this.spreadSheetToolStripMenuItem});
+            this.spreadSheetToolStripMenuItem,
+            this.exportBOMsXLSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -119,18 +121,10 @@
             // 
             // bOMsToolStripMenuItem
             // 
-            this.bOMsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openBOMsToolStripMenuItem});
             this.bOMsToolStripMenuItem.Name = "bOMsToolStripMenuItem";
             this.bOMsToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
             this.bOMsToolStripMenuItem.Text = "BOMs";
-            // 
-            // openBOMsToolStripMenuItem
-            // 
-            this.openBOMsToolStripMenuItem.Name = "openBOMsToolStripMenuItem";
-            this.openBOMsToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
-            this.openBOMsToolStripMenuItem.Text = "Open BOMs";
-            this.openBOMsToolStripMenuItem.Click += new System.EventHandler(this.openBOMsToolStripMenuItem_Click);
+            this.bOMsToolStripMenuItem.Click += new System.EventHandler(this.bOMsToolStripMenuItem_Click);
             // 
             // MaterialRequestToolStripMenuItem
             // 
@@ -442,6 +436,19 @@
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Open Project";
             // 
+            // exportBOMXLSToolStripMenuItem
+            // 
+            this.exportBOMXLSToolStripMenuItem.Name = "exportBOMXLSToolStripMenuItem";
+            this.exportBOMXLSToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            this.exportBOMXLSToolStripMenuItem.Text = "Export BOM XLS";
+            // 
+            // exportBOMsXLSToolStripMenuItem
+            // 
+            this.exportBOMsXLSToolStripMenuItem.Name = "exportBOMsXLSToolStripMenuItem";
+            this.exportBOMsXLSToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
+            this.exportBOMsXLSToolStripMenuItem.Text = "Export XLS";
+            this.exportBOMsXLSToolStripMenuItem.Click += new System.EventHandler(this.exportBOMsXLSToolStripMenuItem_Click);
+            // 
             // FrmMDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -477,7 +484,6 @@
         private System.Windows.Forms.ToolStripMenuItem projectsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem projectsListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bOMsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openBOMsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MaterialRequestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createMaterialRequestToolStripMenuItem;
@@ -514,5 +520,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripMenuItem spreadSheetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportBOMXLSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportBOMsXLSToolStripMenuItem;
     }
 }

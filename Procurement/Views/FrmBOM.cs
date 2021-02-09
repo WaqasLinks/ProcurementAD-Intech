@@ -26,10 +26,10 @@ namespace Procurement
         ProjectController _pc;
         BOMController _bc;
         ProjectEmployeeDetailController _pedc;
-        DataTable _dtSalesBOM;
-        DataTable _dtDesignBOM;
-        DataTable _dtActualBOM;
-        DataTable _dtSummary;
+        public DataTable _dtSalesBOM;
+        public DataTable _dtDesignBOM;
+        public DataTable _dtActualBOM;
+        public DataTable _dtSummary;
         List<DataTable> _LstdtSalesBOM = new List<DataTable>();
         int _SalesBOM_UndoRedo_Idx = -1;
         decimal _projectCode;
@@ -3139,12 +3139,39 @@ namespace Procurement
         private void btnExportXLS_Click(object sender, EventArgs e)
         {
             //ExportXLS_Method1(); export single datatable only;
-            ExportXLS_Method2();
+            ExportXLS();
 
         }
-        private void ExportXLS_Method1()
+        
+        public void ExportXLS()
         {
-            
+            _savefile = new SaveFileDialog();
+            // set a default file name
+            string datetime = DateTime.Now.ToString("yyyyMMddHHmmss");
+            datetime = datetime.Replace(":", "");
+
+            _savefile.FileName = "Control Sheet" + " " + datetime + ".xlsx";
+            // set filters - this can be done in properties as well
+            _savefile.Filter = "Excel Workbook (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+
+            if (_savefile.ShowDialog() == DialogResult.OK)
+            {
+                tabControl1.SelectedTab  = tabControl1.TabPages["tabSummary"];
+                XLWorkbook wb = new XLWorkbook();
+
+                wb.Worksheets.Add(_dtSalesBOM, "Bid");
+                wb.Worksheets.Add(_dtDesignBOM, "Planned");
+                wb.Worksheets.Add(_dtActualBOM, "Actual");
+                wb.Worksheets.Add(_dtSummary, "Summary");
+                //wb.SaveAs(@"C:\test\control sheet.xlsx");
+                wb.SaveAs(_savefile.FileName);
+
+                MessageBox.Show("Exported successfully");
+            }
+        }
+        private void ExportXLS_Method_old()
+        {
+
             progressBar1.Visible = true;
             progressBar1.Step = 1;
             progressBar1.Value = 0;
@@ -3185,39 +3212,12 @@ namespace Procurement
             }
 
         }
-        private void ExportXLS_Method2()
-        {
-            
-            _savefile = new SaveFileDialog();
-            // set a default file name
-            string datetime = DateTime.Now.ToString("yyyyMMddHHmmss");
-            datetime = datetime.Replace(":", "");
-
-            _savefile.FileName = "Control Sheet" + " " + datetime + ".xlsx";
-            // set filters - this can be done in properties as well
-            _savefile.Filter = "Excel Workbook (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-
-            if (_savefile.ShowDialog() == DialogResult.OK)
-            {
-                tabControl1.SelectedTab  = tabControl1.TabPages["tabSummary"];
-                XLWorkbook wb = new XLWorkbook();
-
-                wb.Worksheets.Add(_dtSalesBOM, "Bid");
-                wb.Worksheets.Add(_dtDesignBOM, "Planned");
-                wb.Worksheets.Add(_dtActualBOM, "Actual");
-                wb.Worksheets.Add(_dtSummary, "Summary");
-                //wb.SaveAs(@"C:\test\control sheet.xlsx");
-                wb.SaveAs(_savefile.FileName);
-
-                MessageBox.Show("Exported successfully");
-            }
-        }
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             //var backgroundWorker = sender as BackgroundWorker;
-            ExportExl();
+            ExportExl_BkGroundWorker();
         }
-        private void ExportExl()
+        private void ExportExl_BkGroundWorker()
         {
                         
                 ///////////////export to excel/////////////////

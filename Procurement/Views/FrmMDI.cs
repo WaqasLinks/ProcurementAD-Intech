@@ -121,12 +121,7 @@ namespace Procurement.Views
 
         private void openBOMsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (CurrentOpenProject.CurrentProject == null)
-            {
-                MessageBox.Show("Please Open Project First");
-                return;
-            }
-            FrmBOM_Show();
+            
         }
         private void FrmBOM_Show()
         {
@@ -332,6 +327,26 @@ namespace Procurement.Views
             //}
         }
 
-      
+        private void bOMsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (CurrentOpenProject.CurrentProject == null)
+            {
+                MessageBox.Show("Please Open Project First");
+                return;
+            }
+            FrmBOM_Show();
+
+        }
+
+        private void exportBOMsXLSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (CurrentOpenProject.CurrentProject == null)
+            {
+                MessageBox.Show("Please Open Project First");
+                return;
+            }
+            FrmBOM_Show();
+            FrmBOM.Instance.ExportXLS();
+        }
     }
 }
