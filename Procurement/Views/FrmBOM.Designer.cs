@@ -140,6 +140,7 @@
             this.E_ActualCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MenuStripSaleBOM = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.itmCopyAllToDesignBOM = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyChangeOrderToPlannedBOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyFromExcelToSaleBOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuSales_InsertEmptyRow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_Insert_SalesBOM = new System.Windows.Forms.ToolStripMenuItem();
@@ -147,6 +148,7 @@
             this.deleteRowSaleBOM = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStripDesignBOM = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.itmCopyAllToActualBOM = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyChangeOrderToActualBOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyFromExcelToDesignBOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuDesign_InsertEmptyRow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_Insert_DesignBOM = new System.Windows.Forms.ToolStripMenuItem();
@@ -1147,6 +1149,7 @@
             this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView4.Location = new System.Drawing.Point(3, 3);
             this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.ReadOnly = true;
             this.dataGridView4.RowHeadersWidth = 51;
             this.dataGridView4.RowTemplate.Height = 24;
             this.dataGridView4.Size = new System.Drawing.Size(1745, 598);
@@ -1158,6 +1161,7 @@
             this.H_ChangeOrder.HeaderText = "H";
             this.H_ChangeOrder.MinimumWidth = 6;
             this.H_ChangeOrder.Name = "H_ChangeOrder";
+            this.H_ChangeOrder.ReadOnly = true;
             this.H_ChangeOrder.Width = 125;
             // 
             // A_Category
@@ -1166,6 +1170,7 @@
             this.A_Category.HeaderText = "A";
             this.A_Category.MinimumWidth = 6;
             this.A_Category.Name = "A_Category";
+            this.A_Category.ReadOnly = true;
             this.A_Category.Width = 125;
             // 
             // B_Item
@@ -1174,6 +1179,7 @@
             this.B_Item.HeaderText = "B";
             this.B_Item.MinimumWidth = 6;
             this.B_Item.Name = "B_Item";
+            this.B_Item.ReadOnly = true;
             this.B_Item.Width = 125;
             // 
             // C_BidCost
@@ -1184,6 +1190,7 @@
             this.C_BidCost.HeaderText = "C";
             this.C_BidCost.MinimumWidth = 6;
             this.C_BidCost.Name = "C_BidCost";
+            this.C_BidCost.ReadOnly = true;
             this.C_BidCost.Width = 125;
             // 
             // D_PlanCost
@@ -1194,6 +1201,7 @@
             this.D_PlanCost.HeaderText = "D";
             this.D_PlanCost.MinimumWidth = 6;
             this.D_PlanCost.Name = "D_PlanCost";
+            this.D_PlanCost.ReadOnly = true;
             this.D_PlanCost.Width = 125;
             // 
             // G_ProjectedCost
@@ -1204,6 +1212,7 @@
             this.G_ProjectedCost.HeaderText = "G";
             this.G_ProjectedCost.MinimumWidth = 6;
             this.G_ProjectedCost.Name = "G_ProjectedCost";
+            this.G_ProjectedCost.ReadOnly = true;
             this.G_ProjectedCost.Width = 125;
             // 
             // F_CostInFuture
@@ -1214,6 +1223,7 @@
             this.F_CostInFuture.HeaderText = "F";
             this.F_CostInFuture.MinimumWidth = 6;
             this.F_CostInFuture.Name = "F_CostInFuture";
+            this.F_CostInFuture.ReadOnly = true;
             this.F_CostInFuture.Width = 125;
             // 
             // E_ActualCost
@@ -1224,6 +1234,7 @@
             this.E_ActualCost.HeaderText = "E";
             this.E_ActualCost.MinimumWidth = 6;
             this.E_ActualCost.Name = "E_ActualCost";
+            this.E_ActualCost.ReadOnly = true;
             this.E_ActualCost.Width = 125;
             // 
             // MenuStripSaleBOM
@@ -1231,25 +1242,33 @@
             this.MenuStripSaleBOM.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MenuStripSaleBOM.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.itmCopyAllToDesignBOM,
+            this.copyChangeOrderToPlannedBOMToolStripMenuItem,
             this.copyFromExcelToSaleBOMToolStripMenuItem,
             this.toolStripMenuSales_InsertEmptyRow,
             this.toolStripMenuItem_Insert_SalesBOM,
             this.PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem,
             this.deleteRowSaleBOM});
             this.MenuStripSaleBOM.Name = "contextMenuStrip1";
-            this.MenuStripSaleBOM.Size = new System.Drawing.Size(283, 148);
+            this.MenuStripSaleBOM.Size = new System.Drawing.Size(323, 172);
             // 
             // itmCopyAllToDesignBOM
             // 
             this.itmCopyAllToDesignBOM.Name = "itmCopyAllToDesignBOM";
-            this.itmCopyAllToDesignBOM.Size = new System.Drawing.Size(282, 24);
+            this.itmCopyAllToDesignBOM.Size = new System.Drawing.Size(322, 24);
             this.itmCopyAllToDesignBOM.Text = "Copy All Data to Planned BOM";
             this.itmCopyAllToDesignBOM.Click += new System.EventHandler(this.itmCopyAllToDesignBOM_Click);
+            // 
+            // copyChangeOrderToPlannedBOMToolStripMenuItem
+            // 
+            this.copyChangeOrderToPlannedBOMToolStripMenuItem.Name = "copyChangeOrderToPlannedBOMToolStripMenuItem";
+            this.copyChangeOrderToPlannedBOMToolStripMenuItem.Size = new System.Drawing.Size(322, 24);
+            this.copyChangeOrderToPlannedBOMToolStripMenuItem.Text = "Copy Change Order To Planned BOM";
+            this.copyChangeOrderToPlannedBOMToolStripMenuItem.Click += new System.EventHandler(this.copyChangeOrderToPlannedBOMToolStripMenuItem_Click);
             // 
             // copyFromExcelToSaleBOMToolStripMenuItem
             // 
             this.copyFromExcelToSaleBOMToolStripMenuItem.Name = "copyFromExcelToSaleBOMToolStripMenuItem";
-            this.copyFromExcelToSaleBOMToolStripMenuItem.Size = new System.Drawing.Size(282, 24);
+            this.copyFromExcelToSaleBOMToolStripMenuItem.Size = new System.Drawing.Size(322, 24);
             this.copyFromExcelToSaleBOMToolStripMenuItem.Text = "Paste All Copied Column(s)";
             this.copyFromExcelToSaleBOMToolStripMenuItem.Visible = false;
             this.copyFromExcelToSaleBOMToolStripMenuItem.Click += new System.EventHandler(this.copyFromExcelToSaleBOMToolStripMenuItem_Click);
@@ -1257,28 +1276,28 @@
             // toolStripMenuSales_InsertEmptyRow
             // 
             this.toolStripMenuSales_InsertEmptyRow.Name = "toolStripMenuSales_InsertEmptyRow";
-            this.toolStripMenuSales_InsertEmptyRow.Size = new System.Drawing.Size(282, 24);
+            this.toolStripMenuSales_InsertEmptyRow.Size = new System.Drawing.Size(322, 24);
             this.toolStripMenuSales_InsertEmptyRow.Text = "Insert Empty Row";
             this.toolStripMenuSales_InsertEmptyRow.Click += new System.EventHandler(this.toolStripMenuSales_InsertEmptyRow_Click);
             // 
             // toolStripMenuItem_Insert_SalesBOM
             // 
             this.toolStripMenuItem_Insert_SalesBOM.Name = "toolStripMenuItem_Insert_SalesBOM";
-            this.toolStripMenuItem_Insert_SalesBOM.Size = new System.Drawing.Size(282, 24);
+            this.toolStripMenuItem_Insert_SalesBOM.Size = new System.Drawing.Size(322, 24);
             this.toolStripMenuItem_Insert_SalesBOM.Text = "Insert Copied Row(s)";
             this.toolStripMenuItem_Insert_SalesBOM.Click += new System.EventHandler(this.toolStripMenuItem_Insert_SalesBOM_Click);
             // 
             // PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem
             // 
             this.PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem.Name = "PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem";
-            this.PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem.Size = new System.Drawing.Size(282, 24);
+            this.PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem.Size = new System.Drawing.Size(322, 24);
             this.PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem.Text = "Replace With Copied Row(s)";
             this.PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem.Click += new System.EventHandler(this.PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem_Click);
             // 
             // deleteRowSaleBOM
             // 
             this.deleteRowSaleBOM.Name = "deleteRowSaleBOM";
-            this.deleteRowSaleBOM.Size = new System.Drawing.Size(282, 24);
+            this.deleteRowSaleBOM.Size = new System.Drawing.Size(322, 24);
             this.deleteRowSaleBOM.Text = "Delete This Row";
             this.deleteRowSaleBOM.Click += new System.EventHandler(this.deleteRowSaleBOM_Click);
             // 
@@ -1287,25 +1306,33 @@
             this.MenuStripDesignBOM.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MenuStripDesignBOM.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.itmCopyAllToActualBOM,
+            this.copyChangeOrderToActualBOMToolStripMenuItem,
             this.copyFromExcelToDesignBOMToolStripMenuItem,
             this.toolStripMenuDesign_InsertEmptyRow,
             this.toolStripMenuItem_Insert_DesignBOM,
             this.PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem,
             this.deleteRowDesignBOM});
             this.MenuStripDesignBOM.Name = "contextMenuStrip1";
-            this.MenuStripDesignBOM.Size = new System.Drawing.Size(272, 148);
+            this.MenuStripDesignBOM.Size = new System.Drawing.Size(312, 172);
             // 
             // itmCopyAllToActualBOM
             // 
             this.itmCopyAllToActualBOM.Name = "itmCopyAllToActualBOM";
-            this.itmCopyAllToActualBOM.Size = new System.Drawing.Size(271, 24);
+            this.itmCopyAllToActualBOM.Size = new System.Drawing.Size(311, 24);
             this.itmCopyAllToActualBOM.Text = "Copy All Data to Actual BOM";
             this.itmCopyAllToActualBOM.Click += new System.EventHandler(this.itmCopyAllToActualBOM_Click);
+            // 
+            // copyChangeOrderToActualBOMToolStripMenuItem
+            // 
+            this.copyChangeOrderToActualBOMToolStripMenuItem.Name = "copyChangeOrderToActualBOMToolStripMenuItem";
+            this.copyChangeOrderToActualBOMToolStripMenuItem.Size = new System.Drawing.Size(311, 24);
+            this.copyChangeOrderToActualBOMToolStripMenuItem.Text = "Copy Change Order To Actual BOM";
+            this.copyChangeOrderToActualBOMToolStripMenuItem.Click += new System.EventHandler(this.copyChangeOrderToActualBOMToolStripMenuItem_Click);
             // 
             // copyFromExcelToDesignBOMToolStripMenuItem
             // 
             this.copyFromExcelToDesignBOMToolStripMenuItem.Name = "copyFromExcelToDesignBOMToolStripMenuItem";
-            this.copyFromExcelToDesignBOMToolStripMenuItem.Size = new System.Drawing.Size(271, 24);
+            this.copyFromExcelToDesignBOMToolStripMenuItem.Size = new System.Drawing.Size(311, 24);
             this.copyFromExcelToDesignBOMToolStripMenuItem.Text = "Paste All Copied Column(s)";
             this.copyFromExcelToDesignBOMToolStripMenuItem.Visible = false;
             this.copyFromExcelToDesignBOMToolStripMenuItem.Click += new System.EventHandler(this.copyFromExcelToDesignBOMToolStripMenuItem_Click);
@@ -1313,28 +1340,28 @@
             // toolStripMenuDesign_InsertEmptyRow
             // 
             this.toolStripMenuDesign_InsertEmptyRow.Name = "toolStripMenuDesign_InsertEmptyRow";
-            this.toolStripMenuDesign_InsertEmptyRow.Size = new System.Drawing.Size(271, 24);
+            this.toolStripMenuDesign_InsertEmptyRow.Size = new System.Drawing.Size(311, 24);
             this.toolStripMenuDesign_InsertEmptyRow.Text = "Insert Empty Row";
             this.toolStripMenuDesign_InsertEmptyRow.Click += new System.EventHandler(this.toolStripMenuDesign_InsertEmptyRow_Click);
             // 
             // toolStripMenuItem_Insert_DesignBOM
             // 
             this.toolStripMenuItem_Insert_DesignBOM.Name = "toolStripMenuItem_Insert_DesignBOM";
-            this.toolStripMenuItem_Insert_DesignBOM.Size = new System.Drawing.Size(271, 24);
+            this.toolStripMenuItem_Insert_DesignBOM.Size = new System.Drawing.Size(311, 24);
             this.toolStripMenuItem_Insert_DesignBOM.Text = "Insert Copied Row(s)";
             this.toolStripMenuItem_Insert_DesignBOM.Click += new System.EventHandler(this.toolStripMenuItem_Insert_DesignBOM_Click);
             // 
             // PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem
             // 
             this.PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem.Name = "PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem";
-            this.PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem.Size = new System.Drawing.Size(271, 24);
+            this.PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem.Size = new System.Drawing.Size(311, 24);
             this.PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem.Text = "Replace With Copied Row(s)";
             this.PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem.Click += new System.EventHandler(this.PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem_Click);
             // 
             // deleteRowDesignBOM
             // 
             this.deleteRowDesignBOM.Name = "deleteRowDesignBOM";
-            this.deleteRowDesignBOM.Size = new System.Drawing.Size(271, 24);
+            this.deleteRowDesignBOM.Size = new System.Drawing.Size(311, 24);
             this.deleteRowDesignBOM.Text = "Delete This Row";
             this.deleteRowDesignBOM.Click += new System.EventHandler(this.deleteRowDesignBOM_Click);
             // 
@@ -2079,9 +2106,9 @@
             this.lblExtTotal.AutoSize = true;
             this.lblExtTotal.Location = new System.Drawing.Point(1063, 35);
             this.lblExtTotal.Name = "lblExtTotal";
-            this.lblExtTotal.Size = new System.Drawing.Size(93, 17);
+            this.lblExtTotal.Size = new System.Drawing.Size(87, 17);
             this.lblExtTotal.TabIndex = 16;
-            this.lblExtTotal.Text = "UnitCostTotal";
+            this.lblExtTotal.Text = "ExtCostTotal";
             // 
             // lblExtTotalSub
             // 
@@ -2339,6 +2366,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn G_ProjectedCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn F_CostInFuture;
         private System.Windows.Forms.DataGridViewTextBoxColumn E_ActualCost;
+        private System.Windows.Forms.ToolStripMenuItem copyChangeOrderToPlannedBOMToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyChangeOrderToActualBOMToolStripMenuItem;
     }
 }
 
