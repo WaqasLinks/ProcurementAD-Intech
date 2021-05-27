@@ -27,7 +27,7 @@
           <Property Name="Category" Type="nvarchar" MaxLength="500" />
           <Property Name="Manufacturer" Type="nvarchar" MaxLength="500" />
           <Property Name="PartNo" Type="nvarchar" MaxLength="500" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="4000" />
           <Property Name="Qty" Type="decimal" Precision="18" Scale="2" />
           <Property Name="UnitCost" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ExtCost" Type="decimal" Precision="18" Scale="2" />
@@ -319,11 +319,11 @@
           <Property Name="CostSubHead" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="System" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Area" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Panel" Type="String" />
+          <Property Name="Panel" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="Category" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Manufacturer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="PartNo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Qty" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="UnitCost" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="ExtCost" Type="Decimal" Precision="18" Scale="2" />

@@ -1292,6 +1292,7 @@
             this.PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem.Name = "PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem";
             this.PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem.Size = new System.Drawing.Size(322, 24);
             this.PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem.Text = "Replace With Copied Row(s)";
+            this.PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem.Visible = false;
             this.PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem.Click += new System.EventHandler(this.PasteColumnsAtPlaceFromExcelToSaleBOMToolStripMenuItem_Click);
             // 
             // deleteRowSaleBOM
@@ -1356,6 +1357,7 @@
             this.PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem.Name = "PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem";
             this.PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem.Size = new System.Drawing.Size(311, 24);
             this.PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem.Text = "Replace With Copied Row(s)";
+            this.PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem.Visible = false;
             this.PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem.Click += new System.EventHandler(this.PasteColumnsAtPlaceFromExcelToDesignBOMToolStripMenuItem_Click);
             // 
             // deleteRowDesignBOM
@@ -1667,6 +1669,7 @@
             this.PasteColumnsAtPlaceFromExcelToActualBOMToolStripMenuItem.Name = "PasteColumnsAtPlaceFromExcelToActualBOMToolStripMenuItem";
             this.PasteColumnsAtPlaceFromExcelToActualBOMToolStripMenuItem.Size = new System.Drawing.Size(267, 24);
             this.PasteColumnsAtPlaceFromExcelToActualBOMToolStripMenuItem.Text = "Replace With Copied Row(s)";
+            this.PasteColumnsAtPlaceFromExcelToActualBOMToolStripMenuItem.Visible = false;
             this.PasteColumnsAtPlaceFromExcelToActualBOMToolStripMenuItem.Click += new System.EventHandler(this.PasteColumnsAtPlaceFromExcelToActualBOMToolStripMenuItem_Click);
             // 
             // deleteRowActualBOM
@@ -2074,14 +2077,13 @@
             // 
             // btnUndo
             // 
-            this.btnUndo.Location = new System.Drawing.Point(343, 55);
+            this.btnUndo.Location = new System.Drawing.Point(357, 58);
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Size = new System.Drawing.Size(69, 23);
             this.btnUndo.TabIndex = 13;
             this.btnUndo.Text = "undo";
             this.btnUndo.UseVisualStyleBackColor = true;
-            this.btnUndo.Visible = false;
-            this.btnUndo.Click += new System.EventHandler(this.button2_Click);
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
             // txtExtCostSubTotal
             // 
@@ -2129,14 +2131,13 @@
             // 
             // btnRedo
             // 
-            this.btnRedo.Location = new System.Drawing.Point(417, 55);
+            this.btnRedo.Location = new System.Drawing.Point(430, 58);
             this.btnRedo.Name = "btnRedo";
             this.btnRedo.Size = new System.Drawing.Size(69, 23);
             this.btnRedo.TabIndex = 19;
             this.btnRedo.Text = "redo";
             this.btnRedo.UseVisualStyleBackColor = true;
-            this.btnRedo.Visible = false;
-            this.btnRedo.Click += new System.EventHandler(this.button3_Click);
+            this.btnRedo.Click += new System.EventHandler(this.btnRedo_Click);
             // 
             // FrmBOM
             // 

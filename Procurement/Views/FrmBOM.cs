@@ -31,7 +31,12 @@ namespace Procurement
         public DataTable _dtActualBOM;
         public DataTable _dtSummary;
         List<DataTable> _LstdtSalesBOM = new List<DataTable>();
+        List<DataTable> _LstdtDesignBOM = new List<DataTable>();
+        List<DataTable> _LstdtActualBOM = new List<DataTable>();
+
         int _SalesBOM_UndoRedo_Idx = -1;
+        int _DesignBOM_UndoRedo_Idx = -1;
+        int _ActualBOM_UndoRedo_Idx = -1;
         decimal _projectCode;
         bool _newMode;
         Project _currentLoadedProject;
@@ -66,7 +71,21 @@ namespace Procurement
             }
         }
         //End SingleTon
-
+        private void InsertTo_LstdtSalesBOM()
+        {
+            _SalesBOM_UndoRedo_Idx += 1;
+            _LstdtSalesBOM.Insert(_SalesBOM_UndoRedo_Idx, CopyDataTable(ref dataGridView1, ref _dtSalesBOM));
+        }
+        private void InsertTo_LstdtDesignBOM()
+        {
+            _DesignBOM_UndoRedo_Idx += 1;
+            _LstdtDesignBOM.Insert(_DesignBOM_UndoRedo_Idx, CopyDataTable(ref dataGridView2,ref _dtDesignBOM));
+        }
+        private void InsertTo_LstdtActualBOM()
+        {
+            _ActualBOM_UndoRedo_Idx += 1;
+            _LstdtActualBOM.Insert(_ActualBOM_UndoRedo_Idx, CopyDataTable(ref dataGridView3,ref _dtActualBOM));
+        }
         private void FrmBOM_Load(object sender, EventArgs e)
         {
             //dx//dataGridView1.AllowUserToDeleteRows = false;
@@ -111,8 +130,9 @@ namespace Procurement
                     _dtSalesBOM.Columns.Remove("Project");
                     //dx//dataGridView1.AutoGenerateColumns = false;
                     gridControl1.DataSource = _dtSalesBOM;
-                    _SalesBOM_UndoRedo_Idx += 1;
-                    _LstdtSalesBOM.Insert(_SalesBOM_UndoRedo_Idx, _dtSalesBOM.Copy());
+                    
+                    InsertTo_LstdtSalesBOM();
+                    //_LstdtSalesBOM.Insert(_SalesBOM_UndoRedo_Idx, _dtSalesBOM.Copy());
 
                     List<BOM> list2 = _currentLoadedProject.BOMs.Where(y => y.BOMTypeCode == 2).ToList();
                     _dtDesignBOM = ToDataTable<BOM>(list2);
@@ -123,6 +143,7 @@ namespace Procurement
                     _dtDesignBOM.Columns.Remove("Project");
                     //dx//dataGridView2.AutoGenerateColumns = false;
                     gridControl2.DataSource = _dtDesignBOM;
+                    InsertTo_LstdtDesignBOM();
 
                     List<BOM> list3 = _currentLoadedProject.BOMs.Where(y => y.BOMTypeCode == 3).ToList();
                     _dtActualBOM = ToDataTable<BOM>(list3);
@@ -133,7 +154,7 @@ namespace Procurement
                     _dtActualBOM.Columns.Remove("Project");
                     //dx//dataGridView3.AutoGenerateColumns = false;
                     gridControl3.DataSource = _dtActualBOM;
-
+                    InsertTo_LstdtActualBOM();
 
                     if (tabControl1.SelectedTab == tabControl1.TabPages["tabSaleBOM"])
                     {
@@ -315,6 +336,7 @@ namespace Procurement
                             GetSetExtCostTotal(ref _dtSalesBOM);
                             gridControl1.DataSource = _dtSalesBOM;
                             IsGridView1Changed = true;
+                            InsertTo_LstdtSalesBOM();
                         }
                         if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
                         {
@@ -323,6 +345,7 @@ namespace Procurement
                             GetSetExtCostTotal(ref _dtDesignBOM);
                             gridControl2.DataSource = _dtDesignBOM;
                             IsGridView2Changed = true;
+                            InsertTo_LstdtDesignBOM();
                         }
                         if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
                         {
@@ -331,6 +354,7 @@ namespace Procurement
                             GetSetExtCostTotal(ref _dtActualBOM);
                             gridControl3.DataSource = _dtActualBOM;
                             IsGridView3Changed = true;
+                            InsertTo_LstdtActualBOM();
                         }
                         MessageBox.Show("BOM Loaded Successfully");
                     }
@@ -516,14 +540,17 @@ namespace Procurement
                         if (tabControl1.SelectedTab == tabControl1.TabPages["tabSaleBOM"])
                         {
                             GetSetExtCostTotal(ref _dtSalesBOM);
+                            InsertTo_LstdtSalesBOM();
                         }
                         if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
                         {
                             GetSetExtCostTotal(ref _dtDesignBOM);
+                            InsertTo_LstdtDesignBOM();
                         }
                         if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
                         {
                             GetSetExtCostTotal(ref _dtActualBOM);
+                            InsertTo_LstdtActualBOM();
                         }
                         MessageBox.Show("Change Order Loaded Successfully");
 
@@ -549,6 +576,7 @@ namespace Procurement
                 //row 1
                 summary = new Summary { A_Category = "Project Code", B_Item = CurrentOpenProject.CurrentProject.ProjectCode };
                 LstSummary.Add(summary);
+                
                 rowIdx += 1;
 
                 //row 2
@@ -971,7 +999,33 @@ namespace Procurement
                 dataGridView4.DataSource = _dtSummary;
 
                 //Styling
+                dataGridView4.Rows[0].DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Bold);
+                dataGridView4.Rows[0].Cells[1].Style.BackColor = Color.LightBlue;
+                dataGridView4.Rows[0].Cells[2].Style.BackColor = Color.LightBlue;
+
+                dataGridView4.Rows[1].DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Bold);
+                dataGridView4.Rows[1].Cells[1].Style.BackColor = Color.LightCoral;
+                dataGridView4.Rows[1].Cells[2].Style.BackColor = Color.LightCoral;
+
+                dataGridView4.Rows[2].DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Bold);
+                dataGridView4.Rows[2].Cells[1].Style.BackColor = Color.LightCyan;
+                dataGridView4.Rows[2].Cells[2].Style.BackColor = Color.LightCyan;
+
+                dataGridView4.Rows[3].DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Bold);
+                dataGridView4.Rows[3].Cells[1].Style.BackColor = Color.LightGoldenrodYellow;
+                dataGridView4.Rows[3].Cells[2].Style.BackColor = Color.LightGoldenrodYellow;
+
+
                 dataGridView4.Rows[5].DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Bold);
+                dataGridView4.Rows[5].Cells[0].Style.BackColor = Color.LightSeaGreen;
+                dataGridView4.Rows[5].Cells[1].Style.BackColor = Color.LightSeaGreen;
+                dataGridView4.Rows[5].Cells[2].Style.BackColor = Color.LightSeaGreen;
+                dataGridView4.Rows[5].Cells[3].Style.BackColor = Color.LightSeaGreen;
+                dataGridView4.Rows[5].Cells[4].Style.BackColor = Color.LightSeaGreen;
+                dataGridView4.Rows[5].Cells[5].Style.BackColor = Color.LightSeaGreen;
+                dataGridView4.Rows[5].Cells[6].Style.BackColor = Color.LightSeaGreen;
+                dataGridView4.Rows[5].Cells[7].Style.BackColor = Color.LightSeaGreen;
+
             }
             catch (Exception ex)
             {
@@ -1101,6 +1155,7 @@ namespace Procurement
                 gridControl2.DataSource = _dtDesignBOM;
                 tabControl1.SelectedTab = tabDesignBOM;
                 IsGridView2Changed = true;
+                InsertTo_LstdtDesignBOM();
             }
         }
 
@@ -1116,6 +1171,7 @@ namespace Procurement
                 gridControl3.DataSource = _dtActualBOM;
                 tabControl1.SelectedTab = tabActualBOM;
                 IsGridView3Changed = true;
+                InsertTo_LstdtActualBOM();
             }
         }
         private Project FillProjectModel()
@@ -1479,11 +1535,32 @@ namespace Procurement
         private void dataGridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             IsGridView1Changed = true;
-        }
+            //_dtSalesBOM.AcceptChanges();
+            InsertTo_LstdtSalesBOM();
+            //_LstdtSalesBOM.Insert(_SalesBOM_UndoRedo_Idx, _dtSalesBOM.Copy());
 
+        }
+        private DataTable CopyDataTable(ref GridView dataGridView, ref DataTable SourceDatatable)
+        {
+            DataTable DestinationDataTable = SourceDatatable.Clone();
+            //foreach (DataRow dr in SourceDatatable.Rows)
+            //{
+            //    DestinationDataTable.Rows.Add(dr.ItemArray);
+            //}
+            //return DestinationDataTable;
+
+            for (int i = 0; i < dataGridView.DataRowCount; i++)
+            {
+                DataRow row = dataGridView.GetDataRow(i);
+                DestinationDataTable.Rows.Add(row.ItemArray);
+            }
+            return DestinationDataTable;
+
+        }
         private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             IsGridView2Changed = true;
+            
             //dxe//decimal quantity = ReturnAppropriateValue(dataGridView2.Rows[e.RowIndex].Cells["Qty2"].Value);
             //dxe//decimal rate = ReturnAppropriateValue(dataGridView2.Rows[e.RowIndex].Cells["UnitCost2"].Value);
 
@@ -1540,9 +1617,9 @@ namespace Procurement
 
                 //^--------cal total and show on top------------------
                 GetSetExtCostTotal(ref _dtDesignBOM);
-
-
+                InsertTo_LstdtDesignBOM();
             }
+            
         }
         private void GetSetExtCostTotal(ref DataTable dataTable)
         {
@@ -1625,7 +1702,9 @@ namespace Procurement
 
                 //^--------cal total and show on top------------------
                 GetSetExtCostTotal(ref _dtActualBOM);
+                InsertTo_LstdtActualBOM();
             }
+            
         }
 
         private void dataGridView2_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e)
@@ -2070,16 +2149,19 @@ namespace Procurement
         {
             InsertColumnsAtPlaceFromExcel(ref _dtSalesBOM, 1);
             GetSetExtCostTotal(ref _dtSalesBOM);
+            InsertTo_LstdtSalesBOM();
         }
         private void toolStripMenuItem_Insert_DesignBOM_Click(object sender, EventArgs e)
         {
             InsertColumnsAtPlaceFromExcel(ref _dtDesignBOM, 2);
             GetSetExtCostTotal(ref _dtDesignBOM);
+            InsertTo_LstdtDesignBOM();
         }
         private void toolStripMenuItem_Insert_ActualBOM_Click(object sender, EventArgs e)
         {
             InsertColumnsAtPlaceFromExcel(ref _dtActualBOM, 3);
             GetSetExtCostTotal(ref _dtActualBOM);
+            InsertTo_LstdtActualBOM();
         }
         private void InsertColumnsAtPlaceFromExcel(ref DataTable dtRef, int gridviewNumber)
         {
@@ -2162,11 +2244,11 @@ namespace Procurement
                             newRow["Manufacturer"] = LSTdataColStr[13];
                             newRow["PartNo"] = LSTdataColStr[14];
                             newRow["Description"] = LSTdataColStr[15];
-                            newRow["Qty"] = LSTdataColStr[16];
-                            newRow["UnitCost"] = LSTdataColStr[17];
-                            newRow["ExtCost"] = LSTdataColStr[18];
-                            newRow["UnitPrice"] = LSTdataColStr[19];
-                            newRow["ExtPrice"] = LSTdataColStr[20];
+                            newRow["Qty"] = getNumaricValuesFromString(LSTdataColStr[16]);
+                            newRow["UnitCost"] = getNumaricValuesFromString(LSTdataColStr[17]);
+                            newRow["ExtCost"] = getNumaricValuesFromString(LSTdataColStr[18]);
+                            newRow["UnitPrice"] = getNumaricValuesFromString(LSTdataColStr[19]);
+                            newRow["ExtPrice"] = getNumaricValuesFromString(LSTdataColStr[20]);
                             newRow["ChangeOrder"] = LSTdataColStr[21];
                             newRow["Column1"] = LSTdataColStr[22];
                             newRow["Column2"] = LSTdataColStr[23];
@@ -2220,11 +2302,11 @@ namespace Procurement
                             newRow["Manufacturer"] = LSTdataColStr[13];
                             newRow["PartNo"] = LSTdataColStr[14];
                             newRow["Description"] = LSTdataColStr[15];
-                            newRow["Qty"] = LSTdataColStr[16];
-                            newRow["UnitCost"] = LSTdataColStr[17];
-                            newRow["ExtCost"] = LSTdataColStr[18];
-                            newRow["UnitPrice"] = LSTdataColStr[19];
-                            newRow["ExtPrice"] = LSTdataColStr[20];
+                            newRow["Qty"] = getNumaricValuesFromString(LSTdataColStr[16]);
+                            newRow["UnitCost"] = getNumaricValuesFromString(LSTdataColStr[17]);
+                            newRow["ExtCost"] = getNumaricValuesFromString(LSTdataColStr[18]);
+                            newRow["UnitPrice"] = getNumaricValuesFromString(LSTdataColStr[19]);
+                            newRow["ExtPrice"] = getNumaricValuesFromString(LSTdataColStr[20]);
                             newRow["ChangeOrder"] = LSTdataColStr[21];
                             newRow["Column1"] = LSTdataColStr[22];
                             newRow["Column2"] = LSTdataColStr[23];
@@ -2277,11 +2359,11 @@ namespace Procurement
                             newRow["Manufacturer"] = LSTdataColStr[13];
                             newRow["PartNo"] = LSTdataColStr[14];
                             newRow["Description"] = LSTdataColStr[15];
-                            newRow["Qty"] = LSTdataColStr[16];
-                            newRow["UnitCost"] = LSTdataColStr[17];
-                            newRow["ExtCost"] = LSTdataColStr[18];
-                            newRow["UnitPrice"] = LSTdataColStr[19];
-                            newRow["ExtPrice"] = LSTdataColStr[20];
+                            newRow["Qty"] = getNumaricValuesFromString(LSTdataColStr[16]);
+                            newRow["UnitCost"] = getNumaricValuesFromString(LSTdataColStr[17]);
+                            newRow["ExtCost"] = getNumaricValuesFromString(LSTdataColStr[18]);
+                            newRow["UnitPrice"] = getNumaricValuesFromString(LSTdataColStr[19]);
+                            newRow["ExtPrice"] = getNumaricValuesFromString(LSTdataColStr[20]);
                             newRow["ChangeOrder"] = LSTdataColStr[21];
                             newRow["Column1"] = LSTdataColStr[22];
                             newRow["Column2"] = LSTdataColStr[23];
@@ -2305,23 +2387,57 @@ namespace Procurement
                 MessageBox.Show(ex.Message);
             }
         }
+        private decimal getNumaricValuesFromString(string inStr)
+        {
+            string newString = string.Empty;
+            decimal returnDecimal;
+            for (int i = 0; i <= inStr.Length-1; i++)
+            {
+                 if (IsNumeric( inStr[i].ToString()))
+                 {
+                    newString += inStr[i];
+                 }
+                if (inStr[i].ToString()=="-")
+                {
+                    newString += inStr[i];
+                }
+                if (inStr[i].ToString() == ".")
+                {
+                    newString += inStr[i];
+                }
+
+            }
+            if (string.IsNullOrEmpty(newString))
+            {
+                returnDecimal = 0;
+            }
+            else
+            {
+                returnDecimal = Convert.ToDecimal(newString);
+            }
+            
+            return returnDecimal;
+        }
         private void toolStripMenuSales_InsertEmptyRow_Click(object sender, EventArgs e)
         {
             int selectedrowIndex = dataGridView1.FocusedRowHandle;
             DataRow newRow = _dtSalesBOM.NewRow();
             _dtSalesBOM.Rows.InsertAt(newRow, selectedrowIndex);
+            InsertTo_LstdtSalesBOM();
         }
         private void toolStripMenuDesign_InsertEmptyRow_Click(object sender, EventArgs e)
         {
             int selectedrowIndex = dataGridView2.FocusedRowHandle;
             DataRow newRow = _dtDesignBOM.NewRow();
             _dtDesignBOM.Rows.InsertAt(newRow, selectedrowIndex);
+            InsertTo_LstdtDesignBOM();
         }
         private void toolStripMenuActual_InsertEmptyRow_Click(object sender, EventArgs e)
         {
             int selectedrowIndex = dataGridView3.FocusedRowHandle;
             DataRow newRow = _dtActualBOM.NewRow();
             _dtActualBOM.Rows.InsertAt(newRow, selectedrowIndex);
+            InsertTo_LstdtActualBOM();
         }
         private void pasteMe_Click(object sender, EventArgs e)
         {
@@ -2826,16 +2942,19 @@ namespace Procurement
         {
             DeleteRow();
             GetSetExtCostTotal(ref _dtSalesBOM);
+            InsertTo_LstdtSalesBOM();
         }
         private void deleteRowDesignBOM_Click(object sender, EventArgs e)
         {
             DeleteRow();
             GetSetExtCostTotal(ref _dtDesignBOM);
+            InsertTo_LstdtDesignBOM();
         }
         private void deleteRowActualBOM_Click(object sender, EventArgs e)
         {
             DeleteRow();
             GetSetExtCostTotal(ref _dtActualBOM);
+            InsertTo_LstdtActualBOM();
         }
         public void DeleteRow()
         {
@@ -2857,8 +2976,9 @@ namespace Procurement
                 dataGridView1.DeleteSelectedRows();
                 GetSetExtCostTotal(ref _dtSalesBOM);
                 IsGridView1Changed = true;
-                _SalesBOM_UndoRedo_Idx += 1;
-                _LstdtSalesBOM.Insert(_SalesBOM_UndoRedo_Idx, _dtSalesBOM.Copy());
+                //_dtSalesBOM.AcceptChanges();
+                
+
             }
             if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
             {
@@ -2870,6 +2990,7 @@ namespace Procurement
                 dataGridView2.DeleteSelectedRows();
                 GetSetExtCostTotal(ref _dtDesignBOM);
                 IsGridView2Changed = true;
+                
             }
             if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
             {
@@ -2881,10 +3002,11 @@ namespace Procurement
                 dataGridView3.DeleteSelectedRows();
                 GetSetExtCostTotal(ref _dtActualBOM);
                 IsGridView3Changed = true;
+                
             }
 
         }
-        private void itemDeleteRow_Click(object sender, EventArgs e)
+            private void itemDeleteRow_Click(object sender, EventArgs e)
         {
             //showDeleteConfirmation = false;
             DialogResult dialogResult = MessageBox.Show("Do you want to delete row(s)?", "Confirmation", MessageBoxButtons.YesNo);
@@ -2951,6 +3073,374 @@ namespace Procurement
         //    }
 
         //}
+        
+
+
+        private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //if (e.Button == MouseButtons.Right && e.RowIndex > -1 && e.ColumnIndex > -1)
+            //{
+            //    // Add this
+            //    dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            //    // Can leave these here - doesn't hurt
+            //    //dataGridView1.Rows[e.RowIndex].Selected = true;//if we uncomment this. then it will select full row and can not get cell column index. which is necessory for paste at place
+            //    dataGridView1.Focus();
+            //}
+        }
+        private void dataGridView2_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //if (e.Button == MouseButtons.Right && e.RowIndex > -1 && e.ColumnIndex > -1)
+            //{
+            //    // Add this
+            //    dataGridView2.CurrentCell = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            //    // Can leave these here - doesn't hurt
+            //    //dataGridView2.Rows[e.RowIndex].Selected = true;//if we uncomment this. then it will select full row and can not get cell column index. which is necessory for paste at place
+            //    dataGridView2.Focus();
+            //}
+        }
+
+        private void dataGridView3_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //if (e.Button == MouseButtons.Right && e.RowIndex > -1 && e.ColumnIndex > -1)
+            //{
+            //    // Add this
+            //    dataGridView3.CurrentCell = dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            //    // Can leave these here - doesn't hurt
+            //    //dataGridView3.Rows[e.RowIndex].Selected = true;//if we uncomment this. then it will select full row and can not get cell column index. which is necessory for paste at place
+            //    dataGridView3.Focus();
+            //}
+        }
+
+        private void btnUndo_Click(object sender, EventArgs e)
+        {
+            //GetSummary();
+            //List<DataTable> LstdataTables = new List<DataTable>();
+            //for (int i=1; i<200; i++)
+            //{
+            //    LstdataTables.Add(_dtDesignBOM.Copy());
+
+            //}
+            //MessageBox.Show("200");
+            //undo
+
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabSaleBOM"])
+            {
+                if (_SalesBOM_UndoRedo_Idx == 0) return;
+                _SalesBOM_UndoRedo_Idx -= 1;
+                gridControl1.DataSource = _LstdtSalesBOM[_SalesBOM_UndoRedo_Idx].Copy();
+                //_LstdtSalesBOM.RemoveAt(_SalesBOM_UndoRedo_Idx);
+                _dtSalesBOM = (DataTable)gridControl1.DataSource;
+            }
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
+            {
+                if (_DesignBOM_UndoRedo_Idx == 0) return;
+                _DesignBOM_UndoRedo_Idx -= 1;
+                gridControl2.DataSource = _LstdtDesignBOM[_DesignBOM_UndoRedo_Idx].Copy();
+                //_LstdtSalesBOM.RemoveAt(_SalesBOM_UndoRedo_Idx);
+                _dtDesignBOM = (DataTable)gridControl2.DataSource;
+
+            }
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
+            {
+                if (_ActualBOM_UndoRedo_Idx == 0) return;
+                _ActualBOM_UndoRedo_Idx -= 1;
+                gridControl3.DataSource = _LstdtActualBOM[_ActualBOM_UndoRedo_Idx].Copy();
+                //_LstdtSalesBOM.RemoveAt(_SalesBOM_UndoRedo_Idx);
+                _dtActualBOM = (DataTable)gridControl3.DataSource;
+            }
+
+
+
+        }
+        private void btnRedo_Click(object sender, EventArgs e)
+        {
+
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabSaleBOM"])
+            {
+                //redo
+                if (_SalesBOM_UndoRedo_Idx == _LstdtSalesBOM.Count - 1) return;
+                _SalesBOM_UndoRedo_Idx += 1;
+                gridControl1.DataSource = _LstdtSalesBOM[_SalesBOM_UndoRedo_Idx].Copy();
+                //_LstdtSalesBOM.RemoveAt(_SalesBOM_UndoRedo_Idx);
+                _dtSalesBOM = (DataTable)gridControl1.DataSource;
+
+            }
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
+            {
+                //redo
+                if (_DesignBOM_UndoRedo_Idx == _LstdtDesignBOM.Count - 1) return;
+                _DesignBOM_UndoRedo_Idx += 1;
+                gridControl2.DataSource = _LstdtDesignBOM[_DesignBOM_UndoRedo_Idx].Copy();
+                //_LstdtSalesBOM.RemoveAt(_SalesBOM_UndoRedo_Idx);
+                _dtDesignBOM = (DataTable)gridControl2.DataSource;
+
+            }
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
+            {
+                //redo
+                if (_ActualBOM_UndoRedo_Idx == _LstdtActualBOM.Count - 1) return;
+                _ActualBOM_UndoRedo_Idx += 1;
+                gridControl3.DataSource = _LstdtActualBOM[_ActualBOM_UndoRedo_Idx].Copy();
+                //_LstdtSalesBOM.RemoveAt(_SalesBOM_UndoRedo_Idx);
+                _dtActualBOM = (DataTable)gridControl3.DataSource;
+
+            }
+
+
+
+        }
+        private void tabSummary_Click(object sender, EventArgs e)
+        {
+            //GetSummary();
+        }
+
+        private void tabSummary_Enter(object sender, EventArgs e)
+        {
+            GetSummary();
+        }
+        DataTable _exportDT;
+        SaveFileDialog _savefile;
+        private void btnExportXLS_Click(object sender, EventArgs e)
+        {
+            //ExportXLS_Method1(); export single datatable only;
+            ExportXLS();
+
+        }
+
+        public void ExportXLS()
+        {
+            _savefile = new SaveFileDialog();
+            // set a default file name
+            string datetime = DateTime.Now.ToString("yyyyMMddHHmmss");
+            datetime = datetime.Replace(":", "");
+
+            _savefile.FileName = "Control Sheet" + " " + datetime + ".xlsx";
+            // set filters - this can be done in properties as well
+            _savefile.Filter = "Excel Workbook (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+
+            if (_savefile.ShowDialog() == DialogResult.OK)
+            {
+                tabControl1.SelectedTab = tabControl1.TabPages["tabSummary"];
+                XLWorkbook wb = new XLWorkbook();
+
+                wb.Worksheets.Add(_dtSalesBOM, "Bid");
+                wb.Worksheets.Add(_dtDesignBOM, "Planned");
+                wb.Worksheets.Add(_dtActualBOM, "Actual");
+                wb.Worksheets.Add(_dtSummary, "Summary");
+                //wb.SaveAs(@"C:\test\control sheet.xlsx");
+                wb.SaveAs(_savefile.FileName);
+
+                MessageBox.Show("Exported successfully");
+            }
+        }
+        
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            //var backgroundWorker = sender as BackgroundWorker;
+            ExportExl_BkGroundWorker();
+        }
+        private void ExportExl_BkGroundWorker()
+        {
+
+            ///////////////export to excel/////////////////
+            // Here is main process
+            Microsoft.Office.Interop.Excel.Application objexcelapp = new Microsoft.Office.Interop.Excel.Application();
+            objexcelapp.Application.Workbooks.Add(Type.Missing);
+            objexcelapp.Columns.AutoFit();
+
+
+            for (int i = 1; i < _exportDT.Columns.Count + 1; i++)
+            {
+                Microsoft.Office.Interop.Excel.Range xlRange = (Microsoft.Office.Interop.Excel.Range)objexcelapp.Cells[1, i];
+                xlRange.Font.Bold = -1;
+                xlRange.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                xlRange.Borders.Weight = 1d;
+                xlRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                objexcelapp.Cells[1, i] = _exportDT.Columns[i - 1].Caption;
+
+            }
+            //progressBar1.Maximum = exportDT.Rows.Count;
+            /*For storing Each row and column value to excel sheet*/
+            for (int i = 0; i < _exportDT.Rows.Count; i++)
+            {
+                backgroundWorker1.ReportProgress(i);
+                for (int j = 0; j < _exportDT.Columns.Count; j++)
+                {
+                    //if (exportDT.Rows[i][j] != null)
+                    if (!string.IsNullOrEmpty(_exportDT.Rows[i][j].ToString()))
+                    {
+                        Microsoft.Office.Interop.Excel.Range xlRange = (Microsoft.Office.Interop.Excel.Range)objexcelapp.Cells[i + 2, j + 1];
+                        xlRange.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        xlRange.Borders.Weight = 1d;
+                        objexcelapp.Cells[i + 2, j + 1] = _exportDT.Rows[i][j].ToString();
+                    }
+
+                }
+            }
+            objexcelapp.Columns.AutoFit(); // Auto fix the columns size
+                                           //System.Windows.Forms.Application.DoEvents();
+
+            //if (Directory.Exists("C:\\CTR_Data\\")) // Folder dic
+            //{
+            //    objexcelapp.ActiveWorkbook.SaveCopyAs("C:\\CTR_Data\\" + "excelFilename" + ".xlsx");
+            //}
+            //else
+            //{
+            //    Directory.CreateDirectory("C:\\CTR_Data\\");
+            //    objexcelapp.ActiveWorkbook.SaveCopyAs("C:\\CTR_Data\\" + "excelFilename" + ".xlsx");
+            //}
+
+            objexcelapp.ActiveWorkbook.SaveCopyAs(_savefile.FileName);
+            objexcelapp.ActiveWorkbook.Saved = true;
+            //System.Windows.Forms.Application.DoEvents();
+            MessageBox.Show("Exported successfully");
+
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar1.Value = e.ProgressPercentage;
+        }
+
+        private void copyChangeOrderToPlannedBOMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Change Order from Bid BOM will copy to Planned BOM... Sure?", "Confirmation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //Identify New What Change Order to copy
+                string strCO = string.Empty;
+                int PrevFound = -1;
+                int NewFound = -1;
+                int MaxInNextBom = PrevFound;
+                foreach (DataRow row in _dtDesignBOM.Rows)
+                {
+                    strCO = row["ChangeOrder"].ToString();
+                    if (string.IsNullOrEmpty(strCO) || string.IsNullOrWhiteSpace(strCO)) continue;
+                    strCO = strCO.Replace(" ", "").Split('-').Last();
+                    if (!IsNumeric(strCO)) continue;
+                    NewFound = int.Parse(strCO);
+                    if (NewFound > PrevFound)
+                    {
+                        PrevFound = NewFound;
+                    }
+
+                }
+
+                MaxInNextBom = PrevFound;
+                PrevFound = -1;
+                NewFound = -1;
+
+                foreach (DataRow row in _dtSalesBOM.Rows)
+                {
+                    strCO = row["ChangeOrder"].ToString();
+                    if (string.IsNullOrEmpty(strCO) || string.IsNullOrWhiteSpace(strCO)) continue;
+                    strCO = strCO.Replace(" ", "").Split('-').Last();
+                    if (!IsNumeric(strCO)) continue;
+                    NewFound = int.Parse(strCO);
+                    if (NewFound > MaxInNextBom)
+                    {
+                        _dtDesignBOM.Rows.Add(row.ItemArray);
+                    }
+
+                }
+
+                tabControl1.SelectedTab = tabDesignBOM;
+                IsGridView2Changed = true;
+                InsertTo_LstdtDesignBOM();
+            }
+        }
+
+        private void copyChangeOrderToActualBOMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Change Order from Planned BOM will copy to Actual BOM... Sure?", "Confirmation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //Identify New What Change Order to copy
+                string strCO = string.Empty;
+                int PrevFound = -1;
+                int NewFound = -1;
+                int MaxInNextBom = PrevFound;
+                foreach (DataRow row in _dtActualBOM.Rows)
+                {
+                    strCO = row["ChangeOrder"].ToString();
+                    if (string.IsNullOrEmpty(strCO) || string.IsNullOrWhiteSpace(strCO)) continue;
+                    strCO = strCO.Replace(" ", "").Split('-').Last();
+                    if (!IsNumeric(strCO)) continue;
+                    NewFound = int.Parse(strCO);
+                    if (NewFound > PrevFound)
+                    {
+                        PrevFound = NewFound;
+                    }
+
+                }
+
+                MaxInNextBom = PrevFound;
+                PrevFound = -1;
+                NewFound = -1;
+
+                foreach (DataRow row in _dtDesignBOM.Rows)
+                {
+                    strCO = row["ChangeOrder"].ToString();
+                    if (string.IsNullOrEmpty(strCO) || string.IsNullOrWhiteSpace(strCO)) continue;
+                    strCO = strCO.Replace(" ", "").Split('-').Last();
+                    if (!IsNumeric(strCO)) continue;
+                    NewFound = int.Parse(strCO);
+                    if (NewFound > MaxInNextBom)
+                    {
+                        _dtActualBOM.Rows.Add(row.ItemArray);
+                    }
+
+                }
+
+                tabControl1.SelectedTab = tabActualBOM;
+                IsGridView3Changed = true;
+                InsertTo_LstdtActualBOM();
+
+            }
+        }
+        private void ExportXLS_Method_old()
+        {
+
+            progressBar1.Visible = true;
+            progressBar1.Step = 1;
+            progressBar1.Value = 0;
+
+            _exportDT = new DataTable();
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabSaleBOM"])
+            {
+                _exportDT = _dtSalesBOM;
+            }
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
+            {
+                _exportDT = _dtDesignBOM;
+            }
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
+            {
+                _exportDT = _dtActualBOM;
+            }
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabSummary"])
+            {
+                _exportDT = _dtSummary;
+            }
+
+            progressBar1.Maximum = _exportDT.Rows.Count - 1;
+
+            //--------------
+            _savefile = new SaveFileDialog();
+            // set a default file name
+            string datetime = DateTime.Now.ToString("yyyyMMddHHmmss");
+            datetime = datetime.Replace(":", "");
+
+            _savefile.FileName = _exportDT.TableName + " " + datetime + ".xlsx";
+            // set filters - this can be done in properties as well
+            _savefile.Filter = "Excel Workbook (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+
+            if (_savefile.ShowDialog() == DialogResult.OK)
+            {
+                backgroundWorker1.RunWorkerAsync();
+            }
+
+        }
         private void LoadExcelOldMethod()
         {
             try
@@ -3102,318 +3592,6 @@ namespace Procurement
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-        }
-
-
-        private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //if (e.Button == MouseButtons.Right && e.RowIndex > -1 && e.ColumnIndex > -1)
-            //{
-            //    // Add this
-            //    dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            //    // Can leave these here - doesn't hurt
-            //    //dataGridView1.Rows[e.RowIndex].Selected = true;//if we uncomment this. then it will select full row and can not get cell column index. which is necessory for paste at place
-            //    dataGridView1.Focus();
-            //}
-        }
-        private void dataGridView2_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //if (e.Button == MouseButtons.Right && e.RowIndex > -1 && e.ColumnIndex > -1)
-            //{
-            //    // Add this
-            //    dataGridView2.CurrentCell = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            //    // Can leave these here - doesn't hurt
-            //    //dataGridView2.Rows[e.RowIndex].Selected = true;//if we uncomment this. then it will select full row and can not get cell column index. which is necessory for paste at place
-            //    dataGridView2.Focus();
-            //}
-        }
-
-        private void dataGridView3_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //if (e.Button == MouseButtons.Right && e.RowIndex > -1 && e.ColumnIndex > -1)
-            //{
-            //    // Add this
-            //    dataGridView3.CurrentCell = dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            //    // Can leave these here - doesn't hurt
-            //    //dataGridView3.Rows[e.RowIndex].Selected = true;//if we uncomment this. then it will select full row and can not get cell column index. which is necessory for paste at place
-            //    dataGridView3.Focus();
-            //}
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //GetSummary();
-            //List<DataTable> LstdataTables = new List<DataTable>();
-            //for (int i=1; i<200; i++)
-            //{
-            //    LstdataTables.Add(_dtDesignBOM.Copy());
-
-            //}
-            //MessageBox.Show("200");
-            //undo
-
-
-            if (_SalesBOM_UndoRedo_Idx == 0) return;
-            _SalesBOM_UndoRedo_Idx -= 1;
-            gridControl1.DataSource = _LstdtSalesBOM[_SalesBOM_UndoRedo_Idx].Copy();
-            //_LstdtSalesBOM.RemoveAt(_SalesBOM_UndoRedo_Idx);
-
-        }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            //redo
-            if (_SalesBOM_UndoRedo_Idx == _LstdtSalesBOM.Count - 1) return;
-            _SalesBOM_UndoRedo_Idx += 1;
-            gridControl1.DataSource = _LstdtSalesBOM[_SalesBOM_UndoRedo_Idx].Copy();
-            //_LstdtSalesBOM.RemoveAt(_SalesBOM_UndoRedo_Idx);
-        }
-        private void tabSummary_Click(object sender, EventArgs e)
-        {
-            //GetSummary();
-        }
-
-        private void tabSummary_Enter(object sender, EventArgs e)
-        {
-            GetSummary();
-        }
-        DataTable _exportDT;
-        SaveFileDialog _savefile;
-        private void btnExportXLS_Click(object sender, EventArgs e)
-        {
-            //ExportXLS_Method1(); export single datatable only;
-            ExportXLS();
-
-        }
-
-        public void ExportXLS()
-        {
-            _savefile = new SaveFileDialog();
-            // set a default file name
-            string datetime = DateTime.Now.ToString("yyyyMMddHHmmss");
-            datetime = datetime.Replace(":", "");
-
-            _savefile.FileName = "Control Sheet" + " " + datetime + ".xlsx";
-            // set filters - this can be done in properties as well
-            _savefile.Filter = "Excel Workbook (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-
-            if (_savefile.ShowDialog() == DialogResult.OK)
-            {
-                tabControl1.SelectedTab = tabControl1.TabPages["tabSummary"];
-                XLWorkbook wb = new XLWorkbook();
-
-                wb.Worksheets.Add(_dtSalesBOM, "Bid");
-                wb.Worksheets.Add(_dtDesignBOM, "Planned");
-                wb.Worksheets.Add(_dtActualBOM, "Actual");
-                wb.Worksheets.Add(_dtSummary, "Summary");
-                //wb.SaveAs(@"C:\test\control sheet.xlsx");
-                wb.SaveAs(_savefile.FileName);
-
-                MessageBox.Show("Exported successfully");
-            }
-        }
-        private void ExportXLS_Method_old()
-        {
-
-            progressBar1.Visible = true;
-            progressBar1.Step = 1;
-            progressBar1.Value = 0;
-
-            _exportDT = new DataTable();
-            if (tabControl1.SelectedTab == tabControl1.TabPages["tabSaleBOM"])
-            {
-                _exportDT = _dtSalesBOM;
-            }
-            if (tabControl1.SelectedTab == tabControl1.TabPages["tabDesignBOM"])
-            {
-                _exportDT = _dtDesignBOM;
-            }
-            if (tabControl1.SelectedTab == tabControl1.TabPages["tabActualBOM"])
-            {
-                _exportDT = _dtActualBOM;
-            }
-            if (tabControl1.SelectedTab == tabControl1.TabPages["tabSummary"])
-            {
-                _exportDT = _dtSummary;
-            }
-
-            progressBar1.Maximum = _exportDT.Rows.Count - 1;
-
-            //--------------
-            _savefile = new SaveFileDialog();
-            // set a default file name
-            string datetime = DateTime.Now.ToString("yyyyMMddHHmmss");
-            datetime = datetime.Replace(":", "");
-
-            _savefile.FileName = _exportDT.TableName + " " + datetime + ".xlsx";
-            // set filters - this can be done in properties as well
-            _savefile.Filter = "Excel Workbook (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-
-            if (_savefile.ShowDialog() == DialogResult.OK)
-            {
-                backgroundWorker1.RunWorkerAsync();
-            }
-
-        }
-        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            //var backgroundWorker = sender as BackgroundWorker;
-            ExportExl_BkGroundWorker();
-        }
-        private void ExportExl_BkGroundWorker()
-        {
-
-            ///////////////export to excel/////////////////
-            // Here is main process
-            Microsoft.Office.Interop.Excel.Application objexcelapp = new Microsoft.Office.Interop.Excel.Application();
-            objexcelapp.Application.Workbooks.Add(Type.Missing);
-            objexcelapp.Columns.AutoFit();
-
-
-            for (int i = 1; i < _exportDT.Columns.Count + 1; i++)
-            {
-                Microsoft.Office.Interop.Excel.Range xlRange = (Microsoft.Office.Interop.Excel.Range)objexcelapp.Cells[1, i];
-                xlRange.Font.Bold = -1;
-                xlRange.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                xlRange.Borders.Weight = 1d;
-                xlRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                objexcelapp.Cells[1, i] = _exportDT.Columns[i - 1].Caption;
-
-            }
-            //progressBar1.Maximum = exportDT.Rows.Count;
-            /*For storing Each row and column value to excel sheet*/
-            for (int i = 0; i < _exportDT.Rows.Count; i++)
-            {
-                backgroundWorker1.ReportProgress(i);
-                for (int j = 0; j < _exportDT.Columns.Count; j++)
-                {
-                    //if (exportDT.Rows[i][j] != null)
-                    if (!string.IsNullOrEmpty(_exportDT.Rows[i][j].ToString()))
-                    {
-                        Microsoft.Office.Interop.Excel.Range xlRange = (Microsoft.Office.Interop.Excel.Range)objexcelapp.Cells[i + 2, j + 1];
-                        xlRange.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                        xlRange.Borders.Weight = 1d;
-                        objexcelapp.Cells[i + 2, j + 1] = _exportDT.Rows[i][j].ToString();
-                    }
-
-                }
-            }
-            objexcelapp.Columns.AutoFit(); // Auto fix the columns size
-                                           //System.Windows.Forms.Application.DoEvents();
-
-            //if (Directory.Exists("C:\\CTR_Data\\")) // Folder dic
-            //{
-            //    objexcelapp.ActiveWorkbook.SaveCopyAs("C:\\CTR_Data\\" + "excelFilename" + ".xlsx");
-            //}
-            //else
-            //{
-            //    Directory.CreateDirectory("C:\\CTR_Data\\");
-            //    objexcelapp.ActiveWorkbook.SaveCopyAs("C:\\CTR_Data\\" + "excelFilename" + ".xlsx");
-            //}
-
-            objexcelapp.ActiveWorkbook.SaveCopyAs(_savefile.FileName);
-            objexcelapp.ActiveWorkbook.Saved = true;
-            //System.Windows.Forms.Application.DoEvents();
-            MessageBox.Show("Exported successfully");
-
-        }
-
-        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            progressBar1.Value = e.ProgressPercentage;
-        }
-
-        private void copyChangeOrderToPlannedBOMToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Change Order from Bid BOM will copy to Planned BOM... Sure?", "Confirmation", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                //Identify New What Change Order to copy
-                string strCO = string.Empty;
-                int PrevFound = -1;
-                int NewFound = -1;
-                int MaxInNextBom = PrevFound;
-                foreach (DataRow row in _dtDesignBOM.Rows)
-                {
-                    strCO = row["ChangeOrder"].ToString();
-                    if (string.IsNullOrEmpty(strCO) || string.IsNullOrWhiteSpace(strCO)) continue;
-                    strCO = strCO.Replace(" ", "").Split('-').Last();
-                    if (!IsNumeric(strCO)) continue;
-                    NewFound = int.Parse(strCO);
-                    if (NewFound > PrevFound)
-                    {
-                        PrevFound = NewFound;
-                    }
-
-                }
-
-                MaxInNextBom = PrevFound;
-                PrevFound = -1;
-                NewFound = -1;
-
-                foreach (DataRow row in _dtSalesBOM.Rows)
-                {
-                    strCO = row["ChangeOrder"].ToString();
-                    if (string.IsNullOrEmpty(strCO) || string.IsNullOrWhiteSpace(strCO)) continue;
-                    strCO = strCO.Replace(" ", "").Split('-').Last();
-                    if (!IsNumeric(strCO)) continue;
-                    NewFound = int.Parse(strCO);
-                    if (NewFound > MaxInNextBom)
-                    {
-                        _dtDesignBOM.Rows.Add(row.ItemArray);
-                    }
-
-                }
-
-                tabControl1.SelectedTab = tabDesignBOM;
-                IsGridView2Changed = true;
-            }
-        }
-
-        private void copyChangeOrderToActualBOMToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Change Order from Planned BOM will copy to Actual BOM... Sure?", "Confirmation", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                //Identify New What Change Order to copy
-                string strCO = string.Empty;
-                int PrevFound = -1;
-                int NewFound = -1;
-                int MaxInNextBom = PrevFound;
-                foreach (DataRow row in _dtActualBOM.Rows)
-                {
-                    strCO = row["ChangeOrder"].ToString();
-                    if (string.IsNullOrEmpty(strCO) || string.IsNullOrWhiteSpace(strCO)) continue;
-                    strCO = strCO.Replace(" ", "").Split('-').Last();
-                    if (!IsNumeric(strCO)) continue;
-                    NewFound = int.Parse(strCO);
-                    if (NewFound > PrevFound)
-                    {
-                        PrevFound = NewFound;
-                    }
-
-                }
-
-                MaxInNextBom = PrevFound;
-                PrevFound = -1;
-                NewFound = -1;
-
-                foreach (DataRow row in _dtDesignBOM.Rows)
-                {
-                    strCO = row["ChangeOrder"].ToString();
-                    if (string.IsNullOrEmpty(strCO) || string.IsNullOrWhiteSpace(strCO)) continue;
-                    strCO = strCO.Replace(" ", "").Split('-').Last();
-                    if (!IsNumeric(strCO)) continue;
-                    NewFound = int.Parse(strCO);
-                    if (NewFound > MaxInNextBom)
-                    {
-                        _dtActualBOM.Rows.Add(row.ItemArray);
-                    }
-
-                }
-
-                tabControl1.SelectedTab = tabActualBOM;
-                IsGridView3Changed = true;
             }
         }
     }
